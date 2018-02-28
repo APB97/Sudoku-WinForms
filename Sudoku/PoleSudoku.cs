@@ -22,5 +22,11 @@ namespace Sudoku
         {
             InitializeComponent();
         }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox.Text.Length > 0 && !char.IsDigit(textBox.Text[0]))
+                textBox.Text = string.Empty;
+        }
     }
 }

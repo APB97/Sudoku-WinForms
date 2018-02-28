@@ -14,6 +14,9 @@ namespace Sudoku
     {
         PoleSudoku[,] tabelkaSudoku = new PoleSudoku[9,9];
 
+        int[] tabelaPrzesuniecH = new int[9] { 0, 1, 2, 0, 1, 2, 0, 1, 2 };
+        int[] tabelaPrzesuniecV = new int[9] { 0, 0, 0, 1, 1, 1, 2, 2, 2 };
+
         public Form2()
         {
             InitializeComponent();
@@ -30,20 +33,30 @@ namespace Sudoku
             TableLayoutPanel obecnyKwadrat;
             for (int i = 0; i < 9; ++i)
             {
-                obecnyKwadratCtrl = tableLayoutPanel0.Controls[i];
+                //Controls.Find()
+                obecnyKwadratCtrl = tableLayoutPanelPlansza.Controls.Find("tableLayoutPanel" + i, false)[0];
+                obecnyKwadratCtrl.TabIndex = i;
                 obecnyKwadrat = obecnyKwadratCtrl as TableLayoutPanel;
                 for (int j = 0; j < 9; ++j)
                 {
                     var pole = new PoleSudoku();
                     obecnyKwadrat.Controls.Add(pole);
-                    tabelkaSudoku[(i - i % 3) + (j / 3), (i % 3) * 3 + (j % 3)] = pole;
+                    tabelkaSudoku[tabelaPrzesuniecV[j] + tabelaPrzesuniecV[i] * 3,
+                        tabelaPrzesuniecH[j] + tabelaPrzesuniecH[i] * 3] = pole;
+                    //tabelkaSudoku[(i - i % 3) + (j / 3), (i % 3) * 3 + (j % 3)] = pole;
+                    //tabelkaSudoku[(i - 1) / 3 * 3 + (j - 1) /3, ((i - 1) % 3) * 3 + (j - 1) % 3] = pole;
                 }
             }
         }
 
-        private void buttonZapisz_Click(object sender, EventArgs e)
+        private void buttonZapiszStan_Click(object sender, EventArgs e)
         {
             MenedzerZapisuOdczytu.Zapisz(tabelkaSudoku, saveSudokuDialog);
+        }
+
+        private void buttonWczytajStan_Click(object sender, EventArgs e)
+        {
+            MenedzerZapisuOdczytu.Wczytaj(tabelkaSudoku, openSudokuDialog);
         }
     }
 }

@@ -23,6 +23,12 @@ namespace Sudoku
             InitializeComponent();
         }
 
+        public void InicjujPole(int wartoscPola)
+        {
+            textBox.Font = new Font(textBox.Font, FontStyle.Bold);
+            textBox.Text = wartoscPola.ToString();
+        }
+
         private void textBox_TextChanged(object sender, EventArgs e)
         {
             if (textBox.Text.Length > 0 && !char.IsDigit(textBox.Text[0]))

@@ -25,6 +25,7 @@ namespace Sudoku
         private void Form2_Load(object sender, EventArgs e)
         {
             StworzPolaSudoku();
+            GenerujSudoku();
         }
 
         private void StworzPolaSudoku()
@@ -47,6 +48,29 @@ namespace Sudoku
                     //tabelkaSudoku[(i - 1) / 3 * 3 + (j - 1) /3, ((i - 1) % 3) * 3 + (j - 1) % 3] = pole;
                 }
             }
+        }
+
+        private void GenerujSudoku()
+        {
+            int wiersz = 0;
+            int kolumna = 0;
+            int nowaWartosc;
+            List<int> wartosci = new List<int>(Enumerable.Range(1, 9));
+            List<int> uzyteWartosci = new List<int>();
+            Random generator = new Random();
+            int losowyIndeks = generator.Next(0, 9);
+            nowaWartosc = wartosci[losowyIndeks];
+            tabelkaSudoku[wiersz, kolumna].InicjujPole(nowaWartosc);
+            wartosci.Remove(nowaWartosc);
+            for (wiersz = 1; wiersz < 9; ++ wiersz)
+            {
+                losowyIndeks = generator.Next(0, wartosci.Count);
+                nowaWartosc = wartosci[losowyIndeks];
+                wartosci.Remove(nowaWartosc);
+                uzyteWartosci.Add(nowaWartosc);
+                tabelkaSudoku[wiersz, kolumna].InicjujPole(nowaWartosc);
+            }
+            wiersz = 0;
         }
 
         private void buttonZapiszStan_Click(object sender, EventArgs e)

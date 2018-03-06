@@ -57,6 +57,7 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="GeneratorSudoku.cs" />
     <Compile Include="MenedzerZapisuOdczytu.cs" />
     <Compile Include="PoleSudoku.cs">
       <SubType>UserControl</SubType>

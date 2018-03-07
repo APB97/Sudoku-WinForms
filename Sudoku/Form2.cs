@@ -39,106 +39,23 @@ namespace Sudoku
                 obecnyKwadrat = obecnyKwadratCtrl as TableLayoutPanel;
                 for (int j = 0; j < 9; ++j)
                 {
-                    var pole = new PoleSudoku();
+                    var pole = new PoleSudoku()
+                    {
+                        X = tabelaPrzesuniecH[j] + tabelaPrzesuniecH[i] * 3,
+                        Y = tabelaPrzesuniecV[j] + tabelaPrzesuniecV[i] * 3
+                    };
                     obecnyKwadrat.Controls.Add(pole);
                     tabelkaSudoku[tabelaPrzesuniecV[j] + tabelaPrzesuniecV[i] * 3,
                         tabelaPrzesuniecH[j] + tabelaPrzesuniecH[i] * 3] = pole;
+                    pole.textBox.PreviewKeyDown += textBoxSudoku_PreviewKeyDown;
                     //tabelkaSudoku[(i - i % 3) + (j / 3), (i % 3) * 3 + (j % 3)] = pole;
                     //tabelkaSudoku[(i - 1) / 3 * 3 + (j - 1) /3, ((i - 1) % 3) * 3 + (j - 1) % 3] = pole;
                 }
             }
         }
-        /*
-        private void GenerujSudoku()
-        {
-            int nowa;
-            int[,] plansza = new int[9, 9];
-            List<int>[,] juzUzyte = new List<int>[9, 9];
-            for (int i = 0; i < 9; ++i)
-                for (int j = 0; j < 9; ++j)
-                    juzUzyte[i, j] = new List<int>();
-            List<int>[] dostepneWKwadracie = new List<int>[9];
-            for (int i = 0; i < 9; ++i)
-                dostepneWKwadracie[i] = new List<int>(Enumerable.Range(1, 9));
-            Random generatorLiczb = new Random();
-            List<int> dostepneWartosci = new List<int>(Enumerable.Range(1, 9));
-            for (int i = 0; i < 9; ++i)
-            {
-                nowa = dostepneWartosci[generatorLiczb.Next(0, dostepneWartosci.Count)];
-                dostepneWartosci.Remove(nowa);
-                plansza[0, i] = nowa;
-                dostepneWKwadracie[i / 3].Remove(nowa);
-                juzUzyte[0, i].Add(nowa);
-            }
-            int v = 1, h = 0;
-            while (v < 9)
-            {
-                dostepneWartosci = new List<int>(Enumerable.Range(1, 9));
-                for (int j = 0; j < 9; ++j)
-                {
-                    dostepneWartosci.Remove(plansza[j, h]);
-                    dostepneWartosci.Remove(plansza[v, j]);
-                }
-                foreach(int number in Enumerable.Range(1, 9).Except(dostepneWKwadracie[v / 3 * 3 + h / 3]))
-                {
-                    dostepneWartosci.Remove(number);
-                }
-                foreach(int number in juzUzyte[v, h])
-                {
-                    dostepneWartosci.Remove(number);
-                }
-
-                if (dostepneWartosci.Count > 0)
-                {
-                    nowa = dostepneWartosci[generatorLiczb.Next(0, dostepneWartosci.Count)];
-                    plansza[v, h] = nowa;
-                    dostepneWKwadracie[v / 3 * 3 + h / 3].Remove(nowa);
-                    juzUzyte[v, h].Add(nowa);
-                }
-                else
-                {
-                    juzUzyte[v, h].Clear();
-                    if (plansza[v, h] != 0)
-                        dostepneWKwadracie[v / 3 * 3 + h / 3].Add(plansza[v, h]);
-                    plansza[v, h] = 0;
-                    --h;
-                    if (h < 0)
-                    {
-                        --v;
-                        h += 9;
-                    }
-                    continue;
-                }
-
-                ++h;
-                if (h >= 9)
-                {
-                    h -= 9;
-                    v++;
-                }
-            }
-            /*int wiersz = 0;
-            int kolumna = 0;
-            int nowaWartosc;
-            List<int> wartosci = new List<int>(Enumerable.Range(1, 9));
-            List<int> uzyteWartosci = new List<int>();
-            Random generator = new Random();
-            int losowyIndeks = generator.Next(0, wartosci.Count);
-            nowaWartosc = wartosci[losowyIndeks];
-            tabelkaSudoku[wiersz, kolumna].InicjujPole(nowaWartosc);
-            wartosci.Remove(nowaWartosc);
-            for (wiersz = 1; wiersz < 9; ++ wiersz)
-            {
-                losowyIndeks = generator.Next(0, wartosci.Count);
-                nowaWartosc = wartosci[losowyIndeks];
-                wartosci.Remove(nowaWartosc);
-                uzyteWartosci.Add(nowaWartosc);
-                tabelkaSudoku[wiersz, kolumna].InicjujPole(nowaWartosc);
-            }
-            wiersz = 0;
-            
-        }*/
-
+        /// <summary>
+        /// TODO: Make it working.
+        /// </summary>
         private void GenerujSudoku()
         {
 
@@ -152,6 +69,33 @@ namespace Sudoku
         private void buttonWczytajStan_Click(object sender, EventArgs e)
         {
             MenedzerZapisuOdczytu.Wczytaj(tabelkaSudoku, openSudokuDialog);
+        }
+
+        private void textBoxSudoku_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            var pole = (sender as Control).Parent as PoleSudoku;
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                    if (pole.X > 0)
+                        pole = tabelkaSudoku[pole.Y, pole.X - 1];
+                    break;
+                case Keys.Right:
+                    if (pole.X < 8)
+                        pole = tabelkaSudoku[pole.Y, pole.X + 1];
+                    break;
+                case Keys.Up:
+                    if (pole.Y > 0)
+                        pole = tabelkaSudoku[pole.Y - 1, pole.X];
+                    break;
+                case Keys.Down:
+                    if (pole.Y < 8)
+                        pole = tabelkaSudoku[pole.Y + 1, pole.X];
+                    break;
+                default:
+                    return;
+            }
+            pole.textBox.Focus();
         }
     }
 }

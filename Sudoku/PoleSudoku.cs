@@ -12,6 +12,9 @@ namespace Sudoku
 {
     public partial class PoleSudoku : UserControl
     {
+        public int X { get; set; }
+        public int Y { get; set; }
+
         public string ZawartoscPola
         {
             get { return textBox.Text; }

@@ -34,13 +34,12 @@
             // textBox
             // 
             this.textBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 23.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox.Location = new System.Drawing.Point(0, 0);
             this.textBox.Margin = new System.Windows.Forms.Padding(0);
             this.textBox.MaxLength = 1;
-            this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(42, 42);
+            this.textBox.Size = new System.Drawing.Size(42, 43);
             this.textBox.TabIndex = 1;
             this.textBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
@@ -60,6 +59,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox;
+        public System.Windows.Forms.TextBox textBox;
     }
 }

@@ -55,7 +55,7 @@ namespace Sudoku
                     }
                     if (zawartoscLinii.Any((string s) => !char.IsDigit(s[0]) || s.Length > 1))
                     {
-                        MessageBox.Show(string.Format("W linii {0} nie wszystkie wartości pól są cyframi!"), "Uwaga!",
+                        MessageBox.Show(string.Format("W linii {0} nie wszystkie wartości pól są cyframi!", i), "Uwaga!",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }

@@ -30,11 +30,11 @@
         {
             this.panelMainMenu = new System.Windows.Forms.Panel();
             this.tableLayoutPanelMainMenu = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonGraj = new System.Windows.Forms.Button();
             this.tableLayoutPanelPrzyciskiMainMenu = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonWczytaj = new System.Windows.Forms.Button();
-            this.buttonOpcje = new System.Windows.Forms.Button();
             this.buttonWyjscie = new System.Windows.Forms.Button();
+            this.buttonOpcje = new System.Windows.Forms.Button();
+            this.buttonWczytaj = new System.Windows.Forms.Button();
+            this.buttonGraj = new System.Windows.Forms.Button();
             this.labelGameTitle = new System.Windows.Forms.Label();
             this.panelMainMenu.SuspendLayout();
             this.tableLayoutPanelMainMenu.SuspendLayout();
@@ -67,16 +67,6 @@
             this.tableLayoutPanelMainMenu.Size = new System.Drawing.Size(484, 461);
             this.tableLayoutPanelMainMenu.TabIndex = 1;
             // 
-            // buttonGraj
-            // 
-            this.buttonGraj.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonGraj.Location = new System.Drawing.Point(3, 3);
-            this.buttonGraj.Name = "buttonGraj";
-            this.buttonGraj.Size = new System.Drawing.Size(246, 26);
-            this.buttonGraj.TabIndex = 0;
-            this.buttonGraj.Text = "Graj!";
-            this.buttonGraj.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutPanelPrzyciskiMainMenu
             // 
             this.tableLayoutPanelPrzyciskiMainMenu.ColumnCount = 1;
@@ -97,15 +87,15 @@
             this.tableLayoutPanelPrzyciskiMainMenu.Size = new System.Drawing.Size(252, 382);
             this.tableLayoutPanelPrzyciskiMainMenu.TabIndex = 1;
             // 
-            // buttonWczytaj
+            // buttonWyjscie
             // 
-            this.buttonWczytaj.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonWczytaj.Location = new System.Drawing.Point(3, 35);
-            this.buttonWczytaj.Name = "buttonWczytaj";
-            this.buttonWczytaj.Size = new System.Drawing.Size(246, 26);
-            this.buttonWczytaj.TabIndex = 1;
-            this.buttonWczytaj.Text = "Wczytaj";
-            this.buttonWczytaj.UseVisualStyleBackColor = true;
+            this.buttonWyjscie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonWyjscie.Location = new System.Drawing.Point(3, 99);
+            this.buttonWyjscie.Name = "buttonWyjscie";
+            this.buttonWyjscie.Size = new System.Drawing.Size(246, 26);
+            this.buttonWyjscie.TabIndex = 3;
+            this.buttonWyjscie.Text = "Wyjście";
+            this.buttonWyjscie.UseVisualStyleBackColor = true;
             // 
             // buttonOpcje
             // 
@@ -117,15 +107,25 @@
             this.buttonOpcje.Text = "Opcje";
             this.buttonOpcje.UseVisualStyleBackColor = true;
             // 
-            // buttonWyjscie
+            // buttonWczytaj
             // 
-            this.buttonWyjscie.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonWyjscie.Location = new System.Drawing.Point(3, 99);
-            this.buttonWyjscie.Name = "buttonWyjscie";
-            this.buttonWyjscie.Size = new System.Drawing.Size(246, 26);
-            this.buttonWyjscie.TabIndex = 3;
-            this.buttonWyjscie.Text = "Wyjście";
-            this.buttonWyjscie.UseVisualStyleBackColor = true;
+            this.buttonWczytaj.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonWczytaj.Location = new System.Drawing.Point(3, 35);
+            this.buttonWczytaj.Name = "buttonWczytaj";
+            this.buttonWczytaj.Size = new System.Drawing.Size(246, 26);
+            this.buttonWczytaj.TabIndex = 1;
+            this.buttonWczytaj.Text = "Wczytaj";
+            this.buttonWczytaj.UseVisualStyleBackColor = true;
+            // 
+            // buttonGraj
+            // 
+            this.buttonGraj.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonGraj.Location = new System.Drawing.Point(3, 3);
+            this.buttonGraj.Name = "buttonGraj";
+            this.buttonGraj.Size = new System.Drawing.Size(246, 26);
+            this.buttonGraj.TabIndex = 0;
+            this.buttonGraj.Text = "Graj!";
+            this.buttonGraj.UseVisualStyleBackColor = true;
             // 
             // labelGameTitle
             // 
@@ -144,6 +144,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.panelMainMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.panelMainMenu.ResumeLayout(false);

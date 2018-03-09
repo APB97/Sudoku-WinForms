@@ -57,8 +57,12 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneratorSudoku.cs" />
-    <Compile Include="MenedzerZapisuOdczytu.cs" />
+    <Compile Include="Implementacje Interfejsow\KomunikatyPL.cs" />
+    <Compile Include="Interfejsy\IKomunikaty.cs" />
+    <Compile Include="Klasy\GeneratorSudoku.cs" />
+    <Compile Include="Klasy\Jezyk.cs" />
+    <Compile Include="Klasy\MenedzerZapisuOdczytu.cs" />
+    <Compile Include="Klasy\WarningBoxes.cs" />
     <Compile Include="PoleSudoku.cs">
       <SubType>UserControl</SubType>
     </Compile>

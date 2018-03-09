@@ -40,8 +40,7 @@ namespace Sudoku
                 var zawartoscPliku = File.ReadAllLines(openFileDialog.FileName);
                 if (zawartoscPliku.Length != 9)
                 {
-                    MessageBox.Show("Nieodpowiednia ilość linii w pliku!", "Uwaga!",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    WarningBoxes.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscLinii, Jezyk.Komunikaty.Uwaga);
                     return;
                 }
                 for (int i = 0; i < 9; ++i)
@@ -49,19 +48,18 @@ namespace Sudoku
                     var zawartoscLinii = zawartoscPliku[i].Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
                     if (zawartoscLinii.Length != 9)
                     {
-                        MessageBox.Show(string.Format("Nieodpowiednia ilość wartości pól w linii {0}!", i), "Uwaga!",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        WarningBoxes.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscWartosciPol(i),
+                            Jezyk.Komunikaty.Uwaga);
                         return;
                     }
                     if (zawartoscLinii.Any((string s) => !char.IsDigit(s[0]) || s.Length > 1))
                     {
-                        MessageBox.Show(string.Format("W linii {0} nie wszystkie wartości pól są cyframi!", i), "Uwaga!",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        WarningBoxes.ShowWithOK(Jezyk.Komunikaty.NieWszystkieSaCyframi(i), Jezyk.Komunikaty.Uwaga);
                         return;
                     }
                     for (int j = 0; j < 9; ++j)
                     {
-                        polaSudoku[i, j].ZawartoscPola = zawartoscLinii[j] == "0" ? "": zawartoscLinii[j];
+                        polaSudoku[i, j].ZawartoscPola = zawartoscLinii[j] == "0" ? string.Empty: zawartoscLinii[j];
                     }
                 }
             }

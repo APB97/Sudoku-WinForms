@@ -1,6 +1,6 @@
 ﻿namespace Sudoku
 {
-    partial class Form1
+    partial class FormMenu
     {
         /// <summary>
         /// Wymagana zmienna projektanta.
@@ -96,10 +96,12 @@
             this.buttonWyjscie.TabIndex = 3;
             this.buttonWyjscie.Text = "Wyjście";
             this.buttonWyjscie.UseVisualStyleBackColor = true;
+            this.buttonWyjscie.Click += new System.EventHandler(this.buttonWyjscie_Click);
             // 
             // buttonOpcje
             // 
             this.buttonOpcje.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonOpcje.Enabled = false;
             this.buttonOpcje.Location = new System.Drawing.Point(3, 67);
             this.buttonOpcje.Name = "buttonOpcje";
             this.buttonOpcje.Size = new System.Drawing.Size(246, 26);
@@ -126,6 +128,7 @@
             this.buttonGraj.TabIndex = 0;
             this.buttonGraj.Text = "Graj!";
             this.buttonGraj.UseVisualStyleBackColor = true;
+            this.buttonGraj.Click += new System.EventHandler(this.buttonGraj_Click);
             // 
             // labelGameTitle
             // 
@@ -138,7 +141,7 @@
             this.labelGameTitle.Text = "Sudoku";
             this.labelGameTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Form1
+            // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -146,8 +149,9 @@
             this.Controls.Add(this.panelMainMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FormMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Sudoku - menu główne";
             this.panelMainMenu.ResumeLayout(false);
             this.tableLayoutPanelMainMenu.ResumeLayout(false);
             this.tableLayoutPanelPrzyciskiMainMenu.ResumeLayout(false);

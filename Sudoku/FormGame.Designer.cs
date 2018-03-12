@@ -1,6 +1,6 @@
 ﻿namespace Sudoku
 {
-    partial class Form2
+    partial class FormGame
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,7 @@
             this.buttonZapiszStan = new System.Windows.Forms.Button();
             this.saveSudokuDialog = new System.Windows.Forms.SaveFileDialog();
             this.panelSudoku = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.buttonWczytajStan = new System.Windows.Forms.Button();
             this.tableLayoutPanelPlansza = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -65,6 +66,7 @@
             // 
             // panelSudoku
             // 
+            this.panelSudoku.Controls.Add(this.button1);
             this.panelSudoku.Controls.Add(this.buttonWczytajStan);
             this.panelSudoku.Controls.Add(this.tableLayoutPanelPlansza);
             this.panelSudoku.Controls.Add(this.buttonZapiszStan);
@@ -73,6 +75,16 @@
             this.panelSudoku.Name = "panelSudoku";
             this.panelSudoku.Size = new System.Drawing.Size(484, 461);
             this.panelSudoku.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(397, 435);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Do menu";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonWczytajStan
             // 
@@ -276,7 +288,7 @@
             // 
             this.openSudokuDialog.Filter = "Pliki tekstowe|*.txt";
             // 
-            // Form2
+            // FormGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -284,8 +296,10 @@
             this.Controls.Add(this.panelSudoku);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "FormGame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Sudoku - gra";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form2_FormClosed);
             this.Load += new System.EventHandler(this.Form2_Load);
             this.panelSudoku.ResumeLayout(false);
             this.tableLayoutPanelPlansza.ResumeLayout(false);
@@ -309,5 +323,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Button button1;
     }
 }

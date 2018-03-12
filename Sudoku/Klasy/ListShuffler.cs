@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sudoku
 {
+    /// <summary>
+    /// Klasa która pozwala na pomieszanie list(y)
+    /// </summary>
     static class ListShuffler
     {
         static Random rng;
@@ -15,6 +18,11 @@ namespace Sudoku
             rng = new Random();
         }
 
+        /// <summary>
+        /// Pozwala na pseudolosowe zamienienie kolejności elementów listy.
+        /// </summary>
+        /// <typeparam name="T">Rodzaj zawartości listy.</typeparam>
+        /// <param name="list">Lista do pomieszania.</param>
         public static void Shuffle<T>(this IList<T> list)
         {
             int n = list.Count;

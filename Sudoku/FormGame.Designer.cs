@@ -31,7 +31,7 @@
             this.buttonZapiszStan = new System.Windows.Forms.Button();
             this.saveSudokuDialog = new System.Windows.Forms.SaveFileDialog();
             this.panelSudoku = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_DoMenu = new System.Windows.Forms.Button();
             this.buttonWczytajStan = new System.Windows.Forms.Button();
             this.tableLayoutPanelPlansza = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -66,7 +66,7 @@
             // 
             // panelSudoku
             // 
-            this.panelSudoku.Controls.Add(this.button1);
+            this.panelSudoku.Controls.Add(this.button_DoMenu);
             this.panelSudoku.Controls.Add(this.buttonWczytajStan);
             this.panelSudoku.Controls.Add(this.tableLayoutPanelPlansza);
             this.panelSudoku.Controls.Add(this.buttonZapiszStan);
@@ -76,15 +76,15 @@
             this.panelSudoku.Size = new System.Drawing.Size(484, 461);
             this.panelSudoku.TabIndex = 2;
             // 
-            // button1
+            // button_DoMenu
             // 
-            this.button1.Location = new System.Drawing.Point(397, 435);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Do menu";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_DoMenu.Location = new System.Drawing.Point(397, 435);
+            this.button_DoMenu.Name = "button_DoMenu";
+            this.button_DoMenu.Size = new System.Drawing.Size(75, 23);
+            this.button_DoMenu.TabIndex = 3;
+            this.button_DoMenu.Text = "Do menu";
+            this.button_DoMenu.UseVisualStyleBackColor = true;
+            this.button_DoMenu.Click += new System.EventHandler(this.button_DoMenu_Click);
             // 
             // buttonWczytajStan
             // 
@@ -323,6 +323,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_DoMenu;
     }
 }

@@ -12,7 +12,7 @@ namespace Sudoku
 {
     public partial class FormMenu : Form
     {
-        public static FormMenu glowneOknoMenu;
+        public static FormMenu glowneOknoMenu;//pozwala odwołać się do okna głównego menu
 
         public FormMenu()
         {

@@ -12,9 +12,19 @@ namespace Sudoku
 {
     public partial class PoleSudoku : UserControl
     {
+        /// <summary>
+        /// Pozycja horyzontalna.
+        /// </summary>
         public int X { get; set; }
+        
+        /// <summary>
+        /// Pozycja wertykalna.
+        /// </summary>
         public int Y { get; set; }
 
+        /// <summary>
+        /// Zapewnia dostęp do zawartości tekstowej pola.
+        /// </summary>
         public string ZawartoscPola
         {
             get { return textBox.Text; }
@@ -23,6 +33,9 @@ namespace Sudoku
 
         public int WartoscPola { get; set; } = 0;
 
+        /// <summary>
+        /// Zbiór sąsiadów.
+        /// </summary>
         public HashSet<Pozycja> sasiedzi = new HashSet<Pozycja>();
 
         public PoleSudoku()
@@ -30,6 +43,11 @@ namespace Sudoku
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Konstruktor używany do przypisania polu konkretnej pozycji i wyznaczeniu zbioru sąsiadów.
+        /// </summary>
+        /// <param name="x">Pozycja w poziomie.</param>
+        /// <param name="y">Pozycja w pionie.</param>
         public PoleSudoku(int x, int y)
         {
             InitializeComponent();

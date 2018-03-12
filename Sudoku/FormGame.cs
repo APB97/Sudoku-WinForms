@@ -12,9 +12,9 @@ namespace Sudoku
 {
     public partial class FormGame : Form
     {
-        PoleSudoku[,] tabelkaSudoku = new PoleSudoku[9, 9];
-        LinkedList<PoleSudoku> listaPol = new LinkedList<PoleSudoku>();
-        readonly List<int> mozliweWartosci = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+        PoleSudoku[,] tabelkaSudoku = new PoleSudoku[9, 9];//pozwala odnieść się do pola na okreslonej pozycji
+        LinkedList<PoleSudoku> listaPol = new LinkedList<PoleSudoku>();//wykorzystywana podczas generowania wypełnionego Sudoku
+        readonly List<int> mozliweWartosci = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });//lista wartości używanych w Sudoku
 
         int[] PrzesuniecieH = new int[9] { 0, 1, 2, 0, 1, 2, 0, 1, 2 };
         int[] PrzesuniecieV = new int[9] { 0, 0, 0, 1, 1, 1, 2, 2, 2 };
@@ -30,21 +30,6 @@ namespace Sudoku
             PrzygotujListePol();
             GenerujSudoku();
             WypelnijPlansze();
-        }
-
-        private void PrzygotujListePol()
-        {
-            for (int i = 0; i < 9; ++i)
-                for (int j = 0; j < 9; ++j)
-                    listaPol.AddLast(tabelkaSudoku[i, j]);
-        }
-
-        private void WypelnijPlansze()
-        {
-            foreach (var pole in tabelkaSudoku)
-            {
-                pole.InicjujPole();
-            }
         }
 
         private void StworzPolaSudoku()
@@ -66,9 +51,14 @@ namespace Sudoku
                 }
             }
         }
-        /// <summary>
-        /// Made it working.
-        /// </summary>
+
+        private void PrzygotujListePol()
+        {
+            for (int i = 0; i < 9; ++i)
+                for (int j = 0; j < 9; ++j)
+                    listaPol.AddLast(tabelkaSudoku[i, j]);
+        }
+
         private bool GenerujSudoku()
         {
             var pole = listaPol.First;
@@ -103,6 +93,14 @@ namespace Sudoku
             return false;
         }
         
+        private void WypelnijPlansze()
+        {
+            foreach (var pole in tabelkaSudoku)
+            {
+                pole.InicjujPole();
+            }
+        }
+
         private void buttonZapiszStan_Click(object sender, EventArgs e)
         {
             MenedzerZapisuOdczytu.Zapisz(tabelkaSudoku, saveSudokuDialog);
@@ -140,7 +138,7 @@ namespace Sudoku
             pole.textBox.Focus();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_DoMenu_Click(object sender, EventArgs e)
         {
             FormMenu.glowneOknoMenu.Show();
             this.Close();
@@ -149,13 +147,9 @@ namespace Sudoku
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
-            {
                 FormMenu.glowneOknoMenu.Show();
-            }
             else
-            {
                 Application.Exit();
-            }
         }
     }
 }

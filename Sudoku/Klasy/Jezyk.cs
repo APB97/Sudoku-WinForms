@@ -9,7 +9,7 @@ namespace Sudoku
 {
     static class Jezyk
     {
-        public static IKomunikaty Komunikaty { get; set; };
+        public static IKomunikaty Komunikaty { get; set; }
 
         static Jezyk()
         {

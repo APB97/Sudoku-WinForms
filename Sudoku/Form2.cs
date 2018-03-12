@@ -12,7 +12,10 @@ namespace Sudoku
 {
     public partial class Form2 : Form
     {
-        PoleSudoku[,] tabelkaSudoku = new PoleSudoku[9,9];
+        Random randoms = new Random();
+        PoleSudoku[,] tabelkaSudoku = new PoleSudoku[9, 9];
+        LinkedList<PoleSudoku> listaPol = new LinkedList<PoleSudoku>();
+        List<int> mozliweWartosci = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
 
         int[] tabelaPrzesuniecH = new int[9] { 0, 1, 2, 0, 1, 2, 0, 1, 2 };
         int[] tabelaPrzesuniecV = new int[9] { 0, 0, 0, 1, 1, 1, 2, 2, 2 };
@@ -25,6 +28,9 @@ namespace Sudoku
         private void Form2_Load(object sender, EventArgs e)
         {
             StworzPolaSudoku();
+            for (int i = 0; i < 9; ++i)
+                for (int j = 0; j < 9; ++j)
+                    listaPol.AddLast(tabelkaSudoku[i, j]);
             GenerujSudoku();
         }
 
@@ -56,9 +62,38 @@ namespace Sudoku
         /// <summary>
         /// TODO: Make it working.
         /// </summary>
-        private void GenerujSudoku()
+        private bool GenerujSudoku()
         {
+            var pole = listaPol.First;
+            listaPol.RemoveFirst();
 
+            HashSet<int> wartosciSasiadow = new HashSet<int>();
+            List<int> opcje;
+
+            foreach (var sasiad in pole.Value.sasiedzi)
+            {
+                var wartosc = tabelkaSudoku[sasiad.Y, sasiad.X].WartoscPola;
+                if (wartosc != 0)
+                    wartosciSasiadow.Add(wartosc);
+            }
+
+            opcje = new List<int>(mozliweWartosci.Except(wartosciSasiadow));
+            opcje.Shuffle();
+
+            foreach (var opcja in opcje)
+            {
+                pole.Value.WartoscPola = opcja;
+                if (listaPol.Count == 0)
+                    return true;
+                if (GenerujSudoku())
+                {
+                    return true;
+                }
+            }
+
+            pole.Value.WartoscPola = 0;
+            listaPol.AddFirst(pole);
+            return false;
         }
         
         private void buttonZapiszStan_Click(object sender, EventArgs e)

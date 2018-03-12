@@ -21,9 +21,47 @@ namespace Sudoku
             set { textBox.Text = value; }
         }
 
+        public int WartoscPola
+        {
+            get; set;
+            //get { return textBox.Text == string.Empty ? 0 : int.Parse(textBox.Text); }
+            //set { textBox.Text = (value == 0 ? string.Empty : value.ToString()); }
+        } = 0;
+
+        public HashSet<Pozycja> sasiedzi = new HashSet<Pozycja>();
+
         public PoleSudoku()
         {
             InitializeComponent();
+        }
+
+        public PoleSudoku(int x, int y)
+        {
+            InitializeComponent();
+            X = x; Y = y;
+            DodajSasiadow();
+        }
+
+        private void DodajSasiadow()
+        {
+            for (int i = 0; i < 9; ++i)
+            {
+                //if (i != X)
+                    sasiedzi.Add(new Pozycja(i, Y));
+                //if (i != Y)
+                    sasiedzi.Add(new Pozycja(X, i));
+            }
+
+            int startowyXKwadratu = (X / 3) * 3;
+            int startowyYKwadratu = (Y / 3) * 3;
+
+            for (int i = startowyXKwadratu; i < startowyXKwadratu + 3; ++i)
+            {
+                for (int j = startowyYKwadratu; j < startowyYKwadratu + 3; ++j)
+                {
+                    sasiedzi.Add(new Pozycja(i, j));
+                }
+            }
         }
 
         public void InicjujPole(int wartoscPola)

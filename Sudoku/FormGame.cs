@@ -19,17 +19,25 @@ namespace Sudoku
         int[] PrzesuniecieH = new int[9] { 0, 1, 2, 0, 1, 2, 0, 1, 2 };
         int[] PrzesuniecieV = new int[9] { 0, 0, 0, 1, 1, 1, 2, 2, 2 };
 
-        public FormGame()
+        public FormGame(bool createNewGame = true)
         {
             InitializeComponent();
+            StworzPolaSudoku();
+
+            if (createNewGame)
+            {
+                PrzygotujListePol();
+                GenerujSudoku();
+                WypelnijPlansze();
+            }
+            else
+            {
+                MenedzerZapisuOdczytu.Wczytaj(tabelkaSudoku, openSudokuDialog);
+            }
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            StworzPolaSudoku();
-            PrzygotujListePol();
-            GenerujSudoku();
-            WypelnijPlansze();
         }
 
         private void StworzPolaSudoku()
@@ -48,6 +56,7 @@ namespace Sudoku
                     tabelkaSudoku[PrzesuniecieV[j] + PrzesuniecieV[i] * 3,
                         PrzesuniecieH[j] + PrzesuniecieH[i] * 3] = pole;
                     pole.textBox.PreviewKeyDown += textBoxSudoku_PreviewKeyDown;
+                    pole.textBox.ForeColor = Color.DimGray;
                 }
             }
         }
@@ -144,12 +153,67 @@ namespace Sudoku
             this.Close();
         }
 
+        private void buttonRozwiaz_Click(object sender, EventArgs e)
+        {
+            SudokuSolver.Rozwiaz(tabelkaSudoku);
+        }
+
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
                 FormMenu.glowneOknoMenu.Show();
             else
                 Application.Exit();
+        }
+
+        private void buttonPomoz_Click(object sender, EventArgs e)
+        {
+            /*int pozostalePomoce = int.Parse(labelPozostaloPomocy.Text);
+            if (pozostalePomoce > 1)
+            {
+                Wspomoz();
+                pozostalePomoce;
+            }*/
+        }
+
+        private bool Wspomoz()
+        {
+            foreach (var pole in tabelkaSudoku)
+            {
+                HashSet<int> wartosciSasiadow = new HashSet<int>();
+                List<int> opcje;
+
+                foreach (var sasiad in pole.sasiedzi)
+                {
+                    var wartosc = tabelkaSudoku[sasiad.Y, sasiad.X].WartoscPola;
+                    if (wartosc != 0)
+                        wartosciSasiadow.Add(wartosc);
+                }
+
+                opcje = new List<int>(mozliweWartosci.Except(wartosciSasiadow));
+                if (opcje.Count == 1)
+                {
+
+                    return true;
+                }
+                //opcje.Shuffle();
+                /*
+                foreach (var opcja in opcje)
+                {
+                    pole.Value.WartoscPola = opcja;
+                    if (listaPol.Count == 0)
+                        return true;
+                    if (Uzupelnij(tabelkaSudoku))
+                    {
+                        return true;
+                    }
+                }*/
+
+                //pole.Value.WartoscPola = 0;
+                //listaPol.AddFirst(pole);
+                //return false;
+            }
+            return false;
         }
     }
 }

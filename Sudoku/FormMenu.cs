@@ -31,5 +31,12 @@ namespace Sudoku
         {
             Application.Exit();
         }
+
+        private void buttonWczytaj_Click(object sender, EventArgs e)
+        {
+            FormGame wczytanaGra = new FormGame(false);
+            wczytanaGra.Show();
+            this.Hide();
+        }
     }
 }

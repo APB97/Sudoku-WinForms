@@ -64,6 +64,7 @@
     <Compile Include="Klasy\ListShuffler.cs" />
     <Compile Include="Klasy\MenedzerZapisuOdczytu.cs" />
     <Compile Include="Klasy\Pozycja.cs" />
+    <Compile Include="Klasy\SudokuSolver.cs" />
     <Compile Include="Klasy\WarningBoxes.cs" />
     <Compile Include="PoleSudoku.cs">
       <SubType>UserControl</SubType>

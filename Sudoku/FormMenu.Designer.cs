@@ -118,6 +118,7 @@
             this.buttonWczytaj.TabIndex = 1;
             this.buttonWczytaj.Text = "Wczytaj";
             this.buttonWczytaj.UseVisualStyleBackColor = true;
+            this.buttonWczytaj.Click += new System.EventHandler(this.buttonWczytaj_Click);
             // 
             // buttonGraj
             // 

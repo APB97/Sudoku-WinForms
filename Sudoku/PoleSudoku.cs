@@ -73,6 +73,7 @@ namespace Sudoku
 
         public void InicjujPole()
         {
+            textBox.ForeColor = Color.Black;
             textBox.Font = new Font(textBox.Font, FontStyle.Bold);
             textBox.Text = WartoscPola.ToString();
             textBox.ReadOnly = true;

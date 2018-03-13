@@ -28,9 +28,11 @@ namespace Sudoku
             {
                 PrzygotujListePol();
                 GenerujSudoku();
-                //WymazCzesc();
                 WypelnijPlansze();
-                Walidator.SprawdzCalaTablice(tabelkaSudoku);
+                if (Walidator.SprawdzCalaTablice(tabelkaSudoku))
+                    MessageBox.Show("Plansza OK");
+                else
+                    MessageBox.Show("Plansza nie OK");
             }
             else
             {
@@ -38,10 +40,31 @@ namespace Sudoku
             }
         }
 
-        private void WymazCzesc()
+        /*private void WymazCzesc()
         {
+            Random rng = new Random();
+            Trudnosc trudnosc = Trudnosc.Srednie;
+            int polaDoWymazania;
+            switch (trudnosc)
+            {
+                case Trudnosc.Latwe:
+                    polaDoWymazania = 35;
+                    break;
+                case Trudnosc.Srednie:
+                    polaDoWymazania = 40;
+                    break;
+                case Trudnosc.Trudne:
+                    polaDoWymazania = 45;
+                    break;
+                default:
+                    polaDoWymazania = 40;
+                    break;
+            }
+
+            var wartosciEnum = Enum.GetValues(typeof(TypWymazaniaPola));
+            TypWymazaniaPola jakiTypWymazania = (TypWymazaniaPola) wartosciEnum.GetValue(rng.Next(wartosciEnum.Length));
             //PrzygotujListePol();
-        }
+        }*/
 
         /// <summary>
         /// Tworzy kontrolki o odpowiednich parametrach na planszy Sudoku i zapisuje w tablicy ich referencje.

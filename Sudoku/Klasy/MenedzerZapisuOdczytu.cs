@@ -60,7 +60,6 @@ namespace Sudoku
                     }
                     for (int j = 0; j < 9; ++j)
                     {
-                        polaSudoku[i, j].ZawartoscPola = zawartoscLinii[j] == "0" ? string.Empty : zawartoscLinii[j];
                         if (zawartoscLinii[j] != "0")
                         {
                             polaSudoku[i, j].textBox.Font = new System.Drawing.Font(polaSudoku[i, j].textBox.Font, System.Drawing.FontStyle.Bold);
@@ -76,6 +75,16 @@ namespace Sudoku
                         }
                     }
                 }
+                if (Walidator.SprawdzCalaTablice(polaSudoku))
+                {
+                    MessageBox.Show("OK");
+                    foreach (var item in polaSudoku)
+                    {
+                        item.ZawartoscPola = (item.WartoscPola == 0) ? string.Empty : item.WartoscPola.ToString();
+                    }
+                }
+                else
+                    MessageBox.Show("NIE OK");
             }
             /*if (openFileDialog.ShowDialog() == DialogResult.OK)
             {

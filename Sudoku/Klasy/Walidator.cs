@@ -27,8 +27,8 @@ namespace Sudoku
 
             for (int j = 0; j < 9; ++j)
             {
-                int wartoscWKolumnnie = polaSudoku[j, i].WartoscPola;
-                int wartoscWWierszu = polaSudoku[i, j].WartoscPola;
+                int wartoscWKolumnnie = polaSudoku[j, pozycjaPola.X].WartoscPola;
+                int wartoscWWierszu = polaSudoku[pozycjaPola.Y, j].WartoscPola;
                 if (wartoscWKolumnnie != 0)
                     kolumna.Add(wartoscWKolumnnie);
                 if (wartoscWWierszu != 0)

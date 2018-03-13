@@ -28,12 +28,19 @@ namespace Sudoku
             {
                 PrzygotujListePol();
                 GenerujSudoku();
+                //WymazCzesc();
                 WypelnijPlansze();
+                Walidator.SprawdzCalaTablice(tabelkaSudoku);
             }
             else
             {
                 MenedzerZapisuOdczytu.Wczytaj(tabelkaSudoku, openSudokuDialog);
             }
+        }
+
+        private void WymazCzesc()
+        {
+            //PrzygotujListePol();
         }
 
         /// <summary>

@@ -31,6 +31,10 @@
             this.buttonZapiszStan = new System.Windows.Forms.Button();
             this.saveSudokuDialog = new System.Windows.Forms.SaveFileDialog();
             this.panelSudoku = new System.Windows.Forms.Panel();
+            this.labelPozostaloPomocy = new System.Windows.Forms.Label();
+            this.labelDostepne = new System.Windows.Forms.Label();
+            this.buttonPomoz = new System.Windows.Forms.Button();
+            this.buttonRozwiaz = new System.Windows.Forms.Button();
             this.button_DoMenu = new System.Windows.Forms.Button();
             this.buttonWczytajStan = new System.Windows.Forms.Button();
             this.tableLayoutPanelPlansza = new System.Windows.Forms.TableLayoutPanel();
@@ -44,10 +48,6 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.openSudokuDialog = new System.Windows.Forms.OpenFileDialog();
-            this.buttonRozwiaz = new System.Windows.Forms.Button();
-            this.buttonPomoz = new System.Windows.Forms.Button();
-            this.labelPozostaloPomocy = new System.Windows.Forms.Label();
-            this.labelDostepne = new System.Windows.Forms.Label();
             this.panelSudoku.SuspendLayout();
             this.tableLayoutPanelPlansza.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +83,43 @@
             this.panelSudoku.Name = "panelSudoku";
             this.panelSudoku.Size = new System.Drawing.Size(484, 461);
             this.panelSudoku.TabIndex = 2;
+            // 
+            // labelPozostaloPomocy
+            // 
+            this.labelPozostaloPomocy.AutoSize = true;
+            this.labelPozostaloPomocy.Location = new System.Drawing.Point(417, 440);
+            this.labelPozostaloPomocy.Name = "labelPozostaloPomocy";
+            this.labelPozostaloPomocy.Size = new System.Drawing.Size(13, 13);
+            this.labelPozostaloPomocy.TabIndex = 6;
+            this.labelPozostaloPomocy.Text = "3";
+            // 
+            // labelDostepne
+            // 
+            this.labelDostepne.Location = new System.Drawing.Point(365, 440);
+            this.labelDostepne.Name = "labelDostepne";
+            this.labelDostepne.Size = new System.Drawing.Size(56, 13);
+            this.labelDostepne.TabIndex = 7;
+            this.labelDostepne.Text = "Dostępne:";
+            // 
+            // buttonPomoz
+            // 
+            this.buttonPomoz.Location = new System.Drawing.Point(294, 435);
+            this.buttonPomoz.Name = "buttonPomoz";
+            this.buttonPomoz.Size = new System.Drawing.Size(65, 23);
+            this.buttonPomoz.TabIndex = 5;
+            this.buttonPomoz.Text = "Pomóż mi!";
+            this.buttonPomoz.UseVisualStyleBackColor = true;
+            this.buttonPomoz.Click += new System.EventHandler(this.buttonPomoz_Click);
+            // 
+            // buttonRozwiaz
+            // 
+            this.buttonRozwiaz.Location = new System.Drawing.Point(164, 435);
+            this.buttonRozwiaz.Name = "buttonRozwiaz";
+            this.buttonRozwiaz.Size = new System.Drawing.Size(124, 23);
+            this.buttonRozwiaz.TabIndex = 4;
+            this.buttonRozwiaz.Text = "Rozwiąz za mnie!";
+            this.buttonRozwiaz.UseVisualStyleBackColor = true;
+            this.buttonRozwiaz.Click += new System.EventHandler(this.buttonRozwiaz_Click);
             // 
             // button_DoMenu
             // 
@@ -296,43 +333,6 @@
             // 
             this.openSudokuDialog.Filter = "Pliki tekstowe|*.txt";
             // 
-            // buttonRozwiaz
-            // 
-            this.buttonRozwiaz.Location = new System.Drawing.Point(164, 435);
-            this.buttonRozwiaz.Name = "buttonRozwiaz";
-            this.buttonRozwiaz.Size = new System.Drawing.Size(124, 23);
-            this.buttonRozwiaz.TabIndex = 4;
-            this.buttonRozwiaz.Text = "Rozwiąz za mnie!";
-            this.buttonRozwiaz.UseVisualStyleBackColor = true;
-            this.buttonRozwiaz.Click += new System.EventHandler(this.buttonRozwiaz_Click);
-            // 
-            // buttonPomoz
-            // 
-            this.buttonPomoz.Location = new System.Drawing.Point(294, 435);
-            this.buttonPomoz.Name = "buttonPomoz";
-            this.buttonPomoz.Size = new System.Drawing.Size(65, 23);
-            this.buttonPomoz.TabIndex = 5;
-            this.buttonPomoz.Text = "Pomóż mi!";
-            this.buttonPomoz.UseVisualStyleBackColor = true;
-            this.buttonPomoz.Click += new System.EventHandler(this.buttonPomoz_Click);
-            // 
-            // labelPozostaloPomocy
-            // 
-            this.labelPozostaloPomocy.AutoSize = true;
-            this.labelPozostaloPomocy.Location = new System.Drawing.Point(417, 440);
-            this.labelPozostaloPomocy.Name = "labelPozostaloPomocy";
-            this.labelPozostaloPomocy.Size = new System.Drawing.Size(13, 13);
-            this.labelPozostaloPomocy.TabIndex = 6;
-            this.labelPozostaloPomocy.Text = "3";
-            // 
-            // labelDostepne
-            // 
-            this.labelDostepne.Location = new System.Drawing.Point(365, 440);
-            this.labelDostepne.Name = "labelDostepne";
-            this.labelDostepne.Size = new System.Drawing.Size(56, 13);
-            this.labelDostepne.TabIndex = 7;
-            this.labelDostepne.Text = "Dostępne:";
-            // 
             // FormGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,7 +345,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sudoku - gra";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form2_FormClosed);
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.panelSudoku.ResumeLayout(false);
             this.panelSudoku.PerformLayout();
             this.tableLayoutPanelPlansza.ResumeLayout(false);

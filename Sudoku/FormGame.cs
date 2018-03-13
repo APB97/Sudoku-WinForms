@@ -36,10 +36,9 @@ namespace Sudoku
             }
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-        }
-
+        /// <summary>
+        /// Tworzy kontrolki o odpowiednich parametrach na planszy Sudoku i zapisuje w tablicy ich referencje.
+        /// </summary>
         private void StworzPolaSudoku()
         {
             Control obecnyKwadratCtrl;
@@ -61,6 +60,9 @@ namespace Sudoku
             }
         }
 
+        /// <summary>
+        /// Przygotowuje listę wszystkich pól dla rekurencyjnego algorytmu generowania wypełnionej planszy.
+        /// </summary>
         private void PrzygotujListePol()
         {
             for (int i = 0; i < 9; ++i)
@@ -196,22 +198,6 @@ namespace Sudoku
 
                     return true;
                 }
-                //opcje.Shuffle();
-                /*
-                foreach (var opcja in opcje)
-                {
-                    pole.Value.WartoscPola = opcja;
-                    if (listaPol.Count == 0)
-                        return true;
-                    if (Uzupelnij(tabelkaSudoku))
-                    {
-                        return true;
-                    }
-                }*/
-
-                //pole.Value.WartoscPola = 0;
-                //listaPol.AddFirst(pole);
-                //return false;
             }
             return false;
         }

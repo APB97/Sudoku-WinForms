@@ -59,7 +59,6 @@
     </Compile>
     <Compile Include="Implementacje Interfejsow\KomunikatyPL.cs" />
     <Compile Include="Interfejsy\IKomunikaty.cs" />
-    <Compile Include="Klasy\GeneratorSudoku.cs" />
     <Compile Include="Klasy\Jezyk.cs" />
     <Compile Include="Klasy\ListShuffler.cs" />
     <Compile Include="Klasy\MenedzerZapisuOdczytu.cs" />

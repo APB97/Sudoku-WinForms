@@ -57,6 +57,12 @@
     <Compile Include="Forms\FormGame.Designer.cs">
       <DependentUpon>FormGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormOpcje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormOpcje.Designer.cs">
+      <DependentUpon>FormOpcje.cs</DependentUpon>
+    </Compile>
     <Compile Include="Implementacje Interfejsow\KomunikatyPL.cs" />
     <Compile Include="Interfejsy\IKomunikaty.cs" />
     <Compile Include="Klasy\Jezyk.cs" />
@@ -81,6 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGame.resx">
       <DependentUpon>FormGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormOpcje.resx">
+      <DependentUpon>FormOpcje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PoleSudoku.resx">
       <DependentUpon>PoleSudoku.cs</DependentUpon>

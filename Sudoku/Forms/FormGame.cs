@@ -12,6 +12,8 @@ namespace Sudoku
 {
     public partial class FormGame : Form
     {
+        public static FormGame oknoGry;
+
         PoleSudoku[,] tabelkaSudoku = new PoleSudoku[9, 9];//pozwala odnieść się do pola na okreslonej pozycji
         LinkedList<PoleSudoku> listaPol = new LinkedList<PoleSudoku>();//wykorzystywana podczas generowania wypełnionego Sudoku
         readonly List<int> mozliweWartosci = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });//lista wartości używanych w Sudoku
@@ -21,6 +23,9 @@ namespace Sudoku
 
         public FormGame(bool createNewGame = true)
         {
+            oknoGry = this;
+            this.BackColor = FormOpcje.kolorOkna;
+
             InitializeComponent();
             StworzPolaSudoku();
 

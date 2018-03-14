@@ -18,6 +18,9 @@ namespace Sudoku
         {
             InitializeComponent();
             glowneOknoMenu = this;
+            this.BackColor = FormOpcje.kolorOkna;
+            buttonGraj.BackColor = buttonOpcje.BackColor = buttonWczytaj.BackColor = buttonWyjscie.BackColor = FormOpcje.kolorPrzyciskow;
+
         }
 
         private void buttonGraj_Click(object sender, EventArgs e)
@@ -37,6 +40,21 @@ namespace Sudoku
             FormGame wczytanaGra = new FormGame(false);
             wczytanaGra.Show();
             this.Hide();
+        }
+
+        private void buttonOpcje_Click(object sender, EventArgs e)
+        {
+            FormOpcje opcje = new FormOpcje();
+            opcje.Show();
+            this.Hide();
+        }
+
+        private void FormMenu_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible)
+            {
+                buttonGraj.BackColor = buttonOpcje.BackColor = buttonWczytaj.BackColor = buttonWyjscie.BackColor = FormOpcje.kolorPrzyciskow;
+            }
         }
     }
 }

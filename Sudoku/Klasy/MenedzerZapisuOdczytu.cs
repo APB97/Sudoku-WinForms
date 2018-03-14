@@ -16,21 +16,35 @@ namespace Sudoku
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 int rozmiar = polaSudoku.GetLength(0);
-                StringBuilder builder = new StringBuilder();
+                StringBuilder puzzleBuilder = new StringBuilder();
+                StringBuilder gameStateBuilder = new StringBuilder();
                 for (int i = 0; i < rozmiar; ++i)
                 {
                     for (int j = 0; j < rozmiar; ++j)
                     {
                         var zawartosc = polaSudoku[i, j].ZawartoscPola;
                         zawartosc = string.IsNullOrEmpty(zawartosc) ? "0" : zawartosc;
-                        builder.Append(zawartosc + " ");
+                        if (polaSudoku[i, j].textBox.Font.Bold)
+                        {
+                            puzzleBuilder.Append(zawartosc + " ");
+                            gameStateBuilder.Append("0 ");
+                        }
+                        else
+                        {
+                            gameStateBuilder.Append(zawartosc + " ");
+                            puzzleBuilder.Append("0 ");
+                        }
                     }
-                    builder.Remove(builder.Length - 1, 1);
-                    builder.AppendLine();
+                    puzzleBuilder.Remove(puzzleBuilder.Length - 1, 1);
+                    gameStateBuilder.Remove(gameStateBuilder.Length - 1, 1);
+                    puzzleBuilder.AppendLine();
+                    gameStateBuilder.AppendLine();
                 }
                 int newLineSize = Environment.NewLine.Length;
-                builder.Remove(builder.Length - newLineSize, newLineSize);
-                File.WriteAllText(saveFileDialog.FileName, builder.ToString());
+                puzzleBuilder.Remove(puzzleBuilder.Length - newLineSize, newLineSize);
+                gameStateBuilder.Remove(gameStateBuilder.Length - newLineSize, newLineSize);
+                File.WriteAllText(saveFileDialog.FileName, puzzleBuilder.ToString() + Environment.NewLine + Environment.NewLine +
+                    gameStateBuilder.ToString());
             }
         }
 
@@ -39,7 +53,12 @@ namespace Sudoku
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 var zawartoscPliku = File.ReadAllLines(openFileDialog.FileName);
-                if (zawartoscPliku.Length != 9)
+                zawartoscPliku = zawartoscPliku.Where((string s) =>
+                {
+                    return !string.IsNullOrWhiteSpace(s);
+                }).ToArray();
+
+                if (zawartoscPliku.Length != 18)
                 {
                     WarningBoxes.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscLinii, Jezyk.Komunikaty.Uwaga);
                     return;
@@ -67,36 +86,19 @@ namespace Sudoku
                             polaSudoku[i, j].textBox.ReadOnly = true;
                             polaSudoku[i, j].WartoscPola = int.Parse(zawartoscLinii[j]);
                         }
-                        else
+                        /*else
                         {
                             polaSudoku[i, j].WartoscPola = 0;
                             polaSudoku[i, j].textBox.ForeColor = Color.DimGray;
                             polaSudoku[i, j].textBox.ReadOnly = false;
-                        }
+                        }*/
                     }
                 }
-                if (Walidator.SprawdzCalaTablice(polaSudoku))
+
+                for (int i = 9; i < 18; ++i)
                 {
-                    MessageBox.Show("OK");
-                    foreach (var item in polaSudoku)
-                    {
-                        item.ZawartoscPola = (item.WartoscPola == 0) ? string.Empty : item.WartoscPola.ToString();
-                    }
-                }
-                else
-                    MessageBox.Show("NIE OK");
-            }
-            /*if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                var zawartoscPliku = File.ReadAllLines(openFileDialog.FileName);
-                if (zawartoscPliku.Length != 9)
-                {
-                    WarningBoxes.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscLinii, Jezyk.Komunikaty.Uwaga);
-                    return;
-                }
-                for (int i = 0; i < 9; ++i)
-                {
-                    var zawartoscLinii = zawartoscPliku[i].Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+                    int indeksWTablicy = i - 9;
+                    var zawartoscLinii = zawartoscPliku[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     if (zawartoscLinii.Length != 9)
                     {
                         WarningBoxes.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscWartosciPol(i),
@@ -110,10 +112,27 @@ namespace Sudoku
                     }
                     for (int j = 0; j < 9; ++j)
                     {
-                        polaSudoku[i, j].ZawartoscPola = zawartoscLinii[j] == "0" ? string.Empty: zawartoscLinii[j];
+                        if (zawartoscLinii[j] != "0")
+                        {
+                            polaSudoku[indeksWTablicy , j].textBox.Font = new Font(polaSudoku[indeksWTablicy, j].textBox.Font, FontStyle.Regular);
+                            polaSudoku[indeksWTablicy, j].textBox.ForeColor = Color.DimGray;
+                            polaSudoku[indeksWTablicy, j].textBox.ReadOnly = false;
+                            polaSudoku[indeksWTablicy, j].WartoscPola = int.Parse(zawartoscLinii[j]);
+                        }
                     }
                 }
-            }*/
+
+                if (Walidator.SprawdzCalaTablice(polaSudoku))
+                {
+                    MessageBox.Show("OK");
+                    foreach (var item in polaSudoku)
+                    {
+                        item.ZawartoscPola = (item.WartoscPola == 0) ? string.Empty : item.WartoscPola.ToString();
+                    }
+                }
+                else
+                    MessageBox.Show("NIE OK");
+            }
         }
     }
 }

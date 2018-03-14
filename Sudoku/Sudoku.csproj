@@ -45,16 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormMenu.cs">
+    <Compile Include="Forms\FormMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMenu.Designer.cs">
+    <Compile Include="Forms\FormMenu.Designer.cs">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormGame.cs">
+    <Compile Include="Forms\FormGame.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormGame.Designer.cs">
+    <Compile Include="Forms\FormGame.Designer.cs">
       <DependentUpon>FormGame.cs</DependentUpon>
     </Compile>
     <Compile Include="Implementacje Interfejsow\KomunikatyPL.cs" />
@@ -68,21 +68,21 @@
     <Compile Include="Klasy\TypWymazaniaPola.cs" />
     <Compile Include="Klasy\Walidator.cs" />
     <Compile Include="Klasy\WarningBoxes.cs" />
-    <Compile Include="PoleSudoku.cs">
+    <Compile Include="UserControls\PoleSudoku.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PoleSudoku.Designer.cs">
+    <Compile Include="UserControls\PoleSudoku.Designer.cs">
       <DependentUpon>PoleSudoku.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormMenu.resx">
+    <EmbeddedResource Include="Forms\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormGame.resx">
+    <EmbeddedResource Include="Forms\FormGame.resx">
       <DependentUpon>FormGame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PoleSudoku.resx">
+    <EmbeddedResource Include="UserControls\PoleSudoku.resx">
       <DependentUpon>PoleSudoku.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -107,5 +107,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,28 +12,9 @@ namespace Sudoku
 {
     public partial class FormOpcje : Form
     {
-        public static Color kolorOkna = SystemColors.Window;
-        public static Color kolorPrzyciskow = SystemColors.Window;
-
-        static FormOpcje()
-        {
-            kolorOkna = Properties.Settings.Default.KolorOkna;
-        }
-
         public FormOpcje()
         {
             InitializeComponent();
-            this.BackColor = kolorOkna;
-        }
-
-        private void buttonTloOkna_Click(object sender, EventArgs e)
-        {
-            if (colorDialog.ShowDialog() == DialogResult.OK)
-            {
-                Properties.Settings.Default.KolorOkna = kolorOkna = colorDialog.Color;
-                Properties.Settings.Default.Save();
-                FormMenu.glowneOknoMenu.BackColor = this.BackColor = kolorOkna;
-            }
         }
 
         private void FormOpcje_FormClosed(object sender, FormClosedEventArgs e)
@@ -44,11 +25,20 @@ namespace Sudoku
                 Application.Exit();
         }
 
+        private void buttonTloOkna_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.KolorOkna = colorDialog.Color;
+                Properties.Settings.Default.Save();
+            }
+        }
+
         private void buttonTloPrzyciskow_Click(object sender, EventArgs e)
         {
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                Properties.Settings.Default.KolorPzyciskow = kolorPrzyciskow = colorDialog.Color;
+                Properties.Settings.Default.KolorPrzyciskow = colorDialog.Color;
                 Properties.Settings.Default.Save();
             }
         }
@@ -57,7 +47,7 @@ namespace Sudoku
         {
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                Properties.Settings.Default.KolorTekstuPrzyciskosw = colorDialog.Color;
+                Properties.Settings.Default.KolorTekstuPrzyciskow = colorDialog.Color;
                 Properties.Settings.Default.Save();
             }
         }

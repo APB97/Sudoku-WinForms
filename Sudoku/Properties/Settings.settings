@@ -5,10 +5,10 @@
     <Setting Name="KolorOkna" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Window</Value>
     </Setting>
-    <Setting Name="KolorPzyciskow" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Control</Value>
+    <Setting Name="KolorPrzyciskow" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Window</Value>
     </Setting>
-    <Setting Name="KolorTekstuPrzyciskosw" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="KolorTekstuPrzyciskow" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
     </Setting>
   </Settings>

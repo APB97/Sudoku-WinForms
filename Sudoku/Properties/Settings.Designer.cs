@@ -12,7 +12,7 @@ namespace Sudoku.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.3.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -37,25 +37,25 @@ namespace Sudoku.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Control")]
-        public global::System.Drawing.Color KolorPzyciskow {
+        [global::System.Configuration.DefaultSettingValueAttribute("Window")]
+        public global::System.Drawing.Color KolorPrzyciskow {
             get {
-                return ((global::System.Drawing.Color)(this["KolorPzyciskow"]));
+                return ((global::System.Drawing.Color)(this["KolorPrzyciskow"]));
             }
             set {
-                this["KolorPzyciskow"] = value;
+                this["KolorPrzyciskow"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Black")]
-        public global::System.Drawing.Color KolorTekstuPrzyciskosw {
+        public global::System.Drawing.Color KolorTekstuPrzyciskow {
             get {
-                return ((global::System.Drawing.Color)(this["KolorTekstuPrzyciskosw"]));
+                return ((global::System.Drawing.Color)(this["KolorTekstuPrzyciskow"]));
             }
             set {
-                this["KolorTekstuPrzyciskosw"] = value;
+                this["KolorTekstuPrzyciskow"] = value;
             }
         }
     }

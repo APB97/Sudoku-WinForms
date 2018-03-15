@@ -24,8 +24,6 @@ namespace Sudoku
         public FormGame(bool createNewGame = true)
         {
             oknoGry = this;
-            this.BackColor = FormOpcje.kolorOkna;
-
             InitializeComponent();
             StworzPolaSudoku();
 

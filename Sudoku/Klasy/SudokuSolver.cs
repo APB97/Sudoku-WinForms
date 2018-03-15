@@ -15,6 +15,14 @@ namespace Sudoku
         public static void Rozwiaz(PoleSudoku[,] polaSudoku)
         {
             listaPol = new LinkedList<PoleSudoku>();
+            int ilePustych = 0;
+            foreach (var item in polaSudoku)
+            {
+                if (item.ZawartoscPola == string.Empty)
+                    ++ilePustych;
+            }
+            if (ilePustych == 0)
+                return;
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)
                     listaPol.AddLast(polaSudoku[i, j]);

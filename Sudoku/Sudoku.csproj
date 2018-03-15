@@ -70,6 +70,7 @@
     <Compile Include="Klasy\MenedzerZapisuOdczytu.cs" />
     <Compile Include="Klasy\Pozycja.cs" />
     <Compile Include="Klasy\SudokuSolver.cs" />
+    <Compile Include="Klasy\Wymazywacz.cs" />
     <Compile Include="Wyliczenia\Trudnosc.cs" />
     <Compile Include="Wyliczenia\TypWymazaniaPola.cs" />
     <Compile Include="Klasy\Walidator.cs" />
@@ -103,9 +104,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Czcionki\FREESCPT.TTF">
+    <Content Include="Czcionki\FREESCPT.TTF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

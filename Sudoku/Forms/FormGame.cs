@@ -203,6 +203,10 @@ namespace Sudoku
 
         private void buttonPomoz_Click(object sender, EventArgs e)
         {
+            if (Wymazywacz.CzyJednoRozwiazanie(tabelkaSudoku))
+                MessageBox.Show("Tylko jedno rozwiązanie.");
+            else
+                MessageBox.Show("Wiele rozwiązań.");
             /*int pozostalePomoce = int.Parse(labelPozostaloPomocy.Text);
             if (pozostalePomoce > 1)
             {

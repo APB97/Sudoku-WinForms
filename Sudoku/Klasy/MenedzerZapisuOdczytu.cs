@@ -62,6 +62,13 @@ namespace Sudoku
                     WarningBoxes.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscLinii, Jezyk.Komunikaty.Uwaga);
                     return;
                 }
+                foreach (var item in polaSudoku)
+                {
+                    item.WartoscPola = 0;
+                    item.ZawartoscPola = string.Empty;
+                    item.textBox.ForeColor = Color.DimGray;
+                    item.textBox.ReadOnly = false;
+                }
                 for (int i = 0; i < 9; ++i)
                 {
                     var zawartoscLinii = zawartoscPliku[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -87,9 +94,10 @@ namespace Sudoku
                         }
                         else
                         {
-                            polaSudoku[i, j].WartoscPola = 0;
+                            polaSudoku[i, j].textBox.Font = new Font(polaSudoku[i, j].textBox.Font, FontStyle.Regular);
                             polaSudoku[i, j].textBox.ForeColor = Color.DimGray;
                             polaSudoku[i, j].textBox.ReadOnly = false;
+                            polaSudoku[i, j].WartoscPola = 0;
                         }
                     }
                 }
@@ -118,7 +126,11 @@ namespace Sudoku
                                 polaSudoku[indeksWTablicy, j].textBox.ForeColor = Color.DimGray;
                                 polaSudoku[indeksWTablicy, j].textBox.ReadOnly = false;
                                 polaSudoku[indeksWTablicy, j].WartoscPola = int.Parse(zawartoscLinii[j]);
-                            }
+                            }/*
+                            else if (!polaSudoku[indeksWTablicy, j].textBox.ReadOnly)
+                            {
+                                polaSudoku[indeksWTablicy, j].WartoscPola = 0;
+                            }*/
                         }
                     }
                 }

@@ -122,9 +122,10 @@
             this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.groupBoxPersonalizacja);
             this.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorOkna", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.MaximizeBox = false;
             this.Name = "FormOpcje";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormOpcje";
+            this.Text = "Sudoku - opcje";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormOpcje_FormClosed);
             this.groupBoxPersonalizacja.ResumeLayout(false);
             this.groupBoxPersonalizacja.PerformLayout();

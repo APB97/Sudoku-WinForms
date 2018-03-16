@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +37,7 @@ namespace Sudoku
         static readonly List<int> mozliweWartosci = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
         static readonly List<int> mozliweWartosciOdwrotnie = new List<int>(new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 });
 
-        public static bool CzyJednoRozwiazanie(PoleSudoku[,] polaSudoku)
+        public static bool CzyJednoRozwiazanie(ref int[,] polaSudoku)
         {
             int[,] rozwiazanieOd1 = new int[9, 9];
             int[,] rozwiazanieOd9 = new int[9, 9];
@@ -44,7 +45,7 @@ namespace Sudoku
             int[,] plansza = new int[9, 9];
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)
-                    plansza[i, j] = polaSudoku[i, j].WartoscPola;
+                    rozwiazanieOd1[i, j] = rozwiazanieOd9[i, j] = polaSudoku[i, j];
 
             Rozwiaz(ref rozwiazanieOd1);
             Rozwiaz(ref rozwiazanieOd9, true);
@@ -140,6 +141,44 @@ namespace Sudoku
                     return true;
                 listaPol.AddFirst(pole);
                 return false;
+            }
+        }
+        public static void WymazujPola(PoleSudoku[,] polaSudoku, Trudnosc trudnosc = Trudnosc.Srednie)
+        {
+            int[,] tabelka = new int[9, 9];
+            int niezapominajka = 0;
+            Pozycja pozycjaDoNeizapomnienia;
+            Random rand = new Random();
+            List<Pozycja> zajete = new List<Pozycja>();
+            for (int i = 0; i < 9; ++i)
+                for (int j = 0; j < 9; ++j)
+                {
+                    tabelka[i, j] = polaSudoku[i, j].WartoscPola;
+                    zajete.Add(new Pozycja(j, i));
+                }
+            int ile = 40;
+            do
+            {
+                int pos = rand.Next(zajete.Count);
+                pozycjaDoNeizapomnienia = zajete[pos];
+                zajete.RemoveAt(pos);
+                niezapominajka = tabelka[pozycjaDoNeizapomnienia.Y, pozycjaDoNeizapomnienia.X];
+                tabelka[pozycjaDoNeizapomnienia.Y, pozycjaDoNeizapomnienia.X] = 0;
+                --ile;
+            } while (ile > 0 && CzyJednoRozwiazanie(ref tabelka));
+
+            for (int i = 0; i < 9; ++i)
+                for (int j = 0; j < 9; ++j)
+                    if (tabelka[i,j] == 0)
+                    {
+                        polaSudoku[i, j].WartoscPola = 0;
+                        polaSudoku[i, j].textBox.ReadOnly = false;
+                        polaSudoku[i, j].textBox.ForeColor = Color.DimGray;
+                        polaSudoku[i, j].textBox.Font = new Font(polaSudoku[i, j].textBox.Font, FontStyle.Regular);
+                    }
+            foreach (var item in polaSudoku)
+            {
+                item.ZawartoscPola = item.WartoscPola == 0 ? string.Empty : item.WartoscPola.ToString();
             }
         }
     }

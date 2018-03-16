@@ -31,6 +31,7 @@ namespace Sudoku
             {
                 PrzygotujListePol();
                 GenerujSudoku();
+                Wymazywacz.WymazujPola(tabelkaSudoku, Trudnosc.Srednie);
                 WypelnijPlansze();
                 if (Walidator.SprawdzCalaTablice(tabelkaSudoku))
                     MessageBox.Show("Plansza OK");
@@ -141,7 +142,8 @@ namespace Sudoku
         {
             foreach (var pole in tabelkaSudoku)
             {
-                pole.InicjujPole();
+                if (pole.WartoscPola != 0)
+                    pole.InicjujPole();
             }
         }
 
@@ -203,7 +205,12 @@ namespace Sudoku
 
         private void buttonPomoz_Click(object sender, EventArgs e)
         {
-            if (Wymazywacz.CzyJednoRozwiazanie(tabelkaSudoku))
+            int[,] wartosciPol = new int[9, 9];
+            for (int i = 0; i < 9; ++i)
+                for (int j = 0; j < 9; ++j)
+                    wartosciPol[i, j] = tabelkaSudoku[i, j].WartoscPola;
+
+            if (Wymazywacz.CzyJednoRozwiazanie(ref wartosciPol))
                 MessageBox.Show("Tylko jedno rozwiązanie.");
             else
                 MessageBox.Show("Wiele rozwiązań.");

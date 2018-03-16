@@ -48,6 +48,9 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.openSudokuDialog = new System.Windows.Forms.OpenFileDialog();
+            this.printDialog = new System.Windows.Forms.PrintDialog();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
+            this.buttonDrukuj = new System.Windows.Forms.Button();
             this.panelSudoku.SuspendLayout();
             this.tableLayoutPanelPlansza.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +75,7 @@
             // 
             // panelSudoku
             // 
+            this.panelSudoku.Controls.Add(this.buttonDrukuj);
             this.panelSudoku.Controls.Add(this.labelPozostaloPomocy);
             this.panelSudoku.Controls.Add(this.labelDostepne);
             this.panelSudoku.Controls.Add(this.buttonPomoz);
@@ -343,6 +347,26 @@
             // 
             this.openSudokuDialog.Filter = "Pliki tekstowe|*.txt";
             // 
+            // printDialog
+            // 
+            this.printDialog.UseEXDialog = true;
+            // 
+            // printDocument
+            // 
+            this.printDocument.DocumentName = "Sudoku Puzzle";
+            this.printDocument.OriginAtMargins = true;
+            // 
+            // buttonDrukuj
+            // 
+            this.buttonDrukuj.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonDrukuj.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonDrukuj.Location = new System.Drawing.Point(433, 55);
+            this.buttonDrukuj.Name = "buttonDrukuj";
+            this.buttonDrukuj.Size = new System.Drawing.Size(48, 37);
+            this.buttonDrukuj.TabIndex = 8;
+            this.buttonDrukuj.Text = "Drukuj";
+            this.buttonDrukuj.UseVisualStyleBackColor = false;
+            // 
             // FormGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -385,5 +409,8 @@
         private System.Windows.Forms.Button buttonPomoz;
         private System.Windows.Forms.Label labelPozostaloPomocy;
         private System.Windows.Forms.Label labelDostepne;
+        private System.Windows.Forms.PrintDialog printDialog;
+        private System.Drawing.Printing.PrintDocument printDocument;
+        private System.Windows.Forms.Button buttonDrukuj;
     }
 }

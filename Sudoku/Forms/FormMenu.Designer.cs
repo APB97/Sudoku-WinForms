@@ -150,7 +150,7 @@
             // labelGameTitle
             // 
             this.labelGameTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelGameTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGameTitle.Font = new System.Drawing.Font("Comic Sans MS", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelGameTitle.Location = new System.Drawing.Point(115, 0);
             this.labelGameTitle.Name = "labelGameTitle";
             this.labelGameTitle.Size = new System.Drawing.Size(252, 73);

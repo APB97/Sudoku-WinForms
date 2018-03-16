@@ -31,7 +31,7 @@ namespace Sudoku
             {
                 PrzygotujListePol();
                 GenerujSudoku();
-                Wymazywacz.WymazujPola(tabelkaSudoku, Trudnosc.Srednie);
+                Wymazywacz.WymazujPola(tabelkaSudoku);//, Trudnosc.Srednie);
                 WypelnijPlansze();
                 if (Walidator.SprawdzCalaTablice(tabelkaSudoku))
                     MessageBox.Show("Plansza OK");

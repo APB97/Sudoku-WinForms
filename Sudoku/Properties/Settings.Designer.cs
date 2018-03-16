@@ -37,7 +37,7 @@ namespace Sudoku.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Window")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Control")]
         public global::System.Drawing.Color KolorPrzyciskow {
             get {
                 return ((global::System.Drawing.Color)(this["KolorPrzyciskow"]));
@@ -56,6 +56,18 @@ namespace Sudoku.Properties {
             }
             set {
                 this["KolorTekstuPrzyciskow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Średnia")]
+        public string Trudnosc {
+            get {
+                return ((string)(this["Trudnosc"]));
+            }
+            set {
+                this["Trudnosc"] = value;
             }
         }
     }

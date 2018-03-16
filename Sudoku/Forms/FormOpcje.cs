@@ -51,5 +51,39 @@ namespace Sudoku
                 Properties.Settings.Default.Save();
             }
         }
+
+        private void FormOpcje_Load(object sender, EventArgs e)
+        {
+            switch (Properties.Settings.Default.Trudnosc)
+            {
+                case "Łatwa":
+                    radioButtonLatwa.Checked = true;
+                    break;
+                case "Średnia":
+                    radioButtonSrednia.Checked = true;
+                    break;
+                case "Trudna":
+                    radioButtonTrudna.Checked = true;
+                    break;
+            }
+        }
+
+        private void radioButtonLatwa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonLatwa.Checked) Properties.Settings.Default.Trudnosc = "Łatwa";
+            Properties.Settings.Default.Save();
+        }
+
+        private void radioButtonSrednia_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonSrednia.Checked) Properties.Settings.Default.Trudnosc = "Średnia";
+            Properties.Settings.Default.Save();
+        }
+
+        private void radioButtonTrudna_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonTrudna.Checked) Properties.Settings.Default.Trudnosc = "Trudna";
+            Properties.Settings.Default.Save();
+        }
     }
 }

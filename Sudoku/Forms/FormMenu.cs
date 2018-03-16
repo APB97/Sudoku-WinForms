@@ -15,11 +15,12 @@ namespace Sudoku
     public partial class FormMenu : Form
     {
         public static FormMenu glowneOknoMenu;//pozwala odwołać się do okna głównego menu
+        public PrivateFontCollection collection;
 
         public FormMenu()
         {
             InitializeComponent();
-            PrivateFontCollection collection = new PrivateFontCollection();
+            collection = new PrivateFontCollection();
             collection.AddFontFile(@"Czcionki\FREESCPT.TTF");
             FontFamily fontFamily = new FontFamily("Freestyle Script", collection);
             labelGameTitle.Font = new Font(fontFamily, 48, FontStyle.Bold);

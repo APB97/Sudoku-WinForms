@@ -138,11 +138,12 @@ namespace Sudoku
                 return false;
             }
         }
-        public static void WymazujPola(PoleSudoku[,] polaSudoku, Trudnosc trudnosc = Trudnosc.Srednie)
+        public static void WymazujPola(PoleSudoku[,] polaSudoku)
         {
+            bool czyJedno;
             int[,] tabelka = new int[9, 9];
             int niezapominajka = 0;
-            Pozycja pozycjaDoNeizapomnienia;
+            Pozycja pozycjaDoPamietania;
             Random rand = new Random();
             List<Pozycja> zajete = new List<Pozycja>();
             for (int i = 0; i < 9; ++i)
@@ -151,16 +152,55 @@ namespace Sudoku
                     tabelka[i, j] = polaSudoku[i, j].WartoscPola;
                     zajete.Add(new Pozycja(j, i));
                 }
-            int ile = 40;
+            int ile, usunieto = 0;
+            Trudnosc trudnosc = Trudnosc.Srednie;
+            switch (Properties.Settings.Default.Trudnosc)
+            {
+                case "Łatwa":
+                    trudnosc = Trudnosc.Latwe;
+                    break;
+                case "Średnia":
+                    trudnosc = Trudnosc.Srednie;
+                    break;
+                case "Trudna":
+                    trudnosc = Trudnosc.Trudne;
+                    break;
+            }
+
+            switch (trudnosc)
+            {
+                case Trudnosc.Latwe:
+                    ile = 40;
+                    break;
+                case Trudnosc.Srednie:
+                    ile = 45;
+                    break;
+                case Trudnosc.Trudne:
+                    ile = 50;
+                    break;
+                default:
+                    ile = 40;
+                    break;
+            }
             do
             {
                 int pos = rand.Next(zajete.Count);
-                pozycjaDoNeizapomnienia = zajete[pos];
+                pozycjaDoPamietania = zajete[pos];
                 zajete.RemoveAt(pos);
-                niezapominajka = tabelka[pozycjaDoNeizapomnienia.Y, pozycjaDoNeizapomnienia.X];
-                tabelka[pozycjaDoNeizapomnienia.Y, pozycjaDoNeizapomnienia.X] = 0;
+                niezapominajka = tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X];
+                tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X] = 0;
                 --ile;
-            } while (ile > 0 && CzyJednoRozwiazanie(ref tabelka));
+                ++usunieto;
+                czyJedno = CzyJednoRozwiazanie(ref tabelka);
+            } while (ile > 0 && czyJedno);
+
+            if (!czyJedno)
+            {
+                tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X] = niezapominajka;
+                ++ile;
+                --usunieto;
+            }
+            System.Windows.Forms.MessageBox.Show("Usunieto " + usunieto + " pól.");
 
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)

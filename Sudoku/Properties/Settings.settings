@@ -6,10 +6,13 @@
       <Value Profile="(Default)">Window</Value>
     </Setting>
     <Setting Name="KolorPrzyciskow" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Window</Value>
+      <Value Profile="(Default)">Control</Value>
     </Setting>
     <Setting Name="KolorTekstuPrzyciskow" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="Trudnosc" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Średnia</Value>
     </Setting>
   </Settings>
 </SettingsFile>

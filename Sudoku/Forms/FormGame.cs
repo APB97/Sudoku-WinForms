@@ -44,32 +44,6 @@ namespace Sudoku
             }
         }
 
-        /*private void WymazCzesc()
-        {
-            Random rng = new Random();
-            Trudnosc trudnosc = Trudnosc.Srednie;
-            int polaDoWymazania;
-            switch (trudnosc)
-            {
-                case Trudnosc.Latwe:
-                    polaDoWymazania = 35;
-                    break;
-                case Trudnosc.Srednie:
-                    polaDoWymazania = 40;
-                    break;
-                case Trudnosc.Trudne:
-                    polaDoWymazania = 45;
-                    break;
-                default:
-                    polaDoWymazania = 40;
-                    break;
-            }
-
-            var wartosciEnum = Enum.GetValues(typeof(TypWymazaniaPola));
-            TypWymazaniaPola jakiTypWymazania = (TypWymazaniaPola) wartosciEnum.GetValue(rng.Next(wartosciEnum.Length));
-            //PrzygotujListePol();
-        }*/
-
         /// <summary>
         /// Tworzy kontrolki o odpowiednich parametrach na planszy Sudoku i zapisuje w tablicy ich referencje.
         /// </summary>
@@ -143,7 +117,7 @@ namespace Sudoku
             foreach (var pole in tabelkaSudoku)
             {
                 if (pole.WartoscPola != 0)
-                    pole.InicjujPole();
+                    pole.InicjujPoleJakoNiezmienne();
             }
         }
 

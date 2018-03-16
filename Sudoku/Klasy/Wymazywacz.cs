@@ -76,14 +76,9 @@ namespace Sudoku
                     listaPol.AddLast(planszaSudoku[i, j]);
 
             Uzupelnij(ref planszaSudoku, wTyl);
-            //{
-            //    foreach (var pole in planszaSudoku)
-            //        if (!pole.textBox.Font.Bold)
-            //            pole.ZawartoscPola = pole.WartoscPola.ToString();
-            //}
         }
 
-        private static bool Uzupelnij(ref int[,] polaSudoku, bool wTyl = false)//PoleSudoku[,] polaSudoku)
+        private static bool Uzupelnij(ref int[,] polaSudoku, bool wTyl = false)
         {
             var pole = listaPol.First;
             listaPol.RemoveFirst();
@@ -170,16 +165,7 @@ namespace Sudoku
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)
                     if (tabelka[i,j] == 0)
-                    {
-                        polaSudoku[i, j].WartoscPola = 0;
-                        polaSudoku[i, j].textBox.ReadOnly = false;
-                        polaSudoku[i, j].textBox.ForeColor = Color.DimGray;
-                        polaSudoku[i, j].textBox.Font = new Font(polaSudoku[i, j].textBox.Font, FontStyle.Regular);
-                    }
-            foreach (var item in polaSudoku)
-            {
-                item.ZawartoscPola = item.WartoscPola == 0 ? string.Empty : item.WartoscPola.ToString();
-            }
+                        polaSudoku[i, j].OczyscPole();
         }
     }
 }

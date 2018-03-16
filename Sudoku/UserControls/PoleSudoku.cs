@@ -71,12 +71,27 @@ namespace Sudoku
                     sasiedzi.Add(new Pozycja(i, j));
         }
 
-        public void InicjujPole()
+        public void InicjujPoleJakoNiezmienne(int? wartosc = null)
         {
             textBox.ForeColor = Color.Black;
             textBox.Font = new Font(textBox.Font, FontStyle.Bold);
-            textBox.Text = WartoscPola.ToString();
+            if (wartosc == null)
+                textBox.Text = WartoscPola.ToString();
+            else
+            {
+                textBox.Text = wartosc.Value.ToString();
+                WartoscPola = wartosc.Value;
+            }
             textBox.ReadOnly = true;
+        }
+
+        public void OczyscPole(string tekst = "0")
+        {
+            this.WartoscPola = int.Parse(tekst);
+            textBox.ReadOnly = false;
+            this.ZawartoscPola = tekst == "0" ? string.Empty : tekst;
+            textBox.ForeColor = Color.DimGray;
+            textBox.Font = new Font(textBox.Font, FontStyle.Regular);
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)

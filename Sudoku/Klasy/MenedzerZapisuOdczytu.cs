@@ -59,46 +59,31 @@ namespace Sudoku
 
                 if (zawartoscPliku.Length < 9)
                 {
-                    WarningBoxes.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscLinii, Jezyk.Komunikaty.Uwaga);
+                    WarningBox.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscLinii, Jezyk.Komunikaty.Uwaga);
                     return;
                 }
                 foreach (var item in polaSudoku)
-                {
-                    item.WartoscPola = 0;
-                    item.ZawartoscPola = string.Empty;
-                    item.textBox.ForeColor = Color.DimGray;
-                    item.textBox.ReadOnly = false;
-                }
+                    item.OczyscPole();
                 for (int i = 0; i < 9; ++i)
                 {
                     var zawartoscLinii = zawartoscPliku[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     if (zawartoscLinii.Length != 9)
                     {
-                        WarningBoxes.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscWartosciPol(i),
+                        WarningBox.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscWartosciPol(i),
                             Jezyk.Komunikaty.Uwaga);
                         return;
                     }
                     if (zawartoscLinii.Any((string s) => !char.IsDigit(s[0]) || s.Length > 1))
                     {
-                        WarningBoxes.ShowWithOK(Jezyk.Komunikaty.NieWszystkieSaCyframi(i), Jezyk.Komunikaty.Uwaga);
+                        WarningBox.ShowWithOK(Jezyk.Komunikaty.NieWszystkieSaCyframi(i), Jezyk.Komunikaty.Uwaga);
                         return;
                     }
                     for (int j = 0; j < 9; ++j)
                     {
                         if (zawartoscLinii[j] != "0")
-                        {
-                            polaSudoku[i, j].textBox.Font = new Font(polaSudoku[i, j].textBox.Font, FontStyle.Bold);
-                            polaSudoku[i, j].textBox.ForeColor = Color.Black;
-                            polaSudoku[i, j].textBox.ReadOnly = true;
-                            polaSudoku[i, j].WartoscPola = int.Parse(zawartoscLinii[j]);
-                        }
+                            polaSudoku[i, j].InicjujPoleJakoNiezmienne(int.Parse(zawartoscLinii[j]));
                         else
-                        {
-                            polaSudoku[i, j].textBox.Font = new Font(polaSudoku[i, j].textBox.Font, FontStyle.Regular);
-                            polaSudoku[i, j].textBox.ForeColor = Color.DimGray;
-                            polaSudoku[i, j].textBox.ReadOnly = false;
-                            polaSudoku[i, j].WartoscPola = 0;
-                        }
+                            polaSudoku[i, j].OczyscPole();
                     }
                 }
                 if (zawartoscPliku.Length == 18)
@@ -109,39 +94,26 @@ namespace Sudoku
                         var zawartoscLinii = zawartoscPliku[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                         if (zawartoscLinii.Length != 9)
                         {
-                            WarningBoxes.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscWartosciPol(i),
+                            WarningBox.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscWartosciPol(i),
                                 Jezyk.Komunikaty.Uwaga);
                             return;
                         }
                         if (zawartoscLinii.Any((string s) => !char.IsDigit(s[0]) || s.Length > 1))
                         {
-                            WarningBoxes.ShowWithOK(Jezyk.Komunikaty.NieWszystkieSaCyframi(i), Jezyk.Komunikaty.Uwaga);
+                            WarningBox.ShowWithOK(Jezyk.Komunikaty.NieWszystkieSaCyframi(i), Jezyk.Komunikaty.Uwaga);
                             return;
                         }
                         for (int j = 0; j < 9; ++j)
                         {
                             if (zawartoscLinii[j] != "0")
                             {
-                                polaSudoku[indeksWTablicy, j].textBox.Font = new Font(polaSudoku[indeksWTablicy, j].textBox.Font, FontStyle.Regular);
-                                polaSudoku[indeksWTablicy, j].textBox.ForeColor = Color.DimGray;
-                                polaSudoku[indeksWTablicy, j].textBox.ReadOnly = false;
-                                polaSudoku[indeksWTablicy, j].WartoscPola = int.Parse(zawartoscLinii[j]);
-                            }/*
-                            else if (!polaSudoku[indeksWTablicy, j].textBox.ReadOnly)
-                            {
-                                polaSudoku[indeksWTablicy, j].WartoscPola = 0;
-                            }*/
+                                polaSudoku[indeksWTablicy, j].OczyscPole(zawartoscLinii[j]);
+                            }
                         }
                     }
                 }
                 if (Walidator.SprawdzCalaTablice(polaSudoku))
-                {
                     MessageBox.Show("plansza OK");
-                    foreach (var item in polaSudoku)
-                    {
-                        item.ZawartoscPola = (item.WartoscPola == 0) ? string.Empty : item.WartoscPola.ToString();
-                    }
-                }
                 else
                     MessageBox.Show("plansza NIE OK");
             }

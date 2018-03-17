@@ -97,7 +97,31 @@ namespace Sudoku
         private void textBox_TextChanged(object sender, EventArgs e)
         {
             if (textBox.Text.Length > 0 && (!char.IsDigit(textBox.Text[0]) || textBox.Text[0] == '0'))
-                textBox.Text = string.Empty;
+            {
+                ZawartoscPola = string.Empty;
+                return;
+            }
+        }
+
+        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            string key = e.KeyCode.ToString();
+            if (key.Length < 2)
+                return;
+            if (!char.IsDigit(key[1]) || key[1] == '0')
+                return;
+
+            WartoscPola = int.Parse(key[1].ToString());
+            if (Walidator.SprawdzPole(FormGame.oknoGry.tabelkaSudoku, new Pozycja(X, Y)))
+            {
+                ZawartoscPola = WartoscPola.ToString();
+            }
+            else
+            {
+                WartoscPola = 0;
+                ZawartoscPola = string.Empty;
+            }
+            e.SuppressKeyPress = true;
         }
     }
 }

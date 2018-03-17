@@ -18,8 +18,11 @@ namespace Sudoku
             int ilePustych = 0;
             foreach (var item in polaSudoku)
             {
-                if (item.ZawartoscPola == string.Empty)
+                if (!item.textBox.Font.Bold)
+                {
                     ++ilePustych;
+                    item.OczyscPole();
+                }
             }
             if (ilePustych == 0)
                 return;

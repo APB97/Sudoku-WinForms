@@ -44,6 +44,7 @@
             this.textBox.TabIndex = 1;
             this.textBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // PoleSudoku
             // 

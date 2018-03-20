@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sudoku
 {
+    /// <summary>
+    /// Pozycja pola na planszy
+    /// </summary>
     public struct Pozycja
     {
         public int X { get; set; }

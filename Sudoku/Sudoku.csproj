@@ -72,7 +72,6 @@
     <Compile Include="Klasy\SudokuSolver.cs" />
     <Compile Include="Klasy\Wymazywacz.cs" />
     <Compile Include="Wyliczenia\Trudnosc.cs" />
-    <Compile Include="Wyliczenia\TypWymazaniaPola.cs" />
     <Compile Include="Klasy\Walidator.cs" />
     <Compile Include="Klasy\WarningBox.cs" />
     <Compile Include="UserControls\PoleSudoku.cs">

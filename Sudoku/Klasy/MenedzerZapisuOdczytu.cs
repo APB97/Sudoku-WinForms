@@ -11,42 +11,67 @@ namespace Sudoku
 {
     static class MenedzerZapisuOdczytu
     {
+        #region //Zapis Planszy
+
         public static void Zapisz(PoleSudoku[,] polaSudoku, SaveFileDialog saveFileDialog)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                int rozmiar = polaSudoku.GetLength(0);
                 StringBuilder puzzleBuilder = new StringBuilder();
                 StringBuilder gameStateBuilder = new StringBuilder();
-                for (int i = 0; i < rozmiar; ++i)
+                for (int i = 0; i < 9; ++i)
                 {
-                    for (int j = 0; j < rozmiar; ++j)
-                    {
-                        var zawartosc = polaSudoku[i, j].ZawartoscPola;
-                        zawartosc = string.IsNullOrEmpty(zawartosc) ? "0" : zawartosc;
-                        if (polaSudoku[i, j].textBox.Font.Bold)
-                        {
-                            puzzleBuilder.Append(zawartosc + " ");
-                            gameStateBuilder.Append("0 ");
-                        }
-                        else
-                        {
-                            gameStateBuilder.Append(zawartosc + " ");
-                            puzzleBuilder.Append("0 ");
-                        }
-                    }
-                    puzzleBuilder.Remove(puzzleBuilder.Length - 1, 1);
-                    gameStateBuilder.Remove(gameStateBuilder.Length - 1, 1);
-                    puzzleBuilder.AppendLine();
-                    gameStateBuilder.AppendLine();
+                    for (int j = 0; j < 9; ++j)
+                        ZapiszPoleWBuilderze(polaSudoku[i, j], puzzleBuilder, gameStateBuilder);
+                    UsunNadmiarowaSpacje(puzzleBuilder, gameStateBuilder);
+                    PrzejdzDoNowejLinii(puzzleBuilder, gameStateBuilder);
                 }
-                int newLineSize = Environment.NewLine.Length;
-                puzzleBuilder.Remove(puzzleBuilder.Length - newLineSize, newLineSize);
-                gameStateBuilder.Remove(gameStateBuilder.Length - newLineSize, newLineSize);
-                File.WriteAllText(saveFileDialog.FileName, puzzleBuilder.ToString() + Environment.NewLine + Environment.NewLine +
-                    gameStateBuilder.ToString());
+                UsunNadmiarowaLinie(puzzleBuilder, gameStateBuilder);
+                ZapiszWPliku(saveFileDialog.FileName, puzzleBuilder.ToString(), gameStateBuilder.ToString());
             }
         }
+
+        private static void ZapiszPoleWBuilderze(PoleSudoku pole, StringBuilder puzzle, StringBuilder gameState)
+        {
+            var zawartosc = pole.ZawartoscPola;
+            zawartosc = string.IsNullOrEmpty(zawartosc) ? "0" : zawartosc;
+            if (pole.textBox.Font.Bold)
+            {
+                puzzle.Append(zawartosc + " ");
+                gameState.Append("0 ");
+            }
+            else
+            {
+                gameState.Append(zawartosc + " ");
+                puzzle.Append("0 ");
+            }
+        }
+
+        private static void UsunNadmiarowaSpacje(StringBuilder puzzleBuilder, StringBuilder gameStateBuilder)
+        {
+            puzzleBuilder.Remove(puzzleBuilder.Length - 1, 1);
+            gameStateBuilder.Remove(gameStateBuilder.Length - 1, 1);
+        }
+
+        private static void PrzejdzDoNowejLinii(StringBuilder puzzleBuilder, StringBuilder gameStateBuilder)
+        {
+            puzzleBuilder.AppendLine();
+            gameStateBuilder.AppendLine();
+        }
+
+        private static void UsunNadmiarowaLinie(StringBuilder puzzleBuilder, StringBuilder gameStateBuilder)
+        {
+            int newLineSize = Environment.NewLine.Length;
+            puzzleBuilder.Remove(puzzleBuilder.Length - newLineSize, newLineSize);
+            gameStateBuilder.Remove(gameStateBuilder.Length - newLineSize, newLineSize);
+        }
+
+        private static void ZapiszWPliku(string path, string puzzle, string gameState)
+        {
+            File.WriteAllText(path, puzzle + Environment.NewLine + Environment.NewLine + gameState);
+        }
+
+        #endregion
 
         public static void Wczytaj(PoleSudoku[,] polaSudoku, OpenFileDialog openFileDialog)
         {
@@ -115,7 +140,13 @@ namespace Sudoku
                 if (Walidator.SprawdzCalaTablice(polaSudoku))
                     MessageBox.Show("plansza OK");
                 else
+                {
+                    foreach (var item in polaSudoku)
+                    {
+                        item.OczyscPole();
+                    }
                     MessageBox.Show("plansza NIE OK");
+                }
             }
         }
     }

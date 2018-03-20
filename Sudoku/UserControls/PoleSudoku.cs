@@ -31,6 +31,9 @@ namespace Sudoku
             set { textBox.Text = value; }
         }
 
+        /// <summary>
+        /// Liczbowa wartość pola.
+        /// </summary>
         public int WartoscPola { get; set; } = 0;
 
         /// <summary>
@@ -44,7 +47,7 @@ namespace Sudoku
         }
 
         /// <summary>
-        /// Konstruktor używany do przypisania polu konkretnej pozycji i wyznaczeniu zbioru sąsiadów.
+        /// Konstruktor używany do przypisania polu konkretnej pozycji i wyznaczenia zbioru sąsiadów.
         /// </summary>
         /// <param name="x">Pozycja w poziomie.</param>
         /// <param name="y">Pozycja w pionie.</param>
@@ -55,6 +58,9 @@ namespace Sudoku
             DodajSasiadow();
         }
 
+        /// <summary>
+        /// Metoda wyznaczająca i zapisująca sąsiadów danego pola.
+        /// </summary>
         private void DodajSasiadow()
         {
             for (int i = 0; i < 9; ++i)
@@ -71,6 +77,10 @@ namespace Sudoku
                     sasiedzi.Add(new Pozycja(i, j));
         }
 
+        /// <summary>
+        /// Inicjuje pole jako stały element zagadki.
+        /// </summary>
+        /// <param name="wartosc">Gdy null, używa WartosciPola do inicjowania pola tekstowego. W przeciwnym przypadku, używa podanego argumentu.</param>
         public void InicjujPoleJakoNiezmienne(int? wartosc = null)
         {
             textBox.ForeColor = Color.Black;
@@ -85,6 +95,10 @@ namespace Sudoku
             textBox.ReadOnly = true;
         }
 
+        /// <summary>
+        /// Modyfikuje własności pola, w tym kolor i czcionkę, aby była możliwa jego edycja.
+        /// </summary>
+        /// <param name="tekst">Pozwala ustawić tekst w oczyszczonym polu.</param>
         public void OczyscPole(string tekst = "0")
         {
             this.WartoscPola = int.Parse(tekst);
@@ -94,6 +108,11 @@ namespace Sudoku
             textBox.Font = new Font(textBox.Font, FontStyle.Regular);
         }
 
+        /// <summary>
+        /// Bazowe blokowanie wprowadzania niepoprawnych danych.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBox_TextChanged(object sender, EventArgs e)
         {
             if (textBox.Text.Length > 0 && (!char.IsDigit(textBox.Text[0]) || textBox.Text[0] == '0'))
@@ -103,6 +122,11 @@ namespace Sudoku
             }
         }
 
+        /// <summary>
+        /// Blokuje cyfry, które nie mogą zostać wpisane zgodnie z zasadami Sudoku.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBox_KeyDown(object sender, KeyEventArgs e)
         {
             string key = e.KeyCode.ToString();

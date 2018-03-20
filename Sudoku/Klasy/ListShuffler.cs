@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 namespace Sudoku
 {
     /// <summary>
-    /// Klasa która pozwala na pomieszanie list(y)
+    /// Klasa która pozwala na pomieszanie zawartości listy
     /// </summary>
     static class ListShuffler
     {
+        /// <summary>
+        /// Generator liczb pseudolosowych na potrzeby mieszania
+        /// </summary>
         static Random rng;
 
         static ListShuffler()

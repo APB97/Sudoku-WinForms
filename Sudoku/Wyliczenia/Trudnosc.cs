@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sudoku
 {
+    /// <summary>
+    /// Wyliczenie z poziomami trudności
+    /// </summary>
     public enum Trudnosc
     {
         Latwe,

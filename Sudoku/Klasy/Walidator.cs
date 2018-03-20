@@ -46,35 +46,36 @@ namespace Sudoku
         {
             List<int> kwadrat, wiersz, kolumna;
             for (int i = 0; i < 9; ++i)
-            {
-                int h, v;
-                kwadrat = new List<int>();
-                kolumna = new List<int>();
-                wiersz = new List<int>();
-                h = (i % 3) * 3;
-                v = (i / 3) * 3;
-                for (int j = v; j < v + 3; ++j)
-                    for (int k = h; k < h + 3; ++k)
-                    {
-                        int wartosc = polaSudoku[j, k].WartoscPola;
-                        if (wartosc != 0)
-                            kwadrat.Add(wartosc);
-                    }
-
                 for (int j = 0; j < 9; ++j)
                 {
-                    int wartoscWKolumnnie = polaSudoku[j, i].WartoscPola;
-                    int wartoscWWierszu = polaSudoku[i, j].WartoscPola;
-                    if (wartoscWKolumnnie != 0)
-                        kolumna.Add(wartoscWKolumnnie);
-                    if (wartoscWWierszu != 0)
-                        wiersz.Add(wartoscWWierszu);
-                }
+                    int h, v;
+                    kwadrat = new List<int>();
+                    kolumna = new List<int>();
+                    wiersz = new List<int>();
+                    h = (j % 3) * 3;
+                    v = (i / 3) * 3;
+                    for (int k = v; k < v + 3; ++k)
+                        for (int l = h; l < h + 3; ++l)
+                        {
+                            int wartosc = polaSudoku[k, l].WartoscPola;
+                            if (wartosc != 0)
+                                kwadrat.Add(wartosc);
+                        }
 
-                if (kwadrat.Distinct().Count() != kwadrat.Count || kolumna.Distinct().Count() != kolumna.Count
-                    || wiersz.Distinct().Count() != wiersz.Count)
-                    return false;
-            }
+                    for (int k = 0; k < 9; ++k)
+                    {
+                        int wartoscWKolumnnie = polaSudoku[k, j].WartoscPola;
+                        int wartoscWWierszu = polaSudoku[i, k].WartoscPola;
+                        if (wartoscWKolumnnie != 0)
+                            kolumna.Add(wartoscWKolumnnie);
+                        if (wartoscWWierszu != 0)
+                            wiersz.Add(wartoscWWierszu);
+                    }
+
+                    if (kwadrat.Distinct().Count() != kwadrat.Count || kolumna.Distinct().Count() != kolumna.Count
+                        || wiersz.Distinct().Count() != wiersz.Count)
+                        return false;
+                }
             return true;
         }
     }

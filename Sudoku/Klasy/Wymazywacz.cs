@@ -11,7 +11,6 @@ namespace Sudoku
     {
         static LinkedList<Pozycja> listaPol;
         static HashSet<Pozycja>[,] sasiedzi = new HashSet<Pozycja>[9,9];
-        static int x, y;
 
         static Wymazywacz()
         {
@@ -42,7 +41,6 @@ namespace Sudoku
             int[,] rozwiazanieOd1 = new int[9, 9];
             int[,] rozwiazanieOd9 = new int[9, 9];
 
-            //int[,] plansza = new int[9, 9];
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)
                     rozwiazanieOd1[i, j] = rozwiazanieOd9[i, j] = polaSudoku[i, j];
@@ -61,7 +59,6 @@ namespace Sudoku
 
         public static void Rozwiaz(ref int[,] planszaSudoku, bool wTyl = false)
         {
-            x = y = 0;
             listaPol = new LinkedList<Pozycja>();
             int ilePustych = 0;
             foreach (var item in planszaSudoku)
@@ -74,7 +71,7 @@ namespace Sudoku
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)
                     if (planszaSudoku[i, j] == 0)
-                        listaPol.AddLast(new Pozycja(j, i));//planszaSudoku[i, j]);
+                        listaPol.AddLast(new Pozycja(j, i));
 
             Uzupelnij(ref planszaSudoku, wTyl);
         }
@@ -83,14 +80,6 @@ namespace Sudoku
         {
             var pole = listaPol.First;
             listaPol.RemoveFirst();
-            ++x;
-            if (x > 8)
-            {
-                ++y;
-                x -= 9;
-            }
-            if (y > 8)
-                return true;
             HashSet<int> wartosciSasiadow = new HashSet<int>();
             List<int> opcje;
 
@@ -117,12 +106,6 @@ namespace Sudoku
             }
             polaSudoku[pole.Value.Y, pole.Value.X] = 0;
             listaPol.AddFirst(pole);
-            --x;
-            if (x < 0)
-            {
-                --y;
-                x += 9;
-            }
             return false;
         }
         public static void WymazujPola(PoleSudoku[,] polaSudoku)

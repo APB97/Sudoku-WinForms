@@ -70,5 +70,17 @@ namespace Sudoku.Properties {
                 this["Trudnosc"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ObrazZamiastWydruku {
+            get {
+                return ((bool)(this["ObrazZamiastWydruku"]));
+            }
+            set {
+                this["ObrazZamiastWydruku"] = value;
+            }
+        }
     }
 }

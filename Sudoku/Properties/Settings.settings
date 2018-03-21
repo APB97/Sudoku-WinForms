@@ -14,5 +14,8 @@
     <Setting Name="Trudnosc" Type="System.String" Scope="User">
       <Value Profile="(Default)">Średnia</Value>
     </Setting>
+    <Setting Name="ObrazZamiastWydruku" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

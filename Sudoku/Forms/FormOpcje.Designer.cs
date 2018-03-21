@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelTloOkna = new System.Windows.Forms.Label();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,11 +38,15 @@
             this.buttonTekstPrzyciskow = new System.Windows.Forms.Button();
             this.buttonTloPrzyciskow = new System.Windows.Forms.Button();
             this.groupBoxTrudnoscPlanszy = new System.Windows.Forms.GroupBox();
-            this.radioButtonLatwa = new System.Windows.Forms.RadioButton();
-            this.radioButtonSrednia = new System.Windows.Forms.RadioButton();
             this.radioButtonTrudna = new System.Windows.Forms.RadioButton();
+            this.radioButtonSrednia = new System.Windows.Forms.RadioButton();
+            this.radioButtonLatwa = new System.Windows.Forms.RadioButton();
+            this.checkBoxObrazZamiastDruku = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBoxPersonalizacja.SuspendLayout();
             this.groupBoxTrudnoscPlanszy.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelTloOkna
@@ -90,6 +95,7 @@
             // 
             this.buttonTloOkna.BackColor = global::Sudoku.Properties.Settings.Default.KolorOkna;
             this.buttonTloOkna.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorOkna", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonTloOkna.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonTloOkna.Location = new System.Drawing.Point(6, 19);
             this.buttonTloOkna.Name = "buttonTloOkna";
             this.buttonTloOkna.Size = new System.Drawing.Size(75, 23);
@@ -101,6 +107,7 @@
             // 
             this.buttonTekstPrzyciskow.BackColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
             this.buttonTekstPrzyciskow.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonTekstPrzyciskow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonTekstPrzyciskow.Location = new System.Drawing.Point(6, 79);
             this.buttonTekstPrzyciskow.Name = "buttonTekstPrzyciskow";
             this.buttonTekstPrzyciskow.Size = new System.Drawing.Size(75, 23);
@@ -112,6 +119,7 @@
             // 
             this.buttonTloPrzyciskow.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
             this.buttonTloPrzyciskow.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonTloPrzyciskow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonTloPrzyciskow.Location = new System.Drawing.Point(6, 50);
             this.buttonTloPrzyciskow.Name = "buttonTloPrzyciskow";
             this.buttonTloPrzyciskow.Size = new System.Drawing.Size(75, 23);
@@ -131,18 +139,17 @@
             this.groupBoxTrudnoscPlanszy.TabStop = false;
             this.groupBoxTrudnoscPlanszy.Text = "Trudność planszy";
             // 
-            // radioButtonLatwa
+            // radioButtonTrudna
             // 
-            this.radioButtonLatwa.AutoSize = true;
-            this.radioButtonLatwa.Location = new System.Drawing.Point(6, 20);
-            this.radioButtonLatwa.Name = "radioButtonLatwa";
-            this.radioButtonLatwa.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioButtonLatwa.Size = new System.Drawing.Size(55, 17);
-            this.radioButtonLatwa.TabIndex = 0;
-            this.radioButtonLatwa.TabStop = true;
-            this.radioButtonLatwa.Text = "Łatwa";
-            this.radioButtonLatwa.UseVisualStyleBackColor = true;
-            this.radioButtonLatwa.CheckedChanged += new System.EventHandler(this.radioButtonLatwa_CheckedChanged);
+            this.radioButtonTrudna.AutoSize = true;
+            this.radioButtonTrudna.Location = new System.Drawing.Point(6, 66);
+            this.radioButtonTrudna.Name = "radioButtonTrudna";
+            this.radioButtonTrudna.Size = new System.Drawing.Size(59, 17);
+            this.radioButtonTrudna.TabIndex = 2;
+            this.radioButtonTrudna.TabStop = true;
+            this.radioButtonTrudna.Text = "Trudna";
+            this.radioButtonTrudna.UseVisualStyleBackColor = true;
+            this.radioButtonTrudna.CheckedChanged += new System.EventHandler(this.radioButtonTrudna_CheckedChanged);
             // 
             // radioButtonSrednia
             // 
@@ -156,17 +163,43 @@
             this.radioButtonSrednia.UseVisualStyleBackColor = true;
             this.radioButtonSrednia.CheckedChanged += new System.EventHandler(this.radioButtonSrednia_CheckedChanged);
             // 
-            // radioButtonTrudna
+            // radioButtonLatwa
             // 
-            this.radioButtonTrudna.AutoSize = true;
-            this.radioButtonTrudna.Location = new System.Drawing.Point(6, 66);
-            this.radioButtonTrudna.Name = "radioButtonTrudna";
-            this.radioButtonTrudna.Size = new System.Drawing.Size(59, 17);
-            this.radioButtonTrudna.TabIndex = 2;
-            this.radioButtonTrudna.TabStop = true;
-            this.radioButtonTrudna.Text = "Trudna";
-            this.radioButtonTrudna.UseVisualStyleBackColor = true;
-            this.radioButtonTrudna.CheckedChanged += new System.EventHandler(this.radioButtonTrudna_CheckedChanged);
+            this.radioButtonLatwa.AutoSize = true;
+            this.radioButtonLatwa.Location = new System.Drawing.Point(6, 20);
+            this.radioButtonLatwa.Name = "radioButtonLatwa";
+            this.radioButtonLatwa.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioButtonLatwa.Size = new System.Drawing.Size(55, 17);
+            this.radioButtonLatwa.TabIndex = 0;
+            this.radioButtonLatwa.TabStop = true;
+            this.radioButtonLatwa.Text = "Łatwa";
+            this.radioButtonLatwa.UseVisualStyleBackColor = true;
+            this.radioButtonLatwa.CheckedChanged += new System.EventHandler(this.radioButtonLatwa_CheckedChanged);
+            // 
+            // checkBoxObrazZamiastDruku
+            // 
+            this.checkBoxObrazZamiastDruku.AutoSize = true;
+            this.checkBoxObrazZamiastDruku.Checked = global::Sudoku.Properties.Settings.Default.ObrazZamiastWydruku;
+            this.checkBoxObrazZamiastDruku.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Sudoku.Properties.Settings.Default, "ObrazZamiastWydruku", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBoxObrazZamiastDruku.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxObrazZamiastDruku.Name = "checkBoxObrazZamiastDruku";
+            this.checkBoxObrazZamiastDruku.Size = new System.Drawing.Size(122, 17);
+            this.checkBoxObrazZamiastDruku.TabIndex = 8;
+            this.checkBoxObrazZamiastDruku.Text = "Obraz zamiast druku";
+            this.toolTip1.SetToolTip(this.checkBoxObrazZamiastDruku, "Pozwala na zapisanie obrazu w formacie PNG zamiast drukowania Sudoku bezpośrednio" +
+        ".");
+            this.checkBoxObrazZamiastDruku.UseVisualStyleBackColor = true;
+            this.checkBoxObrazZamiastDruku.CheckedChanged += new System.EventHandler(this.checkBoxObrazZamiastDruku_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkBoxObrazZamiastDruku);
+            this.groupBox1.Location = new System.Drawing.Point(12, 254);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 46);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Opcje wydruku";
             // 
             // FormOpcje
             // 
@@ -174,6 +207,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = global::Sudoku.Properties.Settings.Default.KolorOkna;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxTrudnoscPlanszy);
             this.Controls.Add(this.groupBoxPersonalizacja);
             this.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorOkna", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -187,6 +221,8 @@
             this.groupBoxPersonalizacja.PerformLayout();
             this.groupBoxTrudnoscPlanszy.ResumeLayout(false);
             this.groupBoxTrudnoscPlanszy.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -205,5 +241,8 @@
         private System.Windows.Forms.RadioButton radioButtonTrudna;
         private System.Windows.Forms.RadioButton radioButtonSrednia;
         private System.Windows.Forms.RadioButton radioButtonLatwa;
+        private System.Windows.Forms.CheckBox checkBoxObrazZamiastDruku;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

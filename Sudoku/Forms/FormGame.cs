@@ -32,8 +32,8 @@ namespace Sudoku
             if (createNewGame)
             {
                 PrzygotujListePol();
-                GenerujSudoku();
-                Wymazywacz.WymazujPola(tabelkaSudoku);//, Trudnosc.Srednie);
+                SudokuSolver.Rozwiaz(tabelkaSudoku);//GenerujSudoku();
+                Wymazywacz.WymazujPola(tabelkaSudoku);
                 WypelnijPlansze();
                 if (Walidator.SprawdzCalaTablice(tabelkaSudoku))
                     MessageBox.Show("Plansza OK");
@@ -51,13 +51,12 @@ namespace Sudoku
         /// </summary>
         private void StworzPolaSudoku()
         {
-            Control obecnyKwadratCtrl;
             TableLayoutPanel obecnyKwadrat;
             for (int i = 0; i < 9; ++i)
             {
-                obecnyKwadratCtrl = tableLayoutPanelPlansza.Controls.Find("tableLayoutPanel" + i, false)[0];
-                obecnyKwadratCtrl.TabIndex = i;
-                obecnyKwadrat = obecnyKwadratCtrl as TableLayoutPanel;
+                obecnyKwadrat = tableLayoutPanelPlansza.Controls.Find("tableLayoutPanel" + i, false)[0]
+                    as TableLayoutPanel;
+                obecnyKwadrat.TabIndex = i;
                 for (int j = 0; j < 9; ++j)
                 {
                     var pole = new PoleSudoku(PrzesuniecieH[j] + PrzesuniecieH[i] * 3, PrzesuniecieV[j] + PrzesuniecieV[i] * 3);
@@ -78,40 +77,6 @@ namespace Sudoku
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)
                     listaPol.AddLast(tabelkaSudoku[i, j]);
-        }
-
-        private bool GenerujSudoku()
-        {
-            var pole = listaPol.First;
-            listaPol.RemoveFirst();
-
-            HashSet<int> wartosciSasiadow = new HashSet<int>();
-            List<int> opcje;
-
-            foreach (var sasiad in pole.Value.sasiedzi)
-            {
-                var wartosc = tabelkaSudoku[sasiad.Y, sasiad.X].WartoscPola;
-                if (wartosc != 0)
-                    wartosciSasiadow.Add(wartosc);
-            }
-
-            opcje = new List<int>(mozliweWartosci.Except(wartosciSasiadow));
-            opcje.Shuffle();
-
-            foreach (var opcja in opcje)
-            {
-                pole.Value.WartoscPola = opcja;
-                if (listaPol.Count == 0)
-                    return true;
-                if (GenerujSudoku())
-                {
-                    return true;
-                }
-            }
-
-            pole.Value.WartoscPola = 0;
-            listaPol.AddFirst(pole);
-            return false;
         }
         
         private void WypelnijPlansze()
@@ -175,21 +140,12 @@ namespace Sudoku
         {
             if (e.CloseReason == CloseReason.UserClosing)
                 FormMenu.glowneOknoMenu.Show();
-            else
+            else if (e.CloseReason != CloseReason.ApplicationExitCall)
                 Application.Exit();
         }
 
         private void buttonPomoz_Click(object sender, EventArgs e)
         {
-            //int[,] wartosciPol = new int[9, 9];
-            //for (int i = 0; i < 9; ++i)
-            //    for (int j = 0; j < 9; ++j)
-            //        wartosciPol[i, j] = tabelkaSudoku[i, j].WartoscPola;
-
-            //if (Wymazywacz.CzyJednoRozwiazanie(wartosciPol))
-            //    MessageBox.Show("Tylko jedno rozwiązanie.");
-            //else
-            //    MessageBox.Show("Wiele rozwiązań.");
             int pozostalePomoce = int.Parse(labelPozostaloPomocy.Text);
             if (pozostalePomoce >= 1)
             {
@@ -227,62 +183,7 @@ namespace Sudoku
 
         private void buttonDrukuj_Click(object sender, EventArgs e)
         {
-            int baseSize = 100;
-            int scale = 2;
-            int baseFrame = 2;
-            int frameSize = baseFrame * scale;
-            int oneUnitSize = baseSize * scale;
-            int threeUnitSize = oneUnitSize * 3;
-            int nineUnitSize = oneUnitSize * 9;
-            Bitmap img = new Bitmap(nineUnitSize, nineUnitSize);
-            Pen pioroSzare = new Pen(Color.DimGray, oneUnitSize / 100);
-            Pen pioroCzarne = new Pen(Color.Black, frameSize);
-            Font font = new Font(tabelkaSudoku[0, 0].textBox.Font.FontFamily,
-                tabelkaSudoku[0, 0].textBox.Font.SizeInPoints * 2 * scale, FontStyle.Bold);
-            var g = Graphics.FromImage(img);
-            g.Clear(Color.White);
-
-            for (int i = 0; i <= 9; i++)
-            {
-                if (i % 3 != 0)
-                {
-                    g.DrawLine(pioroSzare, i * oneUnitSize, 0, i * oneUnitSize, nineUnitSize);
-                    g.DrawLine(pioroSzare, 0, i * oneUnitSize, nineUnitSize, i * oneUnitSize);
-                }
-            }
-            for (int i = 0; i <= 9; i++)
-            {
-                if (i % 3 == 0)
-                {
-                    g.DrawLine(pioroCzarne, i * oneUnitSize, 0, i * oneUnitSize, nineUnitSize);
-                    g.DrawLine(pioroCzarne, 0, i * oneUnitSize, nineUnitSize, i * oneUnitSize);
-                }
-            }
-
-            g.DrawLine(pioroCzarne, 0, nineUnitSize - frameSize / 2, nineUnitSize, nineUnitSize - frameSize / 2);
-
-            var m = g.MeasureString("0", font);
-
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    g.DrawString(tabelkaSudoku[i, j].ZawartoscPola, font, pioroCzarne.Brush,
-                        new RectangleF(j * oneUnitSize + (oneUnitSize - m.Width) / 2 , i * oneUnitSize + (oneUnitSize - m.Height) / 2, m.Width, m.Height));
-                }
-            }
-
-            img.Save("tmp.png", System.Drawing.Imaging.ImageFormat.Png);
-            Process p = new Process();
-            p.StartInfo.FileName = "tmp.png";
-            p.StartInfo.Verb = "Print";
-            p.Exited += P_Exited;
-            p.Start();
-        }
-
-        private void P_Exited(object sender, EventArgs e)
-        {
-            File.Delete("tmp.png");
+            new WydrukSudoku(100, 2, 2).Drukuj(tabelkaSudoku);
         }
     }
 }

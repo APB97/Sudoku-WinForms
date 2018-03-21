@@ -93,6 +93,7 @@
             this.buttonWyjscie.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.buttonWyjscie.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.buttonWyjscie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonWyjscie.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonWyjscie.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
             this.buttonWyjscie.Location = new System.Drawing.Point(3, 99);
             this.buttonWyjscie.Name = "buttonWyjscie";
@@ -108,6 +109,7 @@
             this.buttonOpcje.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.buttonOpcje.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.buttonOpcje.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonOpcje.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonOpcje.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
             this.buttonOpcje.Location = new System.Drawing.Point(3, 67);
             this.buttonOpcje.Name = "buttonOpcje";
@@ -123,6 +125,7 @@
             this.buttonWczytaj.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.buttonWczytaj.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.buttonWczytaj.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonWczytaj.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonWczytaj.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
             this.buttonWczytaj.Location = new System.Drawing.Point(3, 35);
             this.buttonWczytaj.Name = "buttonWczytaj";
@@ -138,6 +141,7 @@
             this.buttonGraj.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.buttonGraj.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.buttonGraj.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonGraj.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonGraj.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
             this.buttonGraj.Location = new System.Drawing.Point(3, 3);
             this.buttonGraj.Name = "buttonGraj";

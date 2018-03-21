@@ -70,6 +70,7 @@
     <Compile Include="Klasy\MenedzerZapisuOdczytu.cs" />
     <Compile Include="Klasy\Pozycja.cs" />
     <Compile Include="Klasy\SudokuSolver.cs" />
+    <Compile Include="Klasy\Wydruk.cs" />
     <Compile Include="Klasy\Wymazywacz.cs" />
     <Compile Include="Wyliczenia\Trudnosc.cs" />
     <Compile Include="Klasy\Walidator.cs" />

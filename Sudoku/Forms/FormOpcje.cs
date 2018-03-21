@@ -21,7 +21,7 @@ namespace Sudoku
         {
             if (e.CloseReason == CloseReason.UserClosing)
                 FormMenu.glowneOknoMenu.Show();
-            else
+            else if (e.CloseReason != CloseReason.ApplicationExitCall)
                 Application.Exit();
         }
 
@@ -83,6 +83,12 @@ namespace Sudoku
         private void radioButtonTrudna_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonTrudna.Checked) Properties.Settings.Default.Trudnosc = "Trudna";
+            Properties.Settings.Default.Save();
+        }
+
+        private void checkBoxObrazZamiastDruku_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ObrazZamiastWydruku = checkBoxObrazZamiastDruku.Checked;
             Properties.Settings.Default.Save();
         }
     }

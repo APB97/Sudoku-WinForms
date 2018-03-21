@@ -58,6 +58,7 @@
             // buttonZapiszStan
             // 
             this.buttonZapiszStan.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonZapiszStan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonZapiszStan.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
             this.buttonZapiszStan.Location = new System.Drawing.Point(12, 435);
             this.buttonZapiszStan.Name = "buttonZapiszStan";
@@ -94,6 +95,7 @@
             // buttonDrukuj
             // 
             this.buttonDrukuj.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonDrukuj.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonDrukuj.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
             this.buttonDrukuj.Location = new System.Drawing.Point(433, 55);
             this.buttonDrukuj.Name = "buttonDrukuj";
@@ -123,6 +125,7 @@
             // buttonPomoz
             // 
             this.buttonPomoz.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonPomoz.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonPomoz.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
             this.buttonPomoz.Location = new System.Drawing.Point(294, 435);
             this.buttonPomoz.Name = "buttonPomoz";
@@ -136,6 +139,7 @@
             // buttonRozwiaz
             // 
             this.buttonRozwiaz.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonRozwiaz.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonRozwiaz.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
             this.buttonRozwiaz.Location = new System.Drawing.Point(164, 435);
             this.buttonRozwiaz.Name = "buttonRozwiaz";
@@ -149,6 +153,7 @@
             // button_DoMenu
             // 
             this.button_DoMenu.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.button_DoMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button_DoMenu.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
             this.button_DoMenu.Location = new System.Drawing.Point(433, 12);
             this.button_DoMenu.Name = "button_DoMenu";
@@ -162,6 +167,7 @@
             // buttonWczytajStan
             // 
             this.buttonWczytajStan.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonWczytajStan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonWczytajStan.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
             this.buttonWczytajStan.Location = new System.Drawing.Point(88, 435);
             this.buttonWczytajStan.Name = "buttonWczytajStan";

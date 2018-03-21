@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -184,7 +186,7 @@ namespace Sudoku
                 for (int j = 0; j < 9; ++j)
                     wartosciPol[i, j] = tabelkaSudoku[i, j].WartoscPola;
 
-            if (Wymazywacz.CzyJednoRozwiazanie(ref wartosciPol))
+            if (Wymazywacz.CzyJednoRozwiazanie(wartosciPol))
                 MessageBox.Show("Tylko jedno rozwiązanie.");
             else
                 MessageBox.Show("Wiele rozwiązań.");
@@ -218,6 +220,98 @@ namespace Sudoku
                 }
             }
             return false;
+        }
+
+        private void buttonDrukuj_Click(object sender, EventArgs e)
+        {
+            int baseSize = 100;
+            int scale = 2;
+            int baseFrame = 2;
+            int frameSize = baseFrame * scale;
+            int oneUnitSize = baseSize * scale;
+            int threeUnitSize = oneUnitSize * 3;
+            int nineUnitSize = oneUnitSize * 9;
+            Bitmap img = new Bitmap(nineUnitSize, nineUnitSize);
+            Pen pioroSzare = new Pen(Color.DimGray, oneUnitSize / 100);
+            Pen pioroCzarne = new Pen(Color.Black, frameSize);
+            Font font = new Font(tabelkaSudoku[0, 0].textBox.Font.FontFamily,
+                tabelkaSudoku[0, 0].textBox.Font.SizeInPoints * 2 * scale, FontStyle.Bold);
+            var g = Graphics.FromImage(img);
+            g.Clear(Color.White);
+
+            for (int i = 0; i <= 9; i++)
+            {
+                if (i % 3 != 0)
+                {
+                    g.DrawLine(pioroSzare, i * oneUnitSize, 0, i * oneUnitSize, nineUnitSize);
+                    g.DrawLine(pioroSzare, 0, i * oneUnitSize, nineUnitSize, i * oneUnitSize);
+                }
+            }
+            for (int i = 0; i <= 9; i++)
+            {
+                if (i % 3 == 0)
+                {
+                    g.DrawLine(pioroCzarne, i * oneUnitSize, 0, i * oneUnitSize, nineUnitSize);
+                    g.DrawLine(pioroCzarne, 0, i * oneUnitSize, nineUnitSize, i * oneUnitSize);
+                }
+            }
+
+            var m = g.MeasureString("0", font);
+
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    g.DrawString(tabelkaSudoku[i, j].ZawartoscPola, font, pioroCzarne.Brush,
+                        new RectangleF(j * oneUnitSize + (oneUnitSize - m.Width) / 2 , i * oneUnitSize + (oneUnitSize - m.Height) / 2, m.Width, m.Height));
+                }
+            }
+
+            img.Save("test.png", System.Drawing.Imaging.ImageFormat.Png);
+            Process p = new Process();
+            p.StartInfo.FileName = "test.png";
+            p.StartInfo.Verb = "Print";
+            p.Exited += P_Exited;
+            p.Start();
+            //for (int i = 0; i < 9; ++i)
+            //    for (int j = 0; j < 9; j++)
+            //    {
+            //        g.DrawRectangle(pioroSzare, new Rectangle(j * 100, i * 100, 100, 100));
+            //        var realSize = g.MeasureString("1", tabelkaSudoku[i, j].textBox.Font);
+            //        g.DrawString(tabelkaSudoku[i, j].ZawartoscPola,
+            //            tabelkaSudoku[i, j].textBox.Font,
+            //            new SolidBrush(Color.Black),
+            //            new PointF(j * 100 + (100 - realSize.Width) / 2, i * 100 + (100 - realSize.Height) / 2));
+            //    }
+        }
+
+        private void P_Exited(object sender, EventArgs e)
+        {
+            File.Delete("test.png");
+        }
+
+        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            
+        }
+
+        private void printDocument_QueryPageSettings(object sender, System.Drawing.Printing.QueryPageSettingsEventArgs e)
+        {
+            //e.PageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 1200, 1200);
+            //e.PageSettings.PrinterResolution = new System.Drawing.Printing.PrinterResolution()
+            //{
+            //    X = 1000,
+            //    Y = 1000
+            //};
+            //e.PageSettings = new System.Drawing.Printing.PageSettings()
+            //{
+            //    PrinterResolution = new System.Drawing.Printing.PrinterResolution()
+            //    {
+            //        Kind = System.Drawing.Printing.PrinterResolutionKind.Custom,
+            //        X = 1000,
+            //        Y = 1000
+            //    }
+            //};
         }
     }
 }

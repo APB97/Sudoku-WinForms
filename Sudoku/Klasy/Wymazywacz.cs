@@ -9,7 +9,7 @@ namespace Sudoku
 {
     class Wymazywacz
     {
-        static LinkedList<int> listaPol;
+        static LinkedList<Pozycja> listaPol;
         static HashSet<Pozycja>[,] sasiedzi = new HashSet<Pozycja>[9,9];
         static int x, y;
 
@@ -37,12 +37,12 @@ namespace Sudoku
         static readonly List<int> mozliweWartosci = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
         static readonly List<int> mozliweWartosciOdwrotnie = new List<int>(new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 });
 
-        public static bool CzyJednoRozwiazanie(ref int[,] polaSudoku)
+        public static bool CzyJednoRozwiazanie(int[,] polaSudoku)
         {
             int[,] rozwiazanieOd1 = new int[9, 9];
             int[,] rozwiazanieOd9 = new int[9, 9];
 
-            int[,] plansza = new int[9, 9];
+            //int[,] plansza = new int[9, 9];
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)
                     rozwiazanieOd1[i, j] = rozwiazanieOd9[i, j] = polaSudoku[i, j];
@@ -62,7 +62,7 @@ namespace Sudoku
         public static void Rozwiaz(ref int[,] planszaSudoku, bool wTyl = false)
         {
             x = y = 0;
-            listaPol = new LinkedList<int>();
+            listaPol = new LinkedList<Pozycja>();
             int ilePustych = 0;
             foreach (var item in planszaSudoku)
             {
@@ -73,7 +73,8 @@ namespace Sudoku
                 return;
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)
-                    listaPol.AddLast(planszaSudoku[i, j]);
+                    if (planszaSudoku[i, j] == 0)
+                        listaPol.AddLast(new Pozycja(j, i));//planszaSudoku[i, j]);
 
             Uzupelnij(ref planszaSudoku, wTyl);
         }
@@ -90,12 +91,12 @@ namespace Sudoku
             }
             if (y > 8)
                 return true;
-            if (pole.Value == 0)
-                {
+            //if (polaSudoku[y,x] == 0)
+            //{
                 HashSet<int> wartosciSasiadow = new HashSet<int>();
                 List<int> opcje;
 
-                foreach (var sasiad in sasiedzi[y, x])
+                foreach (var sasiad in sasiedzi[pole.Value.Y, pole.Value.X])
                 {
                     var wartosc = polaSudoku[sasiad.Y, sasiad.X];
                     if (wartosc != 0)
@@ -105,20 +106,21 @@ namespace Sudoku
                 var mozliwe = wTyl ? mozliweWartosciOdwrotnie : mozliweWartosci;
 
                 opcje = new List<int>(mozliwe.Except(wartosciSasiadow));
-                opcje.Shuffle();
+                //opcje.Shuffle();
 
                 foreach (var opcja in opcje)
                 {
-                    pole.Value = opcja;
+                    //pole.Value = opcja;
+                    polaSudoku[pole.Value.Y, pole.Value.X] = opcja;
                     if (listaPol.Count == 0)
                         return true;
-                    if (Uzupelnij(ref polaSudoku))
+                    if (Uzupelnij(ref polaSudoku, wTyl))
                     {
                         return true;
                     }
                 }
-
-                pole.Value = 0;
+                polaSudoku[pole.Value.Y, pole.Value.X] = 0;
+                //pole.Value = 0;
                 listaPol.AddFirst(pole);
                 --x;
                 if (x < 0)
@@ -127,16 +129,16 @@ namespace Sudoku
                     x += 9;
                 }
                 return false;
-            }
-            else
-            {
-                if (listaPol.Count == 0)
-                    return true;
-                if (Uzupelnij(ref polaSudoku))
-                    return true;
-                listaPol.AddFirst(pole);
-                return false;
-            }
+            //}
+            //else
+            //{
+            //    if (listaPol.Count == 0)
+            //        return true;
+            //    if (Uzupelnij(ref polaSudoku))
+            //        return true;
+            //    listaPol.AddFirst(pole);
+            //    return false;
+            //}
         }
         public static void WymazujPola(PoleSudoku[,] polaSudoku)
         {
@@ -170,13 +172,13 @@ namespace Sudoku
             switch (trudnosc)
             {
                 case Trudnosc.Latwe:
-                    ile = 40;
+                    ile = 35;
                     break;
                 case Trudnosc.Srednie:
-                    ile = 45;
+                    ile = 40;
                     break;
                 case Trudnosc.Trudne:
-                    ile = 50;
+                    ile = 45;
                     break;
                 default:
                     ile = 40;
@@ -191,7 +193,7 @@ namespace Sudoku
                 tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X] = 0;
                 --ile;
                 ++usunieto;
-                czyJedno = CzyJednoRozwiazanie(ref tabelka);
+                czyJedno = CzyJednoRozwiazanie(tabelka);
             } while (ile > 0 && czyJedno);
 
             if (!czyJedno)

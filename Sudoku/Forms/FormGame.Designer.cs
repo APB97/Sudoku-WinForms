@@ -31,6 +31,7 @@
             this.buttonZapiszStan = new System.Windows.Forms.Button();
             this.saveSudokuDialog = new System.Windows.Forms.SaveFileDialog();
             this.panelSudoku = new System.Windows.Forms.Panel();
+            this.buttonDrukuj = new System.Windows.Forms.Button();
             this.labelPozostaloPomocy = new System.Windows.Forms.Label();
             this.labelDostepne = new System.Windows.Forms.Label();
             this.buttonPomoz = new System.Windows.Forms.Button();
@@ -50,7 +51,6 @@
             this.openSudokuDialog = new System.Windows.Forms.OpenFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.printDocument = new System.Drawing.Printing.PrintDocument();
-            this.buttonDrukuj = new System.Windows.Forms.Button();
             this.panelSudoku.SuspendLayout();
             this.tableLayoutPanelPlansza.SuspendLayout();
             this.SuspendLayout();
@@ -89,6 +89,18 @@
             this.panelSudoku.Name = "panelSudoku";
             this.panelSudoku.Size = new System.Drawing.Size(484, 461);
             this.panelSudoku.TabIndex = 2;
+            // 
+            // buttonDrukuj
+            // 
+            this.buttonDrukuj.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonDrukuj.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonDrukuj.Location = new System.Drawing.Point(433, 55);
+            this.buttonDrukuj.Name = "buttonDrukuj";
+            this.buttonDrukuj.Size = new System.Drawing.Size(48, 37);
+            this.buttonDrukuj.TabIndex = 8;
+            this.buttonDrukuj.Text = "Drukuj";
+            this.buttonDrukuj.UseVisualStyleBackColor = false;
+            this.buttonDrukuj.Click += new System.EventHandler(this.buttonDrukuj_Click);
             // 
             // labelPozostaloPomocy
             // 
@@ -349,23 +361,15 @@
             // 
             // printDialog
             // 
+            this.printDialog.Document = this.printDocument;
             this.printDialog.UseEXDialog = true;
             // 
             // printDocument
             // 
             this.printDocument.DocumentName = "Sudoku Puzzle";
             this.printDocument.OriginAtMargins = true;
-            // 
-            // buttonDrukuj
-            // 
-            this.buttonDrukuj.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonDrukuj.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
-            this.buttonDrukuj.Location = new System.Drawing.Point(433, 55);
-            this.buttonDrukuj.Name = "buttonDrukuj";
-            this.buttonDrukuj.Size = new System.Drawing.Size(48, 37);
-            this.buttonDrukuj.TabIndex = 8;
-            this.buttonDrukuj.Text = "Drukuj";
-            this.buttonDrukuj.UseVisualStyleBackColor = false;
+            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
+            this.printDocument.QueryPageSettings += new System.Drawing.Printing.QueryPageSettingsEventHandler(this.printDocument_QueryPageSettings);
             // 
             // FormGame
             // 

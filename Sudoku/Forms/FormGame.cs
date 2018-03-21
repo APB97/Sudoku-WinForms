@@ -256,6 +256,8 @@ namespace Sudoku
                 }
             }
 
+            g.DrawLine(pioroCzarne, 0, nineUnitSize - frameSize / 2, nineUnitSize, nineUnitSize - frameSize / 2);
+
             var m = g.MeasureString("0", font);
 
             for (int i = 0; i < 9; i++)

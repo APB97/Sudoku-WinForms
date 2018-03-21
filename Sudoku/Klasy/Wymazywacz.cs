@@ -172,16 +172,16 @@ namespace Sudoku
             switch (trudnosc)
             {
                 case Trudnosc.Latwe:
-                    ile = 35;
+                    ile = 30;
                     break;
                 case Trudnosc.Srednie:
-                    ile = 40;
+                    ile = 35;
                     break;
                 case Trudnosc.Trudne:
-                    ile = 45;
+                    ile = 40;
                     break;
                 default:
-                    ile = 40;
+                    ile = 35;
                     break;
             }
             do

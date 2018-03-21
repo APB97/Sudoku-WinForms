@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonZapiszStan = new System.Windows.Forms.Button();
             this.saveSudokuDialog = new System.Windows.Forms.SaveFileDialog();
             this.panelSudoku = new System.Windows.Forms.Panel();
@@ -49,8 +50,7 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.openSudokuDialog = new System.Windows.Forms.OpenFileDialog();
-            this.printDialog = new System.Windows.Forms.PrintDialog();
-            this.printDocument = new System.Drawing.Printing.PrintDocument();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelSudoku.SuspendLayout();
             this.tableLayoutPanelPlansza.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +64,7 @@
             this.buttonZapiszStan.Size = new System.Drawing.Size(70, 23);
             this.buttonZapiszStan.TabIndex = 1;
             this.buttonZapiszStan.Text = "Zapisz";
+            this.toolTip1.SetToolTip(this.buttonZapiszStan, "Zapis stanu gry.");
             this.buttonZapiszStan.UseVisualStyleBackColor = false;
             this.buttonZapiszStan.Click += new System.EventHandler(this.buttonZapiszStan_Click);
             // 
@@ -128,6 +129,7 @@
             this.buttonPomoz.Size = new System.Drawing.Size(65, 23);
             this.buttonPomoz.TabIndex = 5;
             this.buttonPomoz.Text = "Pomóż mi!";
+            this.toolTip1.SetToolTip(this.buttonPomoz, "Uzupełnia jedno pole w Sudoku.");
             this.buttonPomoz.UseVisualStyleBackColor = false;
             this.buttonPomoz.Click += new System.EventHandler(this.buttonPomoz_Click);
             // 
@@ -140,6 +142,7 @@
             this.buttonRozwiaz.Size = new System.Drawing.Size(124, 23);
             this.buttonRozwiaz.TabIndex = 4;
             this.buttonRozwiaz.Text = "Rozwiąz za mnie!";
+            this.toolTip1.SetToolTip(this.buttonRozwiaz, "Pokazuje rozwiązane Sudoku.");
             this.buttonRozwiaz.UseVisualStyleBackColor = false;
             this.buttonRozwiaz.Click += new System.EventHandler(this.buttonRozwiaz_Click);
             // 
@@ -152,6 +155,7 @@
             this.button_DoMenu.Size = new System.Drawing.Size(48, 37);
             this.button_DoMenu.TabIndex = 3;
             this.button_DoMenu.Text = "Do menu";
+            this.toolTip1.SetToolTip(this.button_DoMenu, "Powrót do menu.");
             this.button_DoMenu.UseVisualStyleBackColor = false;
             this.button_DoMenu.Click += new System.EventHandler(this.button_DoMenu_Click);
             // 
@@ -164,6 +168,7 @@
             this.buttonWczytajStan.Size = new System.Drawing.Size(70, 23);
             this.buttonWczytajStan.TabIndex = 2;
             this.buttonWczytajStan.Text = "Wczytaj";
+            this.toolTip1.SetToolTip(this.buttonWczytajStan, "Wczytanie stanu gry.");
             this.buttonWczytajStan.UseVisualStyleBackColor = false;
             this.buttonWczytajStan.Click += new System.EventHandler(this.buttonWczytajStan_Click);
             // 
@@ -359,17 +364,11 @@
             // 
             this.openSudokuDialog.Filter = "Pliki tekstowe|*.txt";
             // 
-            // printDialog
+            // toolTip1
             // 
-            this.printDialog.Document = this.printDocument;
-            this.printDialog.UseEXDialog = true;
-            // 
-            // printDocument
-            // 
-            this.printDocument.DocumentName = "Sudoku Puzzle";
-            this.printDocument.OriginAtMargins = true;
-            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
-            this.printDocument.QueryPageSettings += new System.Drawing.Printing.QueryPageSettingsEventHandler(this.printDocument_QueryPageSettings);
+            this.toolTip1.AutoPopDelay = 10000;
+            this.toolTip1.InitialDelay = 500;
+            this.toolTip1.ReshowDelay = 100;
             // 
             // FormGame
             // 
@@ -413,8 +412,7 @@
         private System.Windows.Forms.Button buttonPomoz;
         private System.Windows.Forms.Label labelPozostaloPomocy;
         private System.Windows.Forms.Label labelDostepne;
-        private System.Windows.Forms.PrintDialog printDialog;
-        private System.Drawing.Printing.PrintDocument printDocument;
         private System.Windows.Forms.Button buttonDrukuj;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

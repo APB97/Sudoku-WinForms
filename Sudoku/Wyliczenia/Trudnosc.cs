@@ -11,8 +11,8 @@ namespace Sudoku
     /// </summary>
     public enum Trudnosc
     {
-        Latwe,
-        Srednie,
-        Trudne
+        Łatwa,
+        Średnia,
+        Trudna
     }
 }

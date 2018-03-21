@@ -181,42 +181,45 @@ namespace Sudoku
 
         private void buttonPomoz_Click(object sender, EventArgs e)
         {
-            int[,] wartosciPol = new int[9, 9];
-            for (int i = 0; i < 9; ++i)
-                for (int j = 0; j < 9; ++j)
-                    wartosciPol[i, j] = tabelkaSudoku[i, j].WartoscPola;
+            //int[,] wartosciPol = new int[9, 9];
+            //for (int i = 0; i < 9; ++i)
+            //    for (int j = 0; j < 9; ++j)
+            //        wartosciPol[i, j] = tabelkaSudoku[i, j].WartoscPola;
 
-            if (Wymazywacz.CzyJednoRozwiazanie(wartosciPol))
-                MessageBox.Show("Tylko jedno rozwiązanie.");
-            else
-                MessageBox.Show("Wiele rozwiązań.");
-            /*int pozostalePomoce = int.Parse(labelPozostaloPomocy.Text);
-            if (pozostalePomoce > 1)
+            //if (Wymazywacz.CzyJednoRozwiazanie(wartosciPol))
+            //    MessageBox.Show("Tylko jedno rozwiązanie.");
+            //else
+            //    MessageBox.Show("Wiele rozwiązań.");
+            int pozostalePomoce = int.Parse(labelPozostaloPomocy.Text);
+            if (pozostalePomoce >= 1)
             {
                 Wspomoz();
-                pozostalePomoce;
-            }*/
+                pozostalePomoce--;
+                labelPozostaloPomocy.Text = pozostalePomoce.ToString();
+            }
         }
 
         private bool Wspomoz()
         {
             foreach (var pole in tabelkaSudoku)
-            {
-                HashSet<int> wartosciSasiadow = new HashSet<int>();
-                List<int> opcje;
-
-                foreach (var sasiad in pole.sasiedzi)
+                if (!pole.textBox.Font.Bold)
                 {
-                    var wartosc = tabelkaSudoku[sasiad.Y, sasiad.X].WartoscPola;
-                    if (wartosc != 0)
-                        wartosciSasiadow.Add(wartosc);
-                }
+                    HashSet<int> wartosciSasiadow = new HashSet<int>();
+                    List<int> opcje;
 
-                opcje = new List<int>(mozliweWartosci.Except(wartosciSasiadow));
-                if (opcje.Count == 1)
-                {
+                    foreach (var sasiad in pole.sasiedzi)
+                    {
+                        var wartosc = tabelkaSudoku[sasiad.Y, sasiad.X].WartoscPola;
+                        if (wartosc != 0)
+                            wartosciSasiadow.Add(wartosc);
+                    }
 
-                    return true;
+                    opcje = new List<int>(mozliweWartosci.Except(wartosciSasiadow));
+                    if (opcje.Count == 1)
+                    {
+                        pole.WartoscPola = opcje[0];
+                        pole.textBox.Text = opcje[0].ToString();
+                        return true;
                 }
             }
             return false;
@@ -269,51 +272,17 @@ namespace Sudoku
                 }
             }
 
-            img.Save("test.png", System.Drawing.Imaging.ImageFormat.Png);
+            img.Save("tmp.png", System.Drawing.Imaging.ImageFormat.Png);
             Process p = new Process();
-            p.StartInfo.FileName = "test.png";
+            p.StartInfo.FileName = "tmp.png";
             p.StartInfo.Verb = "Print";
             p.Exited += P_Exited;
             p.Start();
-            //for (int i = 0; i < 9; ++i)
-            //    for (int j = 0; j < 9; j++)
-            //    {
-            //        g.DrawRectangle(pioroSzare, new Rectangle(j * 100, i * 100, 100, 100));
-            //        var realSize = g.MeasureString("1", tabelkaSudoku[i, j].textBox.Font);
-            //        g.DrawString(tabelkaSudoku[i, j].ZawartoscPola,
-            //            tabelkaSudoku[i, j].textBox.Font,
-            //            new SolidBrush(Color.Black),
-            //            new PointF(j * 100 + (100 - realSize.Width) / 2, i * 100 + (100 - realSize.Height) / 2));
-            //    }
         }
 
         private void P_Exited(object sender, EventArgs e)
         {
-            File.Delete("test.png");
-        }
-
-        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            
-        }
-
-        private void printDocument_QueryPageSettings(object sender, System.Drawing.Printing.QueryPageSettingsEventArgs e)
-        {
-            //e.PageSettings.PaperSize = new System.Drawing.Printing.PaperSize("Custom", 1200, 1200);
-            //e.PageSettings.PrinterResolution = new System.Drawing.Printing.PrinterResolution()
-            //{
-            //    X = 1000,
-            //    Y = 1000
-            //};
-            //e.PageSettings = new System.Drawing.Printing.PageSettings()
-            //{
-            //    PrinterResolution = new System.Drawing.Printing.PrinterResolution()
-            //    {
-            //        Kind = System.Drawing.Printing.PrinterResolutionKind.Custom,
-            //        X = 1000,
-            //        Y = 1000
-            //    }
-            //};
+            File.Delete("tmp.png");
         }
     }
 }

@@ -91,54 +91,39 @@ namespace Sudoku
             }
             if (y > 8)
                 return true;
-            //if (polaSudoku[y,x] == 0)
-            //{
-                HashSet<int> wartosciSasiadow = new HashSet<int>();
-                List<int> opcje;
+            HashSet<int> wartosciSasiadow = new HashSet<int>();
+            List<int> opcje;
 
-                foreach (var sasiad in sasiedzi[pole.Value.Y, pole.Value.X])
+            foreach (var sasiad in sasiedzi[pole.Value.Y, pole.Value.X])
+            {
+                var wartosc = polaSudoku[sasiad.Y, sasiad.X];
+                if (wartosc != 0)
+                    wartosciSasiadow.Add(wartosc);
+            }
+
+            var mozliwe = wTyl ? mozliweWartosciOdwrotnie : mozliweWartosci;
+
+            opcje = new List<int>(mozliwe.Except(wartosciSasiadow));
+
+            foreach (var opcja in opcje)
+            {
+                polaSudoku[pole.Value.Y, pole.Value.X] = opcja;
+                if (listaPol.Count == 0)
+                    return true;
+                if (Uzupelnij(ref polaSudoku, wTyl))
                 {
-                    var wartosc = polaSudoku[sasiad.Y, sasiad.X];
-                    if (wartosc != 0)
-                        wartosciSasiadow.Add(wartosc);
+                    return true;
                 }
-
-                var mozliwe = wTyl ? mozliweWartosciOdwrotnie : mozliweWartosci;
-
-                opcje = new List<int>(mozliwe.Except(wartosciSasiadow));
-                //opcje.Shuffle();
-
-                foreach (var opcja in opcje)
-                {
-                    //pole.Value = opcja;
-                    polaSudoku[pole.Value.Y, pole.Value.X] = opcja;
-                    if (listaPol.Count == 0)
-                        return true;
-                    if (Uzupelnij(ref polaSudoku, wTyl))
-                    {
-                        return true;
-                    }
-                }
-                polaSudoku[pole.Value.Y, pole.Value.X] = 0;
-                //pole.Value = 0;
-                listaPol.AddFirst(pole);
-                --x;
-                if (x < 0)
-                {
-                    --y;
-                    x += 9;
-                }
-                return false;
-            //}
-            //else
-            //{
-            //    if (listaPol.Count == 0)
-            //        return true;
-            //    if (Uzupelnij(ref polaSudoku))
-            //        return true;
-            //    listaPol.AddFirst(pole);
-            //    return false;
-            //}
+            }
+            polaSudoku[pole.Value.Y, pole.Value.X] = 0;
+            listaPol.AddFirst(pole);
+            --x;
+            if (x < 0)
+            {
+                --y;
+                x += 9;
+            }
+            return false;
         }
         public static void WymazujPola(PoleSudoku[,] polaSudoku)
         {
@@ -155,29 +140,15 @@ namespace Sudoku
                     zajete.Add(new Pozycja(j, i));
                 }
             int ile, usunieto = 0;
-            Trudnosc trudnosc = Trudnosc.Srednie;
             switch (Properties.Settings.Default.Trudnosc)
             {
                 case "Łatwa":
-                    trudnosc = Trudnosc.Latwe;
-                    break;
-                case "Średnia":
-                    trudnosc = Trudnosc.Srednie;
-                    break;
-                case "Trudna":
-                    trudnosc = Trudnosc.Trudne;
-                    break;
-            }
-
-            switch (trudnosc)
-            {
-                case Trudnosc.Latwe:
                     ile = 30;
                     break;
-                case Trudnosc.Srednie:
+                case "Średnia":
                     ile = 35;
                     break;
-                case Trudnosc.Trudne:
+                case "Trudna":
                     ile = 40;
                     break;
                 default:

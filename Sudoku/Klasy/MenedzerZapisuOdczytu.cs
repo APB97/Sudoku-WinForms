@@ -11,7 +11,7 @@ namespace Sudoku
 {
     static class MenedzerZapisuOdczytu
     {
-        #region //Zapis Planszy
+        #region //Zapis planszy
 
         public static void Zapisz(PoleSudoku[,] polaSudoku, SaveFileDialog saveFileDialog)
         {
@@ -73,6 +73,9 @@ namespace Sudoku
 
         #endregion
 
+
+        #region //Wczytywanie planszy
+
         public static void Wczytaj(PoleSudoku[,] polaSudoku, OpenFileDialog openFileDialog)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -82,72 +85,93 @@ namespace Sudoku
                     return !string.IsNullOrWhiteSpace(s);
                 }).ToArray();
 
-                if (zawartoscPliku.Length < 9)
+                if (SprobujWcztacSudoku(ref zawartoscPliku, polaSudoku))
                 {
-                    WarningBox.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscLinii, Jezyk.Komunikaty.Uwaga);
-                    return;
-                }
-                foreach (var item in polaSudoku)
-                    item.OczyscPole();
-                for (int i = 0; i < 9; ++i)
-                {
-                    var zawartoscLinii = zawartoscPliku[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                    if (zawartoscLinii.Length != 9)
-                    {
-                        WarningBox.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscWartosciPol(i),
-                            Jezyk.Komunikaty.Uwaga);
-                        return;
-                    }
-                    if (zawartoscLinii.Any((string s) => !char.IsDigit(s[0]) || s.Length > 1))
-                    {
-                        WarningBox.ShowWithOK(Jezyk.Komunikaty.NieWszystkieSaCyframi(i), Jezyk.Komunikaty.Uwaga);
-                        return;
-                    }
-                    for (int j = 0; j < 9; ++j)
-                    {
-                        if (zawartoscLinii[j] != "0")
-                            polaSudoku[i, j].InicjujPoleJakoNiezmienne(int.Parse(zawartoscLinii[j]));
-                        else
-                            polaSudoku[i, j].OczyscPole();
-                    }
-                }
-                if (zawartoscPliku.Length == 18)
-                {
-                    for (int i = 9; i < 18; ++i)
-                    {
-                        int indeksWTablicy = i - 9;
-                        var zawartoscLinii = zawartoscPliku[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                        if (zawartoscLinii.Length != 9)
-                        {
-                            WarningBox.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscWartosciPol(i),
-                                Jezyk.Komunikaty.Uwaga);
-                            return;
-                        }
-                        if (zawartoscLinii.Any((string s) => !char.IsDigit(s[0]) || s.Length > 1))
-                        {
-                            WarningBox.ShowWithOK(Jezyk.Komunikaty.NieWszystkieSaCyframi(i), Jezyk.Komunikaty.Uwaga);
-                            return;
-                        }
-                        for (int j = 0; j < 9; ++j)
-                        {
-                            if (zawartoscLinii[j] != "0")
-                            {
-                                polaSudoku[indeksWTablicy, j].OczyscPole(zawartoscLinii[j]);
-                            }
-                        }
-                    }
-                }
-                if (Walidator.SprawdzCalaTablice(polaSudoku))
-                    MessageBox.Show("plansza OK");
-                else
-                {
-                    foreach (var item in polaSudoku)
-                    {
-                        item.OczyscPole();
-                    }
-                    MessageBox.Show("plansza NIE OK");
+                    SprobujWcztacZapisSudoku(ref zawartoscPliku, polaSudoku);
+                    SprawdzWczytane(polaSudoku);
+
                 }
             }
         }
+
+        private static bool SprobujWcztacSudoku(ref string[] zawartoscPliku, PoleSudoku[,] polaSudoku)
+        {
+            if (zawartoscPliku.Length < 9)
+            {
+                WarningBox.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscLinii, Jezyk.Komunikaty.Uwaga);
+                return false;
+            }
+            foreach (var item in polaSudoku)
+                item.OczyscPole();
+            for (int i = 0; i < 9; ++i)
+            {
+                var zawartoscLinii = zawartoscPliku[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                if (zawartoscLinii.Length != 9)
+                {
+                    WarningBox.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscWartosciPol(i),
+                        Jezyk.Komunikaty.Uwaga);
+                    return false;
+                }
+                if (zawartoscLinii.Any((string s) => !char.IsDigit(s[0]) || s.Length > 1))
+                {
+                    WarningBox.ShowWithOK(Jezyk.Komunikaty.NieWszystkieSaCyframi(i), Jezyk.Komunikaty.Uwaga);
+                    return false;
+                }
+                for (int j = 0; j < 9; ++j)
+                {
+                    if (zawartoscLinii[j] != "0")
+                        polaSudoku[i, j].InicjujPoleJakoNiezmienne(int.Parse(zawartoscLinii[j]));
+                    else
+                        polaSudoku[i, j].OczyscPole();
+                }
+            }
+            return true;
+        }
+
+        private static bool SprobujWcztacZapisSudoku(ref string[] zawartoscPliku, PoleSudoku[,] polaSudoku)
+        {
+            if (zawartoscPliku.Length != 18)
+                return false;
+            for (int i = 9; i < 18; ++i)
+            {
+                int indeksWTablicy = i - 9;
+                var zawartoscLinii = zawartoscPliku[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                if (zawartoscLinii.Length != 9)
+                {
+                    WarningBox.ShowWithOK(Jezyk.Komunikaty.NieodpowiedniaIloscWartosciPol(i),
+                        Jezyk.Komunikaty.Uwaga);
+                    return false;
+                }
+                if (zawartoscLinii.Any((string s) => !char.IsDigit(s[0]) || s.Length > 1))
+                {
+                    WarningBox.ShowWithOK(Jezyk.Komunikaty.NieWszystkieSaCyframi(i), Jezyk.Komunikaty.Uwaga);
+                    return false;
+                }
+                for (int j = 0; j < 9; ++j)
+                {
+                    if (zawartoscLinii[j] != "0")
+                    {
+                        polaSudoku[indeksWTablicy, j].OczyscPole(zawartoscLinii[j]);
+                    }
+                }
+            }
+            return true;
+        }
+
+        private static void SprawdzWczytane(PoleSudoku[,] polaSudoku)
+        {
+            if (Walidator.SprawdzCalaTablice(polaSudoku))
+                MessageBox.Show("plansza OK");
+            else
+            {
+                foreach (var item in polaSudoku)
+                {
+                    item.OczyscPole();
+                }
+                MessageBox.Show("plansza NIE OK");
+            }
+        }
+
+        #endregion
     }
 }

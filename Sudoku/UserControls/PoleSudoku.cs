@@ -130,7 +130,7 @@ namespace Sudoku
         private void textBox_KeyDown(object sender, KeyEventArgs e)
         {
             string key = e.KeyCode.ToString();
-            if (key.Length < 2)
+            if (key.Length != 2 || key[0] != 'D')
                 return;
             if (!char.IsDigit(key[1]) || key[1] == '0')
                 return;

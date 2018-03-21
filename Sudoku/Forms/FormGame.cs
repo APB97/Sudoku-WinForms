@@ -30,20 +30,9 @@ namespace Sudoku
             StworzPolaSudoku();
 
             if (createNewGame)
-            {
-                PrzygotujListePol();
-                SudokuSolver.Rozwiaz(tabelkaSudoku);//GenerujSudoku();
-                Wymazywacz.WymazujPola(tabelkaSudoku);
-                WypelnijPlansze();
-                if (Walidator.SprawdzCalaTablice(tabelkaSudoku))
-                    MessageBox.Show("Plansza OK");
-                else
-                    MessageBox.Show("Plansza nie OK");
-            }
+                StworzNowaGre();
             else
-            {
                 MenedzerZapisuOdczytu.Wczytaj(tabelkaSudoku, openSudokuDialog);
-            }
         }
 
         /// <summary>
@@ -67,6 +56,18 @@ namespace Sudoku
                     pole.textBox.ForeColor = Color.DimGray;
                 }
             }
+        }
+
+        private void StworzNowaGre()
+        {
+            PrzygotujListePol();
+            SudokuSolver.Rozwiaz(tabelkaSudoku);//"rozwiązuje" pustą planszę
+            Wymazywacz.WymazujPola(tabelkaSudoku);
+            WypelnijPlansze();
+            if (Walidator.SprawdzCalaTablice(tabelkaSudoku))
+                MessageBox.Show("Plansza OK");
+            else
+                MessageBox.Show("Plansza nie OK");
         }
 
         /// <summary>
@@ -174,10 +175,10 @@ namespace Sudoku
                     if (opcje.Count == 1)
                     {
                         pole.WartoscPola = opcje[0];
-                        pole.textBox.Text = opcje[0].ToString();
+                        pole.ZawartoscPola = opcje[0].ToString();
                         return true;
+                    }
                 }
-            }
             return false;
         }
 

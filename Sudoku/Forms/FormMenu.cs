@@ -21,9 +21,9 @@ namespace Sudoku
         {
             InitializeComponent();
             collection = new PrivateFontCollection();
-            collection.AddFontFile(@"Czcionki\FREESCPT.TTF");
-            FontFamily fontFamily = new FontFamily("Freestyle Script", collection);
-            labelGameTitle.Font = new Font(fontFamily, 48, FontStyle.Bold);
+            collection.AddFontFile(@"Czcionki\VLADIMIR.TTF");
+            FontFamily fontFamily = new FontFamily("Vladimir Script", collection);
+            labelGameTitle.Font = new Font(fontFamily, 48, FontStyle.Regular);
             glowneOknoMenu = this;
         }
 

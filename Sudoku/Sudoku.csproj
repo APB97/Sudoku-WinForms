@@ -72,7 +72,6 @@
     <Compile Include="Klasy\SudokuSolver.cs" />
     <Compile Include="Klasy\Wydruk.cs" />
     <Compile Include="Klasy\Wymazywacz.cs" />
-    <Compile Include="Wyliczenia\Trudnosc.cs" />
     <Compile Include="Klasy\Walidator.cs" />
     <Compile Include="Klasy\WarningBox.cs" />
     <Compile Include="UserControls\PoleSudoku.cs">
@@ -104,7 +103,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Czcionki\FREESCPT.TTF">
+    <None Include="Czcionki\FREESCPT.TTF" />
+    <None Include="Czcionki\VLADIMIR.TTF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">

@@ -12,6 +12,9 @@ namespace Sudoku
         static LinkedList<Pozycja> listaPol;
         static HashSet<Pozycja>[,] sasiedzi = new HashSet<Pozycja>[9,9];
 
+        static readonly List<int> mozliweWartosci = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+        static readonly List<int> mozliweWartosciOdwrotnie = new List<int>(new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 });
+
         static Wymazywacz()
         {
             for (int iy = 0; iy < 9; ++iy)
@@ -32,9 +35,6 @@ namespace Sudoku
                             sasiedzi[iy, ix].Add(new Pozycja(i, j));
                 }
         }
-
-        static readonly List<int> mozliweWartosci = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
-        static readonly List<int> mozliweWartosciOdwrotnie = new List<int>(new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 });
 
         public static bool CzyJednoRozwiazanie(int[,] polaSudoku)
         {
@@ -111,18 +111,59 @@ namespace Sudoku
         public static void WymazujPola(PoleSudoku[,] polaSudoku)
         {
             bool czyJedno;
-            int[,] tabelka = new int[9, 9];
-            int niezapominajka = 0;
+            int pamietanaWartosc = 0;
             Pozycja pozycjaDoPamietania;
             Random rand = new Random();
-            List<Pozycja> zajete = new List<Pozycja>();
+            List<Pozycja> zajete = StworzListePozycjiZajetych();
+            int[,] tabelka = PrzepiszZawartoscPol(polaSudoku);
+            int ile = UstalIloscNaBazieTrudnosci();
+            do
+            {
+                int pos = rand.Next(zajete.Count);
+                pozycjaDoPamietania = zajete[pos];
+                zajete.RemoveAt(pos);
+                pamietanaWartosc = tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X];
+                tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X] = 0;
+                --ile;
+                czyJedno = CzyJednoRozwiazanie(tabelka);
+            } while (ile > 0 && czyJedno);
+
+            if (!czyJedno)
+            {
+                tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X] = pamietanaWartosc;
+                ++ile;
+            }
+
+            for (int i = 0; i < 9; ++i)
+                for (int j = 0; j < 9; ++j)
+                    if (tabelka[i, j] == 0)
+                        polaSudoku[i, j].OczyscPole();
+        }
+
+        private static List<Pozycja> StworzListePozycjiZajetych()
+        {
+            var lista = new List<Pozycja>();
+            for (int i = 0; i < 9; i++)
+                for (int j = 0; j < 9; j++)
+                    lista.Add(new Pozycja(j, i));
+            return lista;
+        }
+
+        private static int[,] PrzepiszZawartoscPol(PoleSudoku[,] polaSudoku)
+        {
+            int[,] tabelka = new int[9, 9];
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)
                 {
                     tabelka[i, j] = polaSudoku[i, j].WartoscPola;
-                    zajete.Add(new Pozycja(j, i));
                 }
-            int ile, usunieto = 0;
+
+            return tabelka;
+        }
+
+        private static int UstalIloscNaBazieTrudnosci()
+        {
+            int ile;
             switch (Properties.Settings.Default.Trudnosc)
             {
                 case "Łatwa":
@@ -138,30 +179,8 @@ namespace Sudoku
                     ile = 35;
                     break;
             }
-            do
-            {
-                int pos = rand.Next(zajete.Count);
-                pozycjaDoPamietania = zajete[pos];
-                zajete.RemoveAt(pos);
-                niezapominajka = tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X];
-                tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X] = 0;
-                --ile;
-                ++usunieto;
-                czyJedno = CzyJednoRozwiazanie(tabelka);
-            } while (ile > 0 && czyJedno);
 
-            if (!czyJedno)
-            {
-                tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X] = niezapominajka;
-                ++ile;
-                --usunieto;
-            }
-            System.Windows.Forms.MessageBox.Show("Usunieto " + usunieto + " pól.");
-
-            for (int i = 0; i < 9; ++i)
-                for (int j = 0; j < 9; ++j)
-                    if (tabelka[i,j] == 0)
-                        polaSudoku[i, j].OczyscPole();
+            return ile;
         }
     }
 }

@@ -44,38 +44,10 @@ namespace Sudoku
 
         public static bool SprawdzCalaTablice(PoleSudoku[,] polaSudoku)
         {
-            List<int> kwadrat, wiersz, kolumna;
             for (int i = 0; i < 9; ++i)
-                for (int j = 0; j < 9; ++j)
-                {
-                    int h, v;
-                    kwadrat = new List<int>();
-                    kolumna = new List<int>();
-                    wiersz = new List<int>();
-                    h = (j % 3) * 3;
-                    v = (i / 3) * 3;
-                    for (int k = v; k < v + 3; ++k)
-                        for (int l = h; l < h + 3; ++l)
-                        {
-                            int wartosc = polaSudoku[k, l].WartoscPola;
-                            if (wartosc != 0)
-                                kwadrat.Add(wartosc);
-                        }
-
-                    for (int k = 0; k < 9; ++k)
-                    {
-                        int wartoscWKolumnnie = polaSudoku[k, j].WartoscPola;
-                        int wartoscWWierszu = polaSudoku[i, k].WartoscPola;
-                        if (wartoscWKolumnnie != 0)
-                            kolumna.Add(wartoscWKolumnnie);
-                        if (wartoscWWierszu != 0)
-                            wiersz.Add(wartoscWWierszu);
-                    }
-
-                    if (kwadrat.Distinct().Count() != kwadrat.Count || kolumna.Distinct().Count() != kolumna.Count
-                        || wiersz.Distinct().Count() != wiersz.Count)
+                for (int j = 0; j < 9; j++)
+                    if (!SprawdzPole(polaSudoku, new Pozycja(j, i)))
                         return false;
-                }
             return true;
         }
     }

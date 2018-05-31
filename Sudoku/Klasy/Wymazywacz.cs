@@ -38,12 +38,8 @@ namespace Sudoku
 
         public static bool CzyJednoRozwiazanie(int[,] polaSudoku)
         {
-            int[,] rozwiazanieOd1 = new int[9, 9];
-            int[,] rozwiazanieOd9 = new int[9, 9];
-
-            for (int i = 0; i < 9; ++i)
-                for (int j = 0; j < 9; ++j)
-                    rozwiazanieOd1[i, j] = rozwiazanieOd9[i, j] = polaSudoku[i, j];
+            int[,] rozwiazanieOd1 = SkopiujZawartoscSudoku(polaSudoku);
+            int[,] rozwiazanieOd9 = SkopiujZawartoscSudoku(polaSudoku);
 
             Rozwiaz(ref rozwiazanieOd1);
             Rozwiaz(ref rozwiazanieOd9, true);
@@ -57,17 +53,18 @@ namespace Sudoku
             return true;
         }
 
-        public static void Rozwiaz(ref int[,] planszaSudoku, bool wTyl = false)
+        private static int[,] SkopiujZawartoscSudoku(int[,] polaSudoku)
+        {
+            int[,] kopiaSudoku = new int[9, 9];
+            for (int i = 0; i < 9; ++i)
+                for (int j = 0; j < 9; ++j)
+                    kopiaSudoku[i, j] = polaSudoku[i, j];
+            return kopiaSudoku;
+        }
+
+        private static void Rozwiaz(ref int[,] planszaSudoku, bool wTyl = false)
         {
             listaPol = new LinkedList<Pozycja>();
-            int ilePustych = 0;
-            foreach (var item in planszaSudoku)
-            {
-                if (item == 0)
-                    ++ilePustych;
-            }
-            if (ilePustych == 0)
-                return;
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)
                     if (planszaSudoku[i, j] == 0)
@@ -80,19 +77,10 @@ namespace Sudoku
         {
             var pole = listaPol.First;
             listaPol.RemoveFirst();
-            HashSet<int> wartosciSasiadow = new HashSet<int>();
-            List<int> opcje;
-
-            foreach (var sasiad in sasiedzi[pole.Value.Y, pole.Value.X])
-            {
-                var wartosc = polaSudoku[sasiad.Y, sasiad.X];
-                if (wartosc != 0)
-                    wartosciSasiadow.Add(wartosc);
-            }
+            HashSet<int> wartosciSasiadow = OdczytajWartosciSasiadow(polaSudoku, pole);
 
             var mozliwe = wTyl ? mozliweWartosciOdwrotnie : mozliweWartosci;
-
-            opcje = new List<int>(mozliwe.Except(wartosciSasiadow));
+            List<int> opcje = new List<int>(mozliwe.Except(wartosciSasiadow));
 
             foreach (var opcja in opcje)
             {
@@ -100,14 +88,26 @@ namespace Sudoku
                 if (listaPol.Count == 0)
                     return true;
                 if (Uzupelnij(ref polaSudoku, wTyl))
-                {
                     return true;
-                }
             }
             polaSudoku[pole.Value.Y, pole.Value.X] = 0;
             listaPol.AddFirst(pole);
             return false;
         }
+
+        private static HashSet<int> OdczytajWartosciSasiadow(int[,] polaSudoku, LinkedListNode<Pozycja> pole)
+        {
+            HashSet<int> wartosciSasiadow = new HashSet<int>();
+            foreach (var sasiad in sasiedzi[pole.Value.Y, pole.Value.X])
+            {
+                var wartosc = polaSudoku[sasiad.Y, sasiad.X];
+                if (wartosc != 0)
+                    wartosciSasiadow.Add(wartosc);
+            }
+
+            return wartosciSasiadow;
+        }
+
         public static void WymazujPola(PoleSudoku[,] polaSudoku)
         {
             bool czyJedno;
@@ -119,11 +119,8 @@ namespace Sudoku
             int ile = UstalIloscNaBazieTrudnosci();
             do
             {
-                int pos = rand.Next(zajete.Count);
-                pozycjaDoPamietania = zajete[pos];
-                zajete.RemoveAt(pos);
-                pamietanaWartosc = tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X];
-                tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X] = 0;
+                pozycjaDoPamietania = WybierzUsuwanaPozycje(rand, zajete);
+                pamietanaWartosc = PobierzWartoscNaUsuwanejPozycji(pozycjaDoPamietania, tabelka);
                 --ile;
                 czyJedno = CzyJednoRozwiazanie(tabelka);
             } while (ile > 0 && czyJedno);
@@ -154,9 +151,7 @@ namespace Sudoku
             int[,] tabelka = new int[9, 9];
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)
-                {
                     tabelka[i, j] = polaSudoku[i, j].WartoscPola;
-                }
 
             return tabelka;
         }
@@ -179,8 +174,23 @@ namespace Sudoku
                     ile = 35;
                     break;
             }
-
             return ile;
+        }
+
+        private static Pozycja WybierzUsuwanaPozycje(Random rand, List<Pozycja> zajete)
+        {
+            Pozycja pozycjaDoPamietania;
+            int pos = rand.Next(zajete.Count);
+            pozycjaDoPamietania = zajete[pos];
+            zajete.RemoveAt(pos);
+            return pozycjaDoPamietania;
+        }
+
+        private static int PobierzWartoscNaUsuwanejPozycji(Pozycja pozycjaDoPamietania, int[,] tabelka)
+        {
+            int pamietanaWartosc = tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X];
+            tabelka[pozycjaDoPamietania.Y, pozycjaDoPamietania.X] = 0;
+            return pamietanaWartosc;
         }
     }
 }

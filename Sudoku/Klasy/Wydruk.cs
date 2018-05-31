@@ -105,13 +105,11 @@ namespace Sudoku
         {
             var m = g.MeasureString("0", font);
             for (int i = 0; i < 9; i++)
-            {
                 for (int j = 0; j < 9; j++)
-                {
-                    g.DrawString(tabelkaSudoku[i, j].ZawartoscPola, font, pioroCzarne.Brush,
-                        new RectangleF(j * oneUnitSize + (oneUnitSize - m.Width) / 2, i * oneUnitSize + (oneUnitSize - m.Height) / 2, m.Width, m.Height));
-                }
-            }
+                    if (tabelkaSudoku[i, j].textBox.Font.Bold)
+                        g.DrawString(tabelkaSudoku[i, j].ZawartoscPola, font, pioroCzarne.Brush,
+                            new RectangleF(j * oneUnitSize + (oneUnitSize - m.Width) / 2,
+                            i * oneUnitSize + (oneUnitSize - m.Height) / 2, m.Width, m.Height));
         }
     }
 }

@@ -149,11 +149,11 @@ namespace Sudoku
         {
             int pozostalePomoce = int.Parse(labelPozostaloPomocy.Text);
             if (pozostalePomoce >= 1)
-            {
-                Wspomoz();
-                pozostalePomoce--;
-                labelPozostaloPomocy.Text = pozostalePomoce.ToString();
-            }
+                if (Wspomoz())
+                {
+                    pozostalePomoce--;
+                    labelPozostaloPomocy.Text = pozostalePomoce.ToString();
+                }
         }
 
         private bool Wspomoz()

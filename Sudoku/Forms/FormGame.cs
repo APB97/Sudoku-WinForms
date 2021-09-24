@@ -2,14 +2,8 @@
 using SudokuLib.OptionOrder;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sudoku
@@ -18,12 +12,15 @@ namespace Sudoku
     {
         public static FormGame oknoGry;
 
-        internal PoleSudoku[,] tabelkaSudoku = new PoleSudoku[9, 9];//pozwala odnieść się do pola na okreslonej pozycji
-        LinkedList<PoleSudoku> listaPol = new LinkedList<PoleSudoku>();//wykorzystywana podczas generowania wypełnionego Sudoku
-        readonly List<int> mozliweWartosci = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });//lista wartości używanych w Sudoku
+        internal SudokuCell[,] SudokuTable = new SudokuCell[9, 9];
+        readonly List<int> possibleValues = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+        readonly int[] HorizontalDisplacement = new int[9] { 0, 1, 2, 0, 1, 2, 0, 1, 2 };
+        readonly int[] VerticalDisplacement = new int[9] { 0, 0, 0, 1, 1, 1, 2, 2, 2 };
 
-        int[] PrzesuniecieH = new int[9] { 0, 1, 2, 0, 1, 2, 0, 1, 2 };
-        int[] PrzesuniecieV = new int[9] { 0, 0, 0, 1, 1, 1, 2, 2, 2 };
+        int[,] board = new int[9, 9];
+        bool[,] isPredifinedCell = new bool[9, 9];
+
+        public int[,] Board => board;
 
         public FormGame(bool createNewGame = true)
         {
@@ -32,84 +29,105 @@ namespace Sudoku
             StworzPolaSudoku();
 
             if (createNewGame)
-                StworzNowaGre();
+                CreateNewGame();
             else
-                MenedzerZapisuOdczytu.Wczytaj(tabelkaSudoku, openSudokuDialog);
+                MenedzerZapisuOdczytu.Wczytaj(SudokuTable, openSudokuDialog);
         }
 
-        /// <summary>
-        /// Tworzy kontrolki o odpowiednich parametrach na planszy Sudoku i zapisuje w tablicy ich referencje.
-        /// </summary>
         private void StworzPolaSudoku()
         {
-            TableLayoutPanel obecnyKwadrat;
+            TableLayoutPanel currentSquare;
             for (int i = 0; i < 9; ++i)
             {
-                obecnyKwadrat = tableLayoutPanelPlansza.Controls.Find("tableLayoutPanel" + i, false)[0]
+                currentSquare = tableLayoutPanelPlansza.Controls.Find("tableLayoutPanel" + i, false)[0]
                     as TableLayoutPanel;
-                obecnyKwadrat.TabIndex = i;
+                currentSquare.TabIndex = i;
                 for (int j = 0; j < 9; ++j)
                 {
-                    var pole = new PoleSudoku(PrzesuniecieH[j] + PrzesuniecieH[i] * 3, PrzesuniecieV[j] + PrzesuniecieV[i] * 3);
-                    obecnyKwadrat.Controls.Add(pole);
-                    tabelkaSudoku[PrzesuniecieV[j] + PrzesuniecieV[i] * 3,
-                        PrzesuniecieH[j] + PrzesuniecieH[i] * 3] = pole;
+                    var pole = new SudokuCell(HorizontalDisplacement[j] + HorizontalDisplacement[i] * 3, VerticalDisplacement[j] + VerticalDisplacement[i] * 3);
+                    currentSquare.Controls.Add(pole);
+                    SudokuTable[VerticalDisplacement[j] + VerticalDisplacement[i] * 3,
+                        HorizontalDisplacement[j] + HorizontalDisplacement[i] * 3] = pole;
                     pole.textBox.PreviewKeyDown += textBoxSudoku_PreviewKeyDown;
                     pole.textBox.ForeColor = Color.DimGray;
                 }
             }
         }
 
-        private void StworzNowaGre()
+        private void CreateNewGame()
         {
-            int[,] board = new int[9,9];
+            int[,] emptyBoard = new int[9,9];
             Solver solver = new Solver() { Orderer = new OptionRandomizedOrderer<int>() };
-            int[,] solvedBoard = solver.Solve(board);
+            int[,] solvedBoard = solver.Solve(emptyBoard);
             int[,] blankedBoard = SudokuBlanker.MakeBlanks(solvedBoard, 35);
+            board = blankedBoard;
 
             for (int i = 0; i < 9; i++)
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    if (blankedBoard[i, j] != 0)
+                    bool emptied = blankedBoard[i, j] != 0;
+                    isPredifinedCell[i, j] = !emptied;
+                    if (emptied)
                     {
-                        tabelkaSudoku[i, j].InicjujPoleJakoNiezmienne(blankedBoard[i, j]);
+                        SudokuTable[i, j].InitAsPredefined(blankedBoard[i, j]);
                     }
                 }
             }
-            MessageBox.Show(Validator.IsValidBoard(blankedBoard) ? "Plansza OK" : "Plansza NIE OK");
+            MessageBox.Show(Validator.IsValidBoard(blankedBoard) ? "Board OK" : "Board NIE OK");
         }
 
         private void buttonZapiszStan_Click(object sender, EventArgs e)
         {
-            MenedzerZapisuOdczytu.Zapisz(tabelkaSudoku, saveSudokuDialog);
+            if (saveSudokuDialog.ShowDialog() == DialogResult.OK)
+            {
+                SudokuSaveLoad.Save(saveSudokuDialog.FileName, board, isPredifinedCell);
+            }
         }
 
         private void buttonWczytajStan_Click(object sender, EventArgs e)
         {
-            MenedzerZapisuOdczytu.Wczytaj(tabelkaSudoku, openSudokuDialog);
+            if (openSudokuDialog.ShowDialog() == DialogResult.OK)
+            {
+                var (values, predefined) = SudokuSaveLoad.Load(openSudokuDialog.FileName);
+                for (int i = 0; i < 9; i++)
+                {
+                    for (int j = 0; j < 9; j++)
+                    {
+                        if (predefined[i, j])
+                        {
+                            SudokuTable[i, j].InitAsPredefined(values[i, j]);
+                        }
+                        else
+                        {
+                            SudokuTable[i, j].CellValue = values[i, j];
+                        }
+
+                    }
+                }
+            }
         }
 
         private void textBoxSudoku_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            var pole = (sender as Control).Parent as PoleSudoku;
+            var pole = (sender as Control).Parent as SudokuCell;
             switch (e.KeyCode)
             {
                 case Keys.Left:
                     if (pole.X > 0)
-                        pole = tabelkaSudoku[pole.Y, pole.X - 1];
+                        pole = SudokuTable[pole.Y, pole.X - 1];
                     break;
                 case Keys.Right:
                     if (pole.X < 8)
-                        pole = tabelkaSudoku[pole.Y, pole.X + 1];
+                        pole = SudokuTable[pole.Y, pole.X + 1];
                     break;
                 case Keys.Up:
                     if (pole.Y > 0)
-                        pole = tabelkaSudoku[pole.Y - 1, pole.X];
+                        pole = SudokuTable[pole.Y - 1, pole.X];
                     break;
                 case Keys.Down:
                     if (pole.Y < 8)
-                        pole = tabelkaSudoku[pole.Y + 1, pole.X];
+                        pole = SudokuTable[pole.Y + 1, pole.X];
                     break;
                 default:
                     return;
@@ -120,12 +138,23 @@ namespace Sudoku
         private void button_DoMenu_Click(object sender, EventArgs e)
         {
             FormMenu.glowneOknoMenu.Show();
-            this.Close();
+            Close();
         }
 
         private void buttonRozwiaz_Click(object sender, EventArgs e)
         {
-            SudokuSolver.Rozwiaz(tabelkaSudoku);
+            Solver solver = new Solver { Orderer = new NoOptionOrderer<int>() };
+            var solution = solver.Solve(board);
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (!SudokuTable[i,j].textBox.ReadOnly)
+                    {
+                        SudokuTable[i, j].CellValue = solution[i, j];
+                    }
+                }
+            }
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
@@ -138,35 +167,35 @@ namespace Sudoku
 
         private void buttonPomoz_Click(object sender, EventArgs e)
         {
-            int pozostalePomoce = int.Parse(labelPozostaloPomocy.Text);
-            if (pozostalePomoce >= 1)
+            int suppportsRemaining = int.Parse(labelPozostaloPomocy.Text);
+            if (suppportsRemaining >= 1)
                 if (Wspomoz())
                 {
-                    pozostalePomoce--;
-                    labelPozostaloPomocy.Text = pozostalePomoce.ToString();
+                    suppportsRemaining--;
+                    labelPozostaloPomocy.Text = suppportsRemaining.ToString();
                 }
         }
 
         private bool Wspomoz()
         {
-            foreach (var pole in tabelkaSudoku)
+            foreach (var pole in SudokuTable)
                 if (!pole.textBox.Font.Bold)
                 {
-                    HashSet<int> wartosciSasiadow = new HashSet<int>();
-                    List<int> opcje;
+                    HashSet<int> neigborValues = new HashSet<int>();
+                    List<int> options;
 
-                    foreach (var sasiad in pole.sasiedzi)
+                    foreach (var sasiad in pole.neighbors)
                     {
-                        var wartosc = tabelkaSudoku[sasiad.Y, sasiad.X].WartoscPola;
+                        var wartosc = SudokuTable[sasiad.Y, sasiad.X].CellValue;
                         if (wartosc != 0)
-                            wartosciSasiadow.Add(wartosc);
+                            neigborValues.Add(wartosc);
                     }
 
-                    opcje = new List<int>(mozliweWartosci.Except(wartosciSasiadow));
-                    if (opcje.Count == 1)
+                    options = new List<int>(possibleValues.Except(neigborValues));
+                    if (options.Count == 1)
                     {
-                        pole.WartoscPola = opcje[0];
-                        pole.ZawartoscPola = opcje[0].ToString();
+                        pole.CellValue = options[0];
+                        pole.CellContent = options[0].ToString();
                         return true;
                     }
                 }
@@ -175,7 +204,9 @@ namespace Sudoku
 
         private void buttonDrukuj_Click(object sender, EventArgs e)
         {
-            new WydrukSudoku(100, 2, 2).Drukuj(tabelkaSudoku);
+            var painter = new Painter() { CellSize = 100, FontSize = 24, LineWidth = 2 };
+            var img = painter.CreateImage(board, isPredifinedCell);
+            img.Save("last.png", System.Drawing.Imaging.ImageFormat.Png);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using SudokuLib.Core;
 
 namespace Sudoku
 {
@@ -10,7 +11,7 @@ namespace Sudoku
     {
         #region //Zapis planszy
 
-        public static void Zapisz(PoleSudoku[,] polaSudoku, SaveFileDialog saveFileDialog)
+        public static void Zapisz(SudokuCell[,] polaSudoku, SaveFileDialog saveFileDialog)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -28,9 +29,9 @@ namespace Sudoku
             }
         }
 
-        private static void ZapiszPoleWBuilderze(PoleSudoku pole, StringBuilder puzzle, StringBuilder gameState)
+        private static void ZapiszPoleWBuilderze(SudokuCell pole, StringBuilder puzzle, StringBuilder gameState)
         {
-            var zawartosc = pole.ZawartoscPola;
+            var zawartosc = pole.CellContent;
             zawartosc = string.IsNullOrEmpty(zawartosc) ? "0" : zawartosc;
             if (pole.textBox.Font.Bold)
             {
@@ -73,7 +74,7 @@ namespace Sudoku
 
         #region //Wczytywanie planszy
 
-        public static void Wczytaj(PoleSudoku[,] polaSudoku, OpenFileDialog openFileDialog)
+        public static void Wczytaj(SudokuCell[,] polaSudoku, OpenFileDialog openFileDialog)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -91,7 +92,7 @@ namespace Sudoku
             }
         }
 
-        private static bool SprobujWcztacSudoku(ref string[] zawartoscPliku, PoleSudoku[,] polaSudoku)
+        private static bool SprobujWcztacSudoku(ref string[] zawartoscPliku, SudokuCell[,] polaSudoku)
         {
             if (zawartoscPliku.Length < 9)
             {
@@ -99,7 +100,7 @@ namespace Sudoku
                 return false;
             }
             foreach (var item in polaSudoku)
-                item.OczyscPole();
+                item.CleanCell();
             for (int i = 0; i < 9; ++i)
             {
                 var zawartoscLinii = zawartoscPliku[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -117,15 +118,15 @@ namespace Sudoku
                 for (int j = 0; j < 9; ++j)
                 {
                     if (zawartoscLinii[j] != "0")
-                        polaSudoku[i, j].InicjujPoleJakoNiezmienne(int.Parse(zawartoscLinii[j]));
+                        polaSudoku[i, j].InitAsPredefined(int.Parse(zawartoscLinii[j]));
                     else
-                        polaSudoku[i, j].OczyscPole();
+                        polaSudoku[i, j].CleanCell();
                 }
             }
             return true;
         }
 
-        private static bool SprobujWcztacZapisSudoku(ref string[] zawartoscPliku, PoleSudoku[,] polaSudoku)
+        private static bool SprobujWcztacZapisSudoku(ref string[] zawartoscPliku, SudokuCell[,] polaSudoku)
         {
             if (zawartoscPliku.Length != 18)
                 return false;
@@ -148,14 +149,14 @@ namespace Sudoku
                 {
                     if (zawartoscLinii[j] != "0")
                     {
-                        polaSudoku[indeksWTablicy, j].OczyscPole(zawartoscLinii[j]);
+                        polaSudoku[indeksWTablicy, j].CleanCell(zawartoscLinii[j]);
                     }
                 }
             }
             return true;
         }
 
-        private static void SprawdzWczytane(PoleSudoku[,] polaSudoku)
+        private static void SprawdzWczytane(SudokuCell[,] polaSudoku)
         {
             if (Walidator.SprawdzCalaTablice(polaSudoku))
                 MessageBox.Show("plansza OK");
@@ -163,10 +164,15 @@ namespace Sudoku
             {
                 foreach (var item in polaSudoku)
                 {
-                    item.OczyscPole();
+                    item.CleanCell();
                 }
                 MessageBox.Show("plansza NIE OK");
             }
+        }
+
+        private static bool Validate(int[,] sudokuBoard)
+        {
+            return Validator.IsValidBoard(sudokuBoard);
         }
 
         #endregion

@@ -8,9 +8,9 @@ namespace SudokuLib.GameState
     {
         private readonly SudokuGame _sudokuGame;
         private readonly string _lastGameSaveName;
-        private readonly VisualCell _visualCell;
+        private readonly IVisualCell _visualCell;
 
-        public SudokuGameSaver(SudokuGame sudokuGame, string lastGameSaveName, VisualCell visualCell)
+        public SudokuGameSaver(SudokuGame sudokuGame, string lastGameSaveName, IVisualCell visualCell)
         {
             _sudokuGame = sudokuGame;
             _lastGameSaveName = lastGameSaveName;
@@ -27,7 +27,6 @@ namespace SudokuLib.GameState
                 {
                     object cell = _visualCell.IndexArrayOfCellsObject(cells, i, j);
                     emptyOnes = FillCellAndRecoverItsState(state.Board[i, j], emptyOnes, state.CellStates[i, j]);
-                    _sudokuGame.AddListener(cell, i, j);
                 }
             }
 

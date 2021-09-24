@@ -3,7 +3,7 @@ using static SudokuLib.Helpers.SudokuConstants;
 
 namespace SudokuLib.Core
 {
-    public class SudokuGame
+    public class Game
     {
         public static bool[,] GenerateCellStateArray(int[,] board)
         {

@@ -25,7 +25,7 @@ namespace Sudoku
             pioroCzarne = new Pen(Color.Black, frameSize);
         }
 
-        public void Drukuj(PoleSudoku[,] tabelkaSudoku)
+        public void Drukuj(SudokuCell[,] tabelkaSudoku)
         {
             Bitmap img = new Bitmap(nineUnitSize, nineUnitSize);
             var g = Graphics.FromImage(img);
@@ -97,13 +97,13 @@ namespace Sudoku
             g.DrawLine(pioroCzarne, 0, nineUnitSize - frameSize / 2, nineUnitSize, nineUnitSize - frameSize / 2);
         }
 
-        private void RysujZawartoscPolSudoku(PoleSudoku[,] tabelkaSudoku, Graphics g, Font font)
+        private void RysujZawartoscPolSudoku(SudokuCell[,] tabelkaSudoku, Graphics g, Font font)
         {
             var m = g.MeasureString("0", font);
             for (int i = 0; i < 9; i++)
                 for (int j = 0; j < 9; j++)
                     if (tabelkaSudoku[i, j].textBox.Font.Bold)
-                        g.DrawString(tabelkaSudoku[i, j].ZawartoscPola, font, pioroCzarne.Brush,
+                        g.DrawString(tabelkaSudoku[i, j].CellContent, font, pioroCzarne.Brush,
                             new RectangleF(j * oneUnitSize + (oneUnitSize - m.Width) / 2,
                             i * oneUnitSize + (oneUnitSize - m.Height) / 2, m.Width, m.Height));
         }

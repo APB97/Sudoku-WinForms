@@ -70,7 +70,7 @@
     <Compile Include="GameState\SudokuGameSaver.cs" />
     <Compile Include="GameState\SudokuSaveState.cs" />
     <Compile Include="GameState\SudokuValidator.cs" />
-    <Compile Include="GameState\VisualCell.cs" />
+    <Compile Include="GameState\IVisualCell.cs" />
     <Compile Include="Helpers\SudokuConstants.cs" />
     <Compile Include="Helpers\SudokuHelper.cs" />
     <Compile Include="Helpers\SwapHelper.cs" />
@@ -79,29 +79,28 @@
     <Compile Include="Klasy\Jezyk.cs" />
     <Compile Include="Klasy\ListShuffler.cs" />
     <Compile Include="Klasy\MenedzerZapisuOdczytu.cs" />
-    <Compile Include="Klasy\Pozycja.cs" />
+    <Compile Include="Klasy\Location.cs" />
     <Compile Include="Klasy\SudokuSolver.cs" />
     <Compile Include="Klasy\Wydruk.cs" />
-    <Compile Include="Klasy\Wymazywacz.cs" />
     <Compile Include="Klasy\Walidator.cs" />
     <Compile Include="Klasy\WarningBox.cs" />
     <Compile Include="Core\Painter.cs" />
     <Compile Include="Core\PrettyPrinter.cs" />
     <Compile Include="Core\Solver.cs" />
     <Compile Include="Core\SudokuBlanker.cs" />
-    <Compile Include="Core\SudokuGame.cs" />
+    <Compile Include="Core\Game.cs" />
     <Compile Include="Core\SudokuSaveLoad.cs" />
     <Compile Include="OptionOrder\IOptionsOrderer.cs" />
     <Compile Include="OptionOrder\NoOptionOrderer.cs" />
     <Compile Include="OptionOrder\OptionRandomizedOrderer.cs" />
     <Compile Include="OptionOrder\OptionReverseOrderer.cs" />
-    <Compile Include="UserControls\PoleSudoku.cs">
+    <Compile Include="UserControls\SudokuCell.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\PoleSudoku.Designer.cs">
-      <DependentUpon>PoleSudoku.cs</DependentUpon>
+    <Compile Include="UserControls\SudokuCell.Designer.cs">
+      <DependentUpon>SudokuCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\Program.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Validator.cs" />
     <EmbeddedResource Include="Forms\FormMenu.resx">
@@ -113,8 +112,8 @@
     <EmbeddedResource Include="Forms\FormOpcje.resx">
       <DependentUpon>FormOpcje.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\PoleSudoku.resx">
-      <DependentUpon>PoleSudoku.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\SudokuCell.resx">
+      <DependentUpon>SudokuCell.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

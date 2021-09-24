@@ -1,6 +1,6 @@
 ﻿namespace Sudoku
 {
-    partial class PoleSudoku
+    partial class SudokuCell
     {
         /// <summary> 
         /// Wymagana zmienna projektanta.

@@ -5,19 +5,19 @@ namespace Sudoku
 {
     static class SudokuSolver
     {
-        static LinkedList<PoleSudoku> listaPolPustych;
+        static LinkedList<SudokuCell> listaPolPustych;
 
         static readonly List<int> mozliweWartosci = new List<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
 
-        public static void Rozwiaz(PoleSudoku[,] polaSudoku)
+        public static void Rozwiaz(SudokuCell[,] polaSudoku)
         {
-            listaPolPustych = new LinkedList<PoleSudoku>();
+            listaPolPustych = new LinkedList<SudokuCell>();
             for (int i = 0; i < 9; ++i)
                 for (int j = 0; j < 9; ++j)
                     if (!polaSudoku[i, j].textBox.Font.Bold)
                     {
                         listaPolPustych.AddLast(polaSudoku[i, j]);
-                        polaSudoku[i, j].OczyscPole();
+                        polaSudoku[i, j].CleanCell();
                     }
             if (listaPolPustych.Count == 0)
                 return;
@@ -27,10 +27,10 @@ namespace Sudoku
             else
                 foreach (var pole in polaSudoku)
                     if (!pole.textBox.Font.Bold)
-                        pole.ZawartoscPola = pole.WartoscPola.ToString();
+                        pole.CellContent = pole.CellValue.ToString();
         }
 
-        private static bool Uzupelnij(PoleSudoku[,] polaSudoku)
+        private static bool Uzupelnij(SudokuCell[,] polaSudoku)
         {
             var pole = listaPolPustych.First;
             listaPolPustych.RemoveFirst();
@@ -38,9 +38,9 @@ namespace Sudoku
             HashSet<int> wartosciSasiadow = new HashSet<int>();
             List<int> opcje;
 
-            foreach (var sasiad in pole.Value.sasiedzi)
+            foreach (var sasiad in pole.Value.neighbors)
             {
-                var wartosc = polaSudoku[sasiad.Y, sasiad.X].WartoscPola;
+                var wartosc = polaSudoku[sasiad.Y, sasiad.X].CellValue;
                 if (wartosc != 0)
                     wartosciSasiadow.Add(wartosc);
             }
@@ -50,7 +50,7 @@ namespace Sudoku
 
             foreach (var opcja in opcje)
             {
-                pole.Value.WartoscPola = opcja;
+                pole.Value.CellValue = opcja;
                 if (listaPolPustych.Count == 0)
                     return true;
                 if (Uzupelnij(polaSudoku))
@@ -59,7 +59,7 @@ namespace Sudoku
                 }
             }
 
-            pole.Value.WartoscPola = 0;
+            pole.Value.CellValue = 0;
             listaPolPustych.AddFirst(pole);
             return false;
         }

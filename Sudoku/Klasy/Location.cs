@@ -1,14 +1,11 @@
 ﻿namespace Sudoku
 {
-    /// <summary>
-    /// Pozycja pola na planszy
-    /// </summary>
-    public struct Pozycja
+    public struct Location
     {
         public int X { get; set; }
         public int Y { get; set; }
 
-        public Pozycja(int x, int y)
+        public Location(int x, int y)
         {
             X = x;
             Y = y;

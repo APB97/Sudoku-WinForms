@@ -108,7 +108,7 @@ namespace Sudoku
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textBox_TextChanged(object sender, EventArgs e)
+        private void TextBox_TextChanged(object sender, EventArgs e)
         {
             if (textBox.Text.Length > 0 && (!char.IsDigit(textBox.Text[0]) || textBox.Text[0] == '0'))
             {
@@ -122,7 +122,7 @@ namespace Sudoku
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             string key = e.KeyCode.ToString();
             if (key.Length != 2 || key[0] != 'D')

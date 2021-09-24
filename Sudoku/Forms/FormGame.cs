@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SudokuLib.Core;
+using SudokuLib.OptionOrder;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -60,33 +62,22 @@ namespace Sudoku
 
         private void StworzNowaGre()
         {
-            PrzygotujListePol();
-            SudokuSolver.Rozwiaz(tabelkaSudoku);//"rozwiązuje" pustą planszę
-            Wymazywacz.WymazujPola(tabelkaSudoku);
-            WypelnijPlansze();
-            if (Walidator.SprawdzCalaTablice(tabelkaSudoku))
-                MessageBox.Show("Plansza OK");
-            else
-                MessageBox.Show("Plansza nie OK");
-        }
+            int[,] board = new int[9,9];
+            Solver solver = new Solver() { Orderer = new OptionRandomizedOrderer<int>() };
+            int[,] solvedBoard = solver.Solve(board);
+            int[,] blankedBoard = SudokuBlanker.MakeBlanks(solvedBoard, 35);
 
-        /// <summary>
-        /// Przygotowuje listę wszystkich pól dla rekurencyjnego algorytmu generowania wypełnionej planszy.
-        /// </summary>
-        private void PrzygotujListePol()
-        {
-            for (int i = 0; i < 9; ++i)
-                for (int j = 0; j < 9; ++j)
-                    listaPol.AddLast(tabelkaSudoku[i, j]);
-        }
-        
-        private void WypelnijPlansze()
-        {
-            foreach (var pole in tabelkaSudoku)
+            for (int i = 0; i < 9; i++)
             {
-                if (pole.WartoscPola != 0)
-                    pole.InicjujPoleJakoNiezmienne();
+                for (int j = 0; j < 9; j++)
+                {
+                    if (blankedBoard[i, j] != 0)
+                    {
+                        tabelkaSudoku[i, j].InicjujPoleJakoNiezmienne(blankedBoard[i, j]);
+                    }
+                }
             }
+            MessageBox.Show(Validator.IsValidBoard(blankedBoard) ? "Plansza OK" : "Plansza NIE OK");
         }
 
         private void buttonZapiszStan_Click(object sender, EventArgs e)

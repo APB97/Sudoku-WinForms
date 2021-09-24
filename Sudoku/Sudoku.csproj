@@ -8,9 +8,10 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Sudoku</RootNamespace>
     <AssemblyName>Sudoku</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -63,6 +64,16 @@
     <Compile Include="Forms\FormOpcje.Designer.cs">
       <DependentUpon>FormOpcje.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameState\SudokuCellState.cs" />
+    <Compile Include="GameState\SudokuGame.cs" />
+    <Compile Include="GameState\SudokuGameRules.cs" />
+    <Compile Include="GameState\SudokuGameSaver.cs" />
+    <Compile Include="GameState\SudokuSaveState.cs" />
+    <Compile Include="GameState\SudokuValidator.cs" />
+    <Compile Include="GameState\VisualCell.cs" />
+    <Compile Include="Helpers\SudokuConstants.cs" />
+    <Compile Include="Helpers\SudokuHelper.cs" />
+    <Compile Include="Helpers\SwapHelper.cs" />
     <Compile Include="Implementacje Interfejsow\KomunikatyPL.cs" />
     <Compile Include="Interfejsy\IKomunikaty.cs" />
     <Compile Include="Klasy\Jezyk.cs" />
@@ -74,14 +85,25 @@
     <Compile Include="Klasy\Wymazywacz.cs" />
     <Compile Include="Klasy\Walidator.cs" />
     <Compile Include="Klasy\WarningBox.cs" />
+    <Compile Include="Core\Painter.cs" />
+    <Compile Include="Core\PrettyPrinter.cs" />
+    <Compile Include="Core\Solver.cs" />
+    <Compile Include="Core\SudokuBlanker.cs" />
+    <Compile Include="Core\SudokuGame.cs" />
+    <Compile Include="Core\SudokuSaveLoad.cs" />
+    <Compile Include="OptionOrder\IOptionsOrderer.cs" />
+    <Compile Include="OptionOrder\NoOptionOrderer.cs" />
+    <Compile Include="OptionOrder\OptionRandomizedOrderer.cs" />
+    <Compile Include="OptionOrder\OptionReverseOrderer.cs" />
     <Compile Include="UserControls\PoleSudoku.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\PoleSudoku.Designer.cs">
       <DependentUpon>PoleSudoku.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Core\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Core\Validator.cs" />
     <EmbeddedResource Include="Forms\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +124,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Czcionki\FREESCPT.TTF" />
     <None Include="Czcionki\VLADIMIR.TTF">

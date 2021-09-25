@@ -11,6 +11,7 @@ namespace Sudoku
             numericCellSize.Value = Settings.Default.PrintedCellSize;
             numericFontSize.Value = (decimal)Settings.Default.PrintedFontSize;
             numericLineSize.Value = Settings.Default.PrintedLineWidth;
+            numericBlanks.Value = Settings.Default.DesiredBlanks;
         }
 
         private void FormOptions_FormClosed(object sender, FormClosedEventArgs e)
@@ -35,6 +36,11 @@ namespace Sudoku
         private void NumericLineSize_ValueChanged(object sender, System.EventArgs e)
         {
             Settings.Default.PrintedLineWidth = (int)numericLineSize.Value;
+        }
+
+        private void NumericBlanks_ValueChanged(object sender, System.EventArgs e)
+        {
+            Settings.Default.DesiredBlanks = (int)numericBlanks.Value;
         }
     }
 }

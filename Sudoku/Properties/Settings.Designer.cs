@@ -82,5 +82,17 @@ namespace Sudoku.Properties {
                 this["PrintedLineWidth"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("35")]
+        public int DesiredBlanks {
+            get {
+                return ((int)(this["DesiredBlanks"]));
+            }
+            set {
+                this["DesiredBlanks"] = value;
+            }
+        }
     }
 }

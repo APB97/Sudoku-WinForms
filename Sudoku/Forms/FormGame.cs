@@ -78,7 +78,7 @@ namespace Sudoku
             int[,] emptyBoard = new int[9, 9];
             Solver solver = new Solver() { Orderer = new OptionRandomizedOrderer<int>() };
             int[,] solvedBoard = solver.Solve(emptyBoard);
-            board = SudokuBlanker.MakeBlanks(solvedBoard, 35);
+            board = SudokuBlanker.MakeBlanks(solvedBoard, Settings.Default.DesiredBlanks);
             UpdateAllVisualCells();
             MessageBox.Show(Validator.IsValidBoard(board) ? "Board OK" : "Board NOT OK");
         }

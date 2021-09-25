@@ -58,11 +58,11 @@
     <Compile Include="Forms\FormGame.Designer.cs">
       <DependentUpon>FormGame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormOpcje.cs">
+    <Compile Include="Forms\FormOptions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormOpcje.Designer.cs">
-      <DependentUpon>FormOpcje.cs</DependentUpon>
+    <Compile Include="Forms\FormOptions.Designer.cs">
+      <DependentUpon>FormOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="GameState\SudokuCellState.cs" />
     <Compile Include="GameState\SudokuGame.cs" />
@@ -77,12 +77,8 @@
     <Compile Include="Implementacje Interfejsow\KomunikatyPL.cs" />
     <Compile Include="Interfejsy\IKomunikaty.cs" />
     <Compile Include="Klasy\Jezyk.cs" />
-    <Compile Include="Klasy\ListShuffler.cs" />
-    <Compile Include="Klasy\MenedzerZapisuOdczytu.cs" />
     <Compile Include="Klasy\Location.cs" />
-    <Compile Include="Klasy\SudokuSolver.cs" />
     <Compile Include="Klasy\Wydruk.cs" />
-    <Compile Include="Klasy\Walidator.cs" />
     <Compile Include="Klasy\WarningBox.cs" />
     <Compile Include="Core\Painter.cs" />
     <Compile Include="Core\PrettyPrinter.cs" />
@@ -109,8 +105,8 @@
     <EmbeddedResource Include="Forms\FormGame.resx">
       <DependentUpon>FormGame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormOpcje.resx">
-      <DependentUpon>FormOpcje.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormOptions.resx">
+      <DependentUpon>FormOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\SudokuCell.resx">
       <DependentUpon>SudokuCell.cs</DependentUpon>
@@ -138,6 +134,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Sudoku.Properties.Settings.datasource" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

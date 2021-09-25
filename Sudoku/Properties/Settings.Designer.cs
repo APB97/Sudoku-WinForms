@@ -25,61 +25,25 @@ namespace Sudoku.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Window")]
-        public global::System.Drawing.Color KolorOkna {
-            get {
-                return ((global::System.Drawing.Color)(this["KolorOkna"]));
-            }
-            set {
-                this["KolorOkna"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Control")]
-        public global::System.Drawing.Color KolorPrzyciskow {
-            get {
-                return ((global::System.Drawing.Color)(this["KolorPrzyciskow"]));
-            }
-            set {
-                this["KolorPrzyciskow"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
-        public global::System.Drawing.Color KolorTekstuPrzyciskow {
-            get {
-                return ((global::System.Drawing.Color)(this["KolorTekstuPrzyciskow"]));
-            }
-            set {
-                this["KolorTekstuPrzyciskow"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Średnia")]
-        public string Trudnosc {
+        public string Difficulty {
             get {
-                return ((string)(this["Trudnosc"]));
+                return ((string)(this["Difficulty"]));
             }
             set {
-                this["Trudnosc"] = value;
+                this["Difficulty"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ObrazZamiastWydruku {
+        public bool PictureInsteadOfPrint {
             get {
-                return ((bool)(this["ObrazZamiastWydruku"]));
+                return ((bool)(this["PictureInsteadOfPrint"]));
             }
             set {
-                this["ObrazZamiastWydruku"] = value;
+                this["PictureInsteadOfPrint"] = value;
             }
         }
     }

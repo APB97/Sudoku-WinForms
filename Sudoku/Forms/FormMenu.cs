@@ -40,7 +40,7 @@ namespace Sudoku
 
         private void ButtonOptions_Click(object sender, EventArgs e)
         {
-            FormOpcje options = new FormOpcje();
+            FormOptions options = new FormOptions();
             options.Show();
             Hide();
         }

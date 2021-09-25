@@ -2,19 +2,19 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Sudoku.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="KolorOkna" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="WindowColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Window</Value>
     </Setting>
-    <Setting Name="KolorPrzyciskow" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="ButtonColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Control</Value>
     </Setting>
-    <Setting Name="KolorTekstuPrzyciskow" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Black</Value>
+    <Setting Name="ButtonTextColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">ControlText</Value>
     </Setting>
-    <Setting Name="Trudnosc" Type="System.String" Scope="User">
+    <Setting Name="Difficulty" Type="System.String" Scope="User">
       <Value Profile="(Default)">Średnia</Value>
     </Setting>
-    <Setting Name="ObrazZamiastWydruku" Type="System.Boolean" Scope="User">
+    <Setting Name="PictureInsteadOfPrint" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

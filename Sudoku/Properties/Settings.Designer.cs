@@ -26,60 +26,60 @@ namespace Sudoku.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Window")]
-        public global::System.Drawing.Color KolorOkna {
+        public global::System.Drawing.Color WindowColor {
             get {
-                return ((global::System.Drawing.Color)(this["KolorOkna"]));
+                return ((global::System.Drawing.Color)(this["WindowColor"]));
             }
             set {
-                this["KolorOkna"] = value;
+                this["WindowColor"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Control")]
-        public global::System.Drawing.Color KolorPrzyciskow {
+        public global::System.Drawing.Color ButtonColor {
             get {
-                return ((global::System.Drawing.Color)(this["KolorPrzyciskow"]));
+                return ((global::System.Drawing.Color)(this["ButtonColor"]));
             }
             set {
-                this["KolorPrzyciskow"] = value;
+                this["ButtonColor"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
-        public global::System.Drawing.Color KolorTekstuPrzyciskow {
+        [global::System.Configuration.DefaultSettingValueAttribute("ControlText")]
+        public global::System.Drawing.Color ButtonTextColor {
             get {
-                return ((global::System.Drawing.Color)(this["KolorTekstuPrzyciskow"]));
+                return ((global::System.Drawing.Color)(this["ButtonTextColor"]));
             }
             set {
-                this["KolorTekstuPrzyciskow"] = value;
+                this["ButtonTextColor"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Średnia")]
-        public string Trudnosc {
+        public string Difficulty {
             get {
-                return ((string)(this["Trudnosc"]));
+                return ((string)(this["Difficulty"]));
             }
             set {
-                this["Trudnosc"] = value;
+                this["Difficulty"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ObrazZamiastWydruku {
+        public bool PictureInsteadOfPrint {
             get {
-                return ((bool)(this["ObrazZamiastWydruku"]));
+                return ((bool)(this["PictureInsteadOfPrint"]));
             }
             set {
-                this["ObrazZamiastWydruku"] = value;
+                this["PictureInsteadOfPrint"] = value;
             }
         }
     }

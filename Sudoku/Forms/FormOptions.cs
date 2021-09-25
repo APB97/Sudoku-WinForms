@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sudoku
 {
-    public partial class FormOpcje : Form
+    public partial class FormOptions : Form
     {
-        public FormOpcje()
+        public FormOptions()
         {
             InitializeComponent();
         }
@@ -29,7 +22,7 @@ namespace Sudoku
         {
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                Properties.Settings.Default.KolorOkna = colorDialog.Color;
+                Properties.Settings.Default.WindowColor = colorDialog.Color;
                 Properties.Settings.Default.Save();
             }
         }
@@ -38,7 +31,7 @@ namespace Sudoku
         {
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                Properties.Settings.Default.KolorPrzyciskow = colorDialog.Color;
+                Properties.Settings.Default.ButtonColor = colorDialog.Color;
                 Properties.Settings.Default.Save();
             }
         }
@@ -47,14 +40,14 @@ namespace Sudoku
         {
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                Properties.Settings.Default.KolorTekstuPrzyciskow = colorDialog.Color;
+                Properties.Settings.Default.ButtonTextColor = colorDialog.Color;
                 Properties.Settings.Default.Save();
             }
         }
 
         private void FormOpcje_Load(object sender, EventArgs e)
         {
-            switch (Properties.Settings.Default.Trudnosc)
+            switch (Properties.Settings.Default.Difficulty)
             {
                 case "Łatwa":
                     radioButtonLatwa.Checked = true;
@@ -70,25 +63,25 @@ namespace Sudoku
 
         private void radioButtonLatwa_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonLatwa.Checked) Properties.Settings.Default.Trudnosc = "Łatwa";
+            if (radioButtonLatwa.Checked) Properties.Settings.Default.Difficulty = "Łatwa";
             Properties.Settings.Default.Save();
         }
 
         private void radioButtonSrednia_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonSrednia.Checked) Properties.Settings.Default.Trudnosc = "Średnia";
+            if (radioButtonSrednia.Checked) Properties.Settings.Default.Difficulty = "Średnia";
             Properties.Settings.Default.Save();
         }
 
         private void radioButtonTrudna_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonTrudna.Checked) Properties.Settings.Default.Trudnosc = "Trudna";
+            if (radioButtonTrudna.Checked) Properties.Settings.Default.Difficulty = "Trudna";
             Properties.Settings.Default.Save();
         }
 
         private void checkBoxObrazZamiastDruku_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.ObrazZamiastWydruku = checkBoxObrazZamiastDruku.Checked;
+            Properties.Settings.Default.PictureInsteadOfPrint = checkBoxObrazZamiastDruku.Checked;
             Properties.Settings.Default.Save();
         }
     }

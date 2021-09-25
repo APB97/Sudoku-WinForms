@@ -1,6 +1,6 @@
 ﻿namespace Sudoku
 {
-    partial class FormOpcje
+    partial class FormOptions
     {
         /// <summary>
         /// Required designer variable.
@@ -41,9 +41,9 @@
             this.radioButtonTrudna = new System.Windows.Forms.RadioButton();
             this.radioButtonSrednia = new System.Windows.Forms.RadioButton();
             this.radioButtonLatwa = new System.Windows.Forms.RadioButton();
-            this.checkBoxObrazZamiastDruku = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.checkBoxObrazZamiastDruku = new System.Windows.Forms.CheckBox();
             this.groupBoxPersonalizacja.SuspendLayout();
             this.groupBoxTrudnoscPlanszy.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -93,8 +93,7 @@
             // 
             // buttonTloOkna
             // 
-            this.buttonTloOkna.BackColor = global::Sudoku.Properties.Settings.Default.KolorOkna;
-            this.buttonTloOkna.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorOkna", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonTloOkna.BackColor = System.Drawing.SystemColors.Window;
             this.buttonTloOkna.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonTloOkna.Location = new System.Drawing.Point(6, 19);
             this.buttonTloOkna.Name = "buttonTloOkna";
@@ -105,8 +104,7 @@
             // 
             // buttonTekstPrzyciskow
             // 
-            this.buttonTekstPrzyciskow.BackColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
-            this.buttonTekstPrzyciskow.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonTekstPrzyciskow.BackColor = System.Drawing.SystemColors.ControlText;
             this.buttonTekstPrzyciskow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonTekstPrzyciskow.Location = new System.Drawing.Point(6, 79);
             this.buttonTekstPrzyciskow.Name = "buttonTekstPrzyciskow";
@@ -117,8 +115,7 @@
             // 
             // buttonTloPrzyciskow
             // 
-            this.buttonTloPrzyciskow.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonTloPrzyciskow.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonTloPrzyciskow.BackColor = System.Drawing.SystemColors.Control;
             this.buttonTloPrzyciskow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonTloPrzyciskow.Location = new System.Drawing.Point(6, 50);
             this.buttonTloPrzyciskow.Name = "buttonTloPrzyciskow";
@@ -176,21 +173,6 @@
             this.radioButtonLatwa.UseVisualStyleBackColor = true;
             this.radioButtonLatwa.CheckedChanged += new System.EventHandler(this.radioButtonLatwa_CheckedChanged);
             // 
-            // checkBoxObrazZamiastDruku
-            // 
-            this.checkBoxObrazZamiastDruku.AutoSize = true;
-            this.checkBoxObrazZamiastDruku.Checked = global::Sudoku.Properties.Settings.Default.ObrazZamiastWydruku;
-            this.checkBoxObrazZamiastDruku.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Sudoku.Properties.Settings.Default, "ObrazZamiastWydruku", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBoxObrazZamiastDruku.Location = new System.Drawing.Point(6, 19);
-            this.checkBoxObrazZamiastDruku.Name = "checkBoxObrazZamiastDruku";
-            this.checkBoxObrazZamiastDruku.Size = new System.Drawing.Size(122, 17);
-            this.checkBoxObrazZamiastDruku.TabIndex = 8;
-            this.checkBoxObrazZamiastDruku.Text = "Obraz zamiast druku";
-            this.toolTip1.SetToolTip(this.checkBoxObrazZamiastDruku, "Pozwala na zapisanie obrazu w formacie PNG zamiast drukowania Sudoku bezpośrednio" +
-        ".");
-            this.checkBoxObrazZamiastDruku.UseVisualStyleBackColor = true;
-            this.checkBoxObrazZamiastDruku.CheckedChanged += new System.EventHandler(this.checkBoxObrazZamiastDruku_CheckedChanged);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.checkBoxObrazZamiastDruku);
@@ -201,18 +183,30 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Opcje wydruku";
             // 
-            // FormOpcje
+            // checkBoxObrazZamiastDruku
+            // 
+            this.checkBoxObrazZamiastDruku.AutoSize = true;
+            this.checkBoxObrazZamiastDruku.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxObrazZamiastDruku.Name = "checkBoxObrazZamiastDruku";
+            this.checkBoxObrazZamiastDruku.Size = new System.Drawing.Size(122, 17);
+            this.checkBoxObrazZamiastDruku.TabIndex = 8;
+            this.checkBoxObrazZamiastDruku.Text = "Obraz zamiast druku";
+            this.toolTip1.SetToolTip(this.checkBoxObrazZamiastDruku, "Pozwala na zapisanie obrazu w formacie PNG zamiast drukowania Sudoku bezpośrednio" +
+        ".");
+            this.checkBoxObrazZamiastDruku.UseVisualStyleBackColor = true;
+            this.checkBoxObrazZamiastDruku.CheckedChanged += new System.EventHandler(this.checkBoxObrazZamiastDruku_CheckedChanged);
+            // 
+            // FormOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = global::Sudoku.Properties.Settings.Default.KolorOkna;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxTrudnoscPlanszy);
             this.Controls.Add(this.groupBoxPersonalizacja);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorOkna", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.MaximizeBox = false;
-            this.Name = "FormOpcje";
+            this.Name = "FormOptions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sudoku - opcje";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormOpcje_FormClosed);

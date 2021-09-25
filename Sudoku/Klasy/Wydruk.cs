@@ -35,7 +35,7 @@ namespace Sudoku
             RysujSzareLinie(g);
             RysujCzarnePogrubioneLinie(g);
             RysujZawartoscPolSudoku(tabelkaSudoku, g, font);
-            if (Properties.Settings.Default.ObrazZamiastWydruku)
+            if (Properties.Settings.Default.PictureInsteadOfPrint)
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog()
                 {

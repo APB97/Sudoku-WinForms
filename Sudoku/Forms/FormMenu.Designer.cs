@@ -89,12 +89,10 @@
             // 
             // buttonExit
             // 
-            this.buttonExit.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonExit.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.buttonExit.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonExit.BackColor = System.Drawing.SystemColors.Control;
             this.buttonExit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonExit.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonExit.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonExit.Location = new System.Drawing.Point(3, 99);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(246, 26);
@@ -105,12 +103,10 @@
             // 
             // buttonOptions
             // 
-            this.buttonOptions.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonOptions.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.buttonOptions.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonOptions.BackColor = System.Drawing.SystemColors.Control;
             this.buttonOptions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonOptions.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonOptions.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonOptions.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonOptions.Location = new System.Drawing.Point(3, 67);
             this.buttonOptions.Name = "buttonOptions";
             this.buttonOptions.Size = new System.Drawing.Size(246, 26);
@@ -121,12 +117,10 @@
             // 
             // buttonLoad
             // 
-            this.buttonLoad.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonLoad.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.buttonLoad.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonLoad.BackColor = System.Drawing.SystemColors.Control;
             this.buttonLoad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonLoad.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonLoad.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonLoad.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonLoad.Location = new System.Drawing.Point(3, 35);
             this.buttonLoad.Name = "buttonLoad";
             this.buttonLoad.Size = new System.Drawing.Size(246, 26);
@@ -137,12 +131,10 @@
             // 
             // buttonPlay
             // 
-            this.buttonPlay.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonPlay.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.buttonPlay.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonPlay.BackColor = System.Drawing.SystemColors.Control;
             this.buttonPlay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonPlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonPlay.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonPlay.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonPlay.Location = new System.Drawing.Point(3, 3);
             this.buttonPlay.Name = "buttonPlay";
             this.buttonPlay.Size = new System.Drawing.Size(246, 26);
@@ -166,10 +158,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = global::Sudoku.Properties.Settings.Default.KolorOkna;
+            this.BackColor = global::Sudoku.Properties.Settings.Default.WindowColor;
             this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.panelMainMenu);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorOkna", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "WindowColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FormMenu";

@@ -18,9 +18,9 @@ namespace Sudoku
                 Application.Exit();
         }
 
-        private void checkBoxObrazZamiastDruku_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxPictureInsteadOfPrint_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.PictureInsteadOfPrint = checkBoxObrazZamiastDruku.Checked;
+            Properties.Settings.Default.PictureInsteadOfPrint = checkBoxPictureInsteadOfPrint.Checked;
             Properties.Settings.Default.Save();
         }
     }

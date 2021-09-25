@@ -32,13 +32,13 @@
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.checkBoxObrazZamiastDruku = new System.Windows.Forms.CheckBox();
+            this.checkBoxPictureInsteadOfPrint = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBoxObrazZamiastDruku);
+            this.groupBox1.Controls.Add(this.checkBoxPictureInsteadOfPrint);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 46);
@@ -46,20 +46,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Opcje wydruku";
             // 
-            // checkBoxObrazZamiastDruku
+            // checkBoxPictureInsteadOfPrint
             // 
-            this.checkBoxObrazZamiastDruku.AutoSize = true;
-            this.checkBoxObrazZamiastDruku.Checked = global::Sudoku.Properties.Settings.Default.PictureInsteadOfPrint;
-            this.checkBoxObrazZamiastDruku.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Sudoku.Properties.Settings.Default, "PictureInsteadOfPrint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBoxObrazZamiastDruku.Location = new System.Drawing.Point(6, 19);
-            this.checkBoxObrazZamiastDruku.Name = "checkBoxObrazZamiastDruku";
-            this.checkBoxObrazZamiastDruku.Size = new System.Drawing.Size(122, 17);
-            this.checkBoxObrazZamiastDruku.TabIndex = 8;
-            this.checkBoxObrazZamiastDruku.Text = "Obraz zamiast druku";
-            this.toolTip1.SetToolTip(this.checkBoxObrazZamiastDruku, "Pozwala na zapisanie obrazu w formacie PNG zamiast drukowania Sudoku bezpośrednio" +
+            this.checkBoxPictureInsteadOfPrint.AutoSize = true;
+            this.checkBoxPictureInsteadOfPrint.Checked = global::Sudoku.Properties.Settings.Default.PictureInsteadOfPrint;
+            this.checkBoxPictureInsteadOfPrint.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Sudoku.Properties.Settings.Default, "PictureInsteadOfPrint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBoxPictureInsteadOfPrint.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxPictureInsteadOfPrint.Name = "checkBoxPictureInsteadOfPrint";
+            this.checkBoxPictureInsteadOfPrint.Size = new System.Drawing.Size(122, 17);
+            this.checkBoxPictureInsteadOfPrint.TabIndex = 8;
+            this.checkBoxPictureInsteadOfPrint.Text = "Obraz zamiast druku";
+            this.toolTip1.SetToolTip(this.checkBoxPictureInsteadOfPrint, "Pozwala na zapisanie obrazu w formacie PNG zamiast drukowania Sudoku bezpośrednio" +
         ".");
-            this.checkBoxObrazZamiastDruku.UseVisualStyleBackColor = true;
-            this.checkBoxObrazZamiastDruku.CheckedChanged += new System.EventHandler(this.checkBoxObrazZamiastDruku_CheckedChanged);
+            this.checkBoxPictureInsteadOfPrint.UseVisualStyleBackColor = true;
+            this.checkBoxPictureInsteadOfPrint.CheckedChanged += new System.EventHandler(this.CheckBoxPictureInsteadOfPrint_CheckedChanged);
             // 
             // FormOptions
             // 
@@ -81,7 +81,7 @@
 
         #endregion
         private System.Windows.Forms.ColorDialog colorDialog;
-        private System.Windows.Forms.CheckBox checkBoxObrazZamiastDruku;
+        private System.Windows.Forms.CheckBox checkBoxPictureInsteadOfPrint;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ToolTip toolTip1;
     }

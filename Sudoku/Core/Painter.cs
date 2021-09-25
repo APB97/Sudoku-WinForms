@@ -54,18 +54,17 @@ namespace SudokuLib.Core
 
                     var stringFormat = new StringFormat();
                     stringFormat.Alignment = stringFormat.LineAlignment = StringAlignment.Center;
-                    for (int i = 0; i < SudokuSize; i++)
-                        for (int j = 0; j < SudokuSize; j++)
-                            if (values[i, j] != EmptyCellValue)
-                                graphics.DrawString($"{values[i, j]}", new Font(FontFamily.GenericSansSerif, FontSize),
-                                    predefined[i, j] ? Brushes.Black : Brushes.Gray,
-                                    new RectangleF(LineWidth * (3 + i + i / 3 * 3) + i * CellSize,
-                                        LineWidth * (3 + j + j / 3 * 3) + j * CellSize, CellSize, CellSize),
+                    for (int y = 0; y < SudokuSize; y++)
+                        for (int x = 0; x < SudokuSize; x++)
+                            if (values[y, x] != EmptyCellValue)
+                                graphics.DrawString($"{values[y, x]}", new Font(FontFamily.GenericSansSerif, FontSize),
+                                    predefined[y, x] ? Brushes.Black : Brushes.Gray,
+                                    new RectangleF(
+                                        LineWidth * (3 + x + x / 3 * 3) + x * CellSize,
+                                        LineWidth * (3 + y + y / 3 * 3) + y * CellSize,
+                                        CellSize,
+                                        CellSize),
                                     stringFormat);
-                    // thick = 4, line = 2
-                    // A: 4 + 2  + x + 2 + x + 2 + x + 2 = 3*x + 12 = 300
-                    // 3*x = 288
-                    // x = 100 - 4 = 96
                 }
             }
             return bmp;

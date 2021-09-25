@@ -260,7 +260,7 @@ namespace Sudoku
 
         private void ButtonPrint_Click(object sender, EventArgs e)
         {
-            var painter = new Painter() { CellSize = 100, FontSize = 24, LineWidth = 2 };
+            var painter = new Painter() { CellSize = 100, FontSize = 46, LineWidth = 2 };
             var img = painter.CreateImage(board, isPredefinedCell);
             img.Save("last.png", System.Drawing.Imaging.ImageFormat.Png);
         }

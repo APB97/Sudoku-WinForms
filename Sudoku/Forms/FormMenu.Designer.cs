@@ -31,10 +31,10 @@
             this.panelMainMenu = new System.Windows.Forms.Panel();
             this.tableLayoutPanelMainMenu = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelPrzyciskiMainMenu = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonWyjscie = new System.Windows.Forms.Button();
-            this.buttonOpcje = new System.Windows.Forms.Button();
-            this.buttonWczytaj = new System.Windows.Forms.Button();
-            this.buttonGraj = new System.Windows.Forms.Button();
+            this.buttonExit = new System.Windows.Forms.Button();
+            this.buttonOptions = new System.Windows.Forms.Button();
+            this.buttonLoad = new System.Windows.Forms.Button();
+            this.buttonPlay = new System.Windows.Forms.Button();
             this.labelGameTitle = new System.Windows.Forms.Label();
             this.panelMainMenu.SuspendLayout();
             this.tableLayoutPanelMainMenu.SuspendLayout();
@@ -71,10 +71,10 @@
             // 
             this.tableLayoutPanelPrzyciskiMainMenu.ColumnCount = 1;
             this.tableLayoutPanelPrzyciskiMainMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelPrzyciskiMainMenu.Controls.Add(this.buttonWyjscie, 0, 3);
-            this.tableLayoutPanelPrzyciskiMainMenu.Controls.Add(this.buttonOpcje, 0, 2);
-            this.tableLayoutPanelPrzyciskiMainMenu.Controls.Add(this.buttonWczytaj, 0, 1);
-            this.tableLayoutPanelPrzyciskiMainMenu.Controls.Add(this.buttonGraj, 0, 0);
+            this.tableLayoutPanelPrzyciskiMainMenu.Controls.Add(this.buttonExit, 0, 3);
+            this.tableLayoutPanelPrzyciskiMainMenu.Controls.Add(this.buttonOptions, 0, 2);
+            this.tableLayoutPanelPrzyciskiMainMenu.Controls.Add(this.buttonLoad, 0, 1);
+            this.tableLayoutPanelPrzyciskiMainMenu.Controls.Add(this.buttonPlay, 0, 0);
             this.tableLayoutPanelPrzyciskiMainMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelPrzyciskiMainMenu.Location = new System.Drawing.Point(115, 76);
             this.tableLayoutPanelPrzyciskiMainMenu.Name = "tableLayoutPanelPrzyciskiMainMenu";
@@ -87,69 +87,69 @@
             this.tableLayoutPanelPrzyciskiMainMenu.Size = new System.Drawing.Size(252, 382);
             this.tableLayoutPanelPrzyciskiMainMenu.TabIndex = 1;
             // 
-            // buttonWyjscie
+            // buttonExit
             // 
-            this.buttonWyjscie.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonWyjscie.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.buttonWyjscie.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.buttonWyjscie.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonWyjscie.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonWyjscie.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
-            this.buttonWyjscie.Location = new System.Drawing.Point(3, 99);
-            this.buttonWyjscie.Name = "buttonWyjscie";
-            this.buttonWyjscie.Size = new System.Drawing.Size(246, 26);
-            this.buttonWyjscie.TabIndex = 3;
-            this.buttonWyjscie.Text = "Wyjście";
-            this.buttonWyjscie.UseVisualStyleBackColor = false;
-            this.buttonWyjscie.Click += new System.EventHandler(this.buttonWyjscie_Click);
+            this.buttonExit.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonExit.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonExit.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonExit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonExit.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonExit.Location = new System.Drawing.Point(3, 99);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(246, 26);
+            this.buttonExit.TabIndex = 3;
+            this.buttonExit.Text = "Wyjście";
+            this.buttonExit.UseVisualStyleBackColor = false;
+            this.buttonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
-            // buttonOpcje
+            // buttonOptions
             // 
-            this.buttonOpcje.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonOpcje.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.buttonOpcje.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.buttonOpcje.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonOpcje.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonOpcje.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
-            this.buttonOpcje.Location = new System.Drawing.Point(3, 67);
-            this.buttonOpcje.Name = "buttonOpcje";
-            this.buttonOpcje.Size = new System.Drawing.Size(246, 26);
-            this.buttonOpcje.TabIndex = 2;
-            this.buttonOpcje.Text = "Opcje";
-            this.buttonOpcje.UseVisualStyleBackColor = false;
-            this.buttonOpcje.Click += new System.EventHandler(this.buttonOpcje_Click);
+            this.buttonOptions.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonOptions.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonOptions.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonOptions.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonOptions.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonOptions.Location = new System.Drawing.Point(3, 67);
+            this.buttonOptions.Name = "buttonOptions";
+            this.buttonOptions.Size = new System.Drawing.Size(246, 26);
+            this.buttonOptions.TabIndex = 2;
+            this.buttonOptions.Text = "Opcje";
+            this.buttonOptions.UseVisualStyleBackColor = false;
+            this.buttonOptions.Click += new System.EventHandler(this.ButtonOptions_Click);
             // 
-            // buttonWczytaj
+            // buttonLoad
             // 
-            this.buttonWczytaj.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonWczytaj.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.buttonWczytaj.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.buttonWczytaj.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonWczytaj.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonWczytaj.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
-            this.buttonWczytaj.Location = new System.Drawing.Point(3, 35);
-            this.buttonWczytaj.Name = "buttonWczytaj";
-            this.buttonWczytaj.Size = new System.Drawing.Size(246, 26);
-            this.buttonWczytaj.TabIndex = 1;
-            this.buttonWczytaj.Text = "Wczytaj";
-            this.buttonWczytaj.UseVisualStyleBackColor = false;
-            this.buttonWczytaj.Click += new System.EventHandler(this.buttonWczytaj_Click);
+            this.buttonLoad.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonLoad.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonLoad.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonLoad.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonLoad.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonLoad.Location = new System.Drawing.Point(3, 35);
+            this.buttonLoad.Name = "buttonLoad";
+            this.buttonLoad.Size = new System.Drawing.Size(246, 26);
+            this.buttonLoad.TabIndex = 1;
+            this.buttonLoad.Text = "Wczytaj";
+            this.buttonLoad.UseVisualStyleBackColor = false;
+            this.buttonLoad.Click += new System.EventHandler(this.ButtonLoad_Click);
             // 
-            // buttonGraj
+            // buttonPlay
             // 
-            this.buttonGraj.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonGraj.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.buttonGraj.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.buttonGraj.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonGraj.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonGraj.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
-            this.buttonGraj.Location = new System.Drawing.Point(3, 3);
-            this.buttonGraj.Name = "buttonGraj";
-            this.buttonGraj.Size = new System.Drawing.Size(246, 26);
-            this.buttonGraj.TabIndex = 0;
-            this.buttonGraj.Text = "Graj!";
-            this.buttonGraj.UseVisualStyleBackColor = false;
-            this.buttonGraj.Click += new System.EventHandler(this.buttonGraj_Click);
+            this.buttonPlay.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonPlay.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Sudoku.Properties.Settings.Default, "KolorPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonPlay.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Sudoku.Properties.Settings.Default, "KolorTekstuPrzyciskow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.buttonPlay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonPlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonPlay.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonPlay.Location = new System.Drawing.Point(3, 3);
+            this.buttonPlay.Name = "buttonPlay";
+            this.buttonPlay.Size = new System.Drawing.Size(246, 26);
+            this.buttonPlay.TabIndex = 0;
+            this.buttonPlay.Text = "Graj!";
+            this.buttonPlay.UseVisualStyleBackColor = false;
+            this.buttonPlay.Click += new System.EventHandler(this.ButtonPlay_Click);
             // 
             // labelGameTitle
             // 
@@ -186,11 +186,11 @@
 
         private System.Windows.Forms.Panel panelMainMenu;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMainMenu;
-        private System.Windows.Forms.Button buttonGraj;
+        private System.Windows.Forms.Button buttonPlay;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPrzyciskiMainMenu;
-        private System.Windows.Forms.Button buttonWyjscie;
-        private System.Windows.Forms.Button buttonOpcje;
-        private System.Windows.Forms.Button buttonWczytaj;
+        private System.Windows.Forms.Button buttonExit;
+        private System.Windows.Forms.Button buttonOptions;
+        private System.Windows.Forms.Button buttonLoad;
         private System.Windows.Forms.Label labelGameTitle;
     }
 }

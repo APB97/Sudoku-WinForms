@@ -47,13 +47,13 @@
             this.textBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             this.textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
-            // PoleSudoku
+            // SudokuCell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.textBox);
             this.Margin = new System.Windows.Forms.Padding(1);
-            this.Name = "PoleSudoku";
+            this.Name = "SudokuCell";
             this.Size = new System.Drawing.Size(42, 42);
             this.ResumeLayout(false);
             this.PerformLayout();

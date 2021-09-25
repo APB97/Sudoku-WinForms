@@ -77,12 +77,8 @@
     <Compile Include="Implementacje Interfejsow\KomunikatyPL.cs" />
     <Compile Include="Interfejsy\IKomunikaty.cs" />
     <Compile Include="Klasy\Jezyk.cs" />
-    <Compile Include="Klasy\ListShuffler.cs" />
-    <Compile Include="Klasy\MenedzerZapisuOdczytu.cs" />
     <Compile Include="Klasy\Location.cs" />
-    <Compile Include="Klasy\SudokuSolver.cs" />
     <Compile Include="Klasy\Wydruk.cs" />
-    <Compile Include="Klasy\Walidator.cs" />
     <Compile Include="Klasy\WarningBox.cs" />
     <Compile Include="Core\Painter.cs" />
     <Compile Include="Core\PrettyPrinter.cs" />

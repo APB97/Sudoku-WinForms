@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.buttonZapiszStan = new System.Windows.Forms.Button();
+            this.buttonSaveState = new System.Windows.Forms.Button();
             this.saveSudokuDialog = new System.Windows.Forms.SaveFileDialog();
             this.panelSudoku = new System.Windows.Forms.Panel();
-            this.buttonDrukuj = new System.Windows.Forms.Button();
-            this.labelPozostaloPomocy = new System.Windows.Forms.Label();
+            this.buttonPrint = new System.Windows.Forms.Button();
+            this.labelRemainingSupports = new System.Windows.Forms.Label();
             this.labelDostepne = new System.Windows.Forms.Label();
-            this.buttonPomoz = new System.Windows.Forms.Button();
-            this.buttonRozwiaz = new System.Windows.Forms.Button();
-            this.button_DoMenu = new System.Windows.Forms.Button();
-            this.buttonWczytajStan = new System.Windows.Forms.Button();
+            this.buttonSupportMe = new System.Windows.Forms.Button();
+            this.buttonSolve = new System.Windows.Forms.Button();
+            this.buttonBackToMenu = new System.Windows.Forms.Button();
+            this.buttonLoadState = new System.Windows.Forms.Button();
             this.tableLayoutPanelPlansza = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
@@ -55,19 +55,19 @@
             this.tableLayoutPanelPlansza.SuspendLayout();
             this.SuspendLayout();
             // 
-            // buttonZapiszStan
+            // buttonSaveState
             // 
-            this.buttonZapiszStan.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonZapiszStan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonZapiszStan.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
-            this.buttonZapiszStan.Location = new System.Drawing.Point(12, 435);
-            this.buttonZapiszStan.Name = "buttonZapiszStan";
-            this.buttonZapiszStan.Size = new System.Drawing.Size(70, 23);
-            this.buttonZapiszStan.TabIndex = 1;
-            this.buttonZapiszStan.Text = "Zapisz";
-            this.toolTip1.SetToolTip(this.buttonZapiszStan, "Zapis stanu gry.");
-            this.buttonZapiszStan.UseVisualStyleBackColor = false;
-            this.buttonZapiszStan.Click += new System.EventHandler(this.buttonZapiszStan_Click);
+            this.buttonSaveState.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonSaveState.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonSaveState.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonSaveState.Location = new System.Drawing.Point(12, 435);
+            this.buttonSaveState.Name = "buttonSaveState";
+            this.buttonSaveState.Size = new System.Drawing.Size(70, 23);
+            this.buttonSaveState.TabIndex = 1;
+            this.buttonSaveState.Text = "Zapisz";
+            this.toolTip1.SetToolTip(this.buttonSaveState, "Zapis stanu gry.");
+            this.buttonSaveState.UseVisualStyleBackColor = false;
+            this.buttonSaveState.Click += new System.EventHandler(this.ButtonSaveState_Click);
             // 
             // saveSudokuDialog
             // 
@@ -77,42 +77,42 @@
             // 
             // panelSudoku
             // 
-            this.panelSudoku.Controls.Add(this.buttonDrukuj);
-            this.panelSudoku.Controls.Add(this.labelPozostaloPomocy);
+            this.panelSudoku.Controls.Add(this.buttonPrint);
+            this.panelSudoku.Controls.Add(this.labelRemainingSupports);
             this.panelSudoku.Controls.Add(this.labelDostepne);
-            this.panelSudoku.Controls.Add(this.buttonPomoz);
-            this.panelSudoku.Controls.Add(this.buttonRozwiaz);
-            this.panelSudoku.Controls.Add(this.button_DoMenu);
-            this.panelSudoku.Controls.Add(this.buttonWczytajStan);
+            this.panelSudoku.Controls.Add(this.buttonSupportMe);
+            this.panelSudoku.Controls.Add(this.buttonSolve);
+            this.panelSudoku.Controls.Add(this.buttonBackToMenu);
+            this.panelSudoku.Controls.Add(this.buttonLoadState);
             this.panelSudoku.Controls.Add(this.tableLayoutPanelPlansza);
-            this.panelSudoku.Controls.Add(this.buttonZapiszStan);
+            this.panelSudoku.Controls.Add(this.buttonSaveState);
             this.panelSudoku.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSudoku.Location = new System.Drawing.Point(0, 0);
             this.panelSudoku.Name = "panelSudoku";
             this.panelSudoku.Size = new System.Drawing.Size(484, 461);
             this.panelSudoku.TabIndex = 2;
             // 
-            // buttonDrukuj
+            // buttonPrint
             // 
-            this.buttonDrukuj.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonDrukuj.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonDrukuj.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
-            this.buttonDrukuj.Location = new System.Drawing.Point(433, 55);
-            this.buttonDrukuj.Name = "buttonDrukuj";
-            this.buttonDrukuj.Size = new System.Drawing.Size(48, 37);
-            this.buttonDrukuj.TabIndex = 8;
-            this.buttonDrukuj.Text = "Drukuj";
-            this.buttonDrukuj.UseVisualStyleBackColor = false;
-            this.buttonDrukuj.Click += new System.EventHandler(this.buttonDrukuj_Click);
+            this.buttonPrint.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonPrint.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonPrint.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonPrint.Location = new System.Drawing.Point(433, 55);
+            this.buttonPrint.Name = "buttonPrint";
+            this.buttonPrint.Size = new System.Drawing.Size(48, 37);
+            this.buttonPrint.TabIndex = 8;
+            this.buttonPrint.Text = "Drukuj";
+            this.buttonPrint.UseVisualStyleBackColor = false;
+            this.buttonPrint.Click += new System.EventHandler(this.ButtonPrint_Click);
             // 
-            // labelPozostaloPomocy
+            // labelRemainingSupports
             // 
-            this.labelPozostaloPomocy.AutoSize = true;
-            this.labelPozostaloPomocy.Location = new System.Drawing.Point(417, 440);
-            this.labelPozostaloPomocy.Name = "labelPozostaloPomocy";
-            this.labelPozostaloPomocy.Size = new System.Drawing.Size(13, 13);
-            this.labelPozostaloPomocy.TabIndex = 6;
-            this.labelPozostaloPomocy.Text = "3";
+            this.labelRemainingSupports.AutoSize = true;
+            this.labelRemainingSupports.Location = new System.Drawing.Point(417, 440);
+            this.labelRemainingSupports.Name = "labelRemainingSupports";
+            this.labelRemainingSupports.Size = new System.Drawing.Size(13, 13);
+            this.labelRemainingSupports.TabIndex = 6;
+            this.labelRemainingSupports.Text = "3";
             // 
             // labelDostepne
             // 
@@ -122,61 +122,61 @@
             this.labelDostepne.TabIndex = 7;
             this.labelDostepne.Text = "Dostępne:";
             // 
-            // buttonPomoz
+            // buttonSupportMe
             // 
-            this.buttonPomoz.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonPomoz.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonPomoz.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
-            this.buttonPomoz.Location = new System.Drawing.Point(294, 435);
-            this.buttonPomoz.Name = "buttonPomoz";
-            this.buttonPomoz.Size = new System.Drawing.Size(65, 23);
-            this.buttonPomoz.TabIndex = 5;
-            this.buttonPomoz.Text = "Pomóż mi!";
-            this.toolTip1.SetToolTip(this.buttonPomoz, "Uzupełnia jedno pole w Sudoku.");
-            this.buttonPomoz.UseVisualStyleBackColor = false;
-            this.buttonPomoz.Click += new System.EventHandler(this.buttonPomoz_Click);
+            this.buttonSupportMe.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonSupportMe.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonSupportMe.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonSupportMe.Location = new System.Drawing.Point(294, 435);
+            this.buttonSupportMe.Name = "buttonSupportMe";
+            this.buttonSupportMe.Size = new System.Drawing.Size(65, 23);
+            this.buttonSupportMe.TabIndex = 5;
+            this.buttonSupportMe.Text = "Pomóż mi!";
+            this.toolTip1.SetToolTip(this.buttonSupportMe, "Uzupełnia jedno pole w Sudoku.");
+            this.buttonSupportMe.UseVisualStyleBackColor = false;
+            this.buttonSupportMe.Click += new System.EventHandler(this.ButtonSupportMe_Click);
             // 
-            // buttonRozwiaz
+            // buttonSolve
             // 
-            this.buttonRozwiaz.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonRozwiaz.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonRozwiaz.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
-            this.buttonRozwiaz.Location = new System.Drawing.Point(164, 435);
-            this.buttonRozwiaz.Name = "buttonRozwiaz";
-            this.buttonRozwiaz.Size = new System.Drawing.Size(124, 23);
-            this.buttonRozwiaz.TabIndex = 4;
-            this.buttonRozwiaz.Text = "Rozwiąz za mnie!";
-            this.toolTip1.SetToolTip(this.buttonRozwiaz, "Pokazuje rozwiązane Sudoku.");
-            this.buttonRozwiaz.UseVisualStyleBackColor = false;
-            this.buttonRozwiaz.Click += new System.EventHandler(this.buttonRozwiaz_Click);
+            this.buttonSolve.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonSolve.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonSolve.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonSolve.Location = new System.Drawing.Point(164, 435);
+            this.buttonSolve.Name = "buttonSolve";
+            this.buttonSolve.Size = new System.Drawing.Size(124, 23);
+            this.buttonSolve.TabIndex = 4;
+            this.buttonSolve.Text = "Rozwiąz za mnie!";
+            this.toolTip1.SetToolTip(this.buttonSolve, "Pokazuje rozwiązane Sudoku.");
+            this.buttonSolve.UseVisualStyleBackColor = false;
+            this.buttonSolve.Click += new System.EventHandler(this.ButtonSolve_Click);
             // 
-            // button_DoMenu
+            // buttonBackToMenu
             // 
-            this.button_DoMenu.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.button_DoMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_DoMenu.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
-            this.button_DoMenu.Location = new System.Drawing.Point(433, 12);
-            this.button_DoMenu.Name = "button_DoMenu";
-            this.button_DoMenu.Size = new System.Drawing.Size(48, 37);
-            this.button_DoMenu.TabIndex = 3;
-            this.button_DoMenu.Text = "Do menu";
-            this.toolTip1.SetToolTip(this.button_DoMenu, "Powrót do menu.");
-            this.button_DoMenu.UseVisualStyleBackColor = false;
-            this.button_DoMenu.Click += new System.EventHandler(this.button_DoMenu_Click);
+            this.buttonBackToMenu.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonBackToMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonBackToMenu.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonBackToMenu.Location = new System.Drawing.Point(433, 12);
+            this.buttonBackToMenu.Name = "buttonBackToMenu";
+            this.buttonBackToMenu.Size = new System.Drawing.Size(48, 37);
+            this.buttonBackToMenu.TabIndex = 3;
+            this.buttonBackToMenu.Text = "Do menu";
+            this.toolTip1.SetToolTip(this.buttonBackToMenu, "Powrót do menu.");
+            this.buttonBackToMenu.UseVisualStyleBackColor = false;
+            this.buttonBackToMenu.Click += new System.EventHandler(this.ButtonBackToMenu_Click);
             // 
-            // buttonWczytajStan
+            // buttonLoadState
             // 
-            this.buttonWczytajStan.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
-            this.buttonWczytajStan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonWczytajStan.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
-            this.buttonWczytajStan.Location = new System.Drawing.Point(88, 435);
-            this.buttonWczytajStan.Name = "buttonWczytajStan";
-            this.buttonWczytajStan.Size = new System.Drawing.Size(70, 23);
-            this.buttonWczytajStan.TabIndex = 2;
-            this.buttonWczytajStan.Text = "Wczytaj";
-            this.toolTip1.SetToolTip(this.buttonWczytajStan, "Wczytanie stanu gry.");
-            this.buttonWczytajStan.UseVisualStyleBackColor = false;
-            this.buttonWczytajStan.Click += new System.EventHandler(this.buttonWczytajStan_Click);
+            this.buttonLoadState.BackColor = global::Sudoku.Properties.Settings.Default.KolorPrzyciskow;
+            this.buttonLoadState.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonLoadState.ForeColor = global::Sudoku.Properties.Settings.Default.KolorTekstuPrzyciskow;
+            this.buttonLoadState.Location = new System.Drawing.Point(88, 435);
+            this.buttonLoadState.Name = "buttonLoadState";
+            this.buttonLoadState.Size = new System.Drawing.Size(70, 23);
+            this.buttonLoadState.TabIndex = 2;
+            this.buttonLoadState.Text = "Wczytaj";
+            this.toolTip1.SetToolTip(this.buttonLoadState, "Wczytanie stanu gry.");
+            this.buttonLoadState.UseVisualStyleBackColor = false;
+            this.buttonLoadState.Click += new System.EventHandler(this.ButtonLoadState_Click);
             // 
             // tableLayoutPanelPlansza
             // 
@@ -398,10 +398,10 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button buttonZapiszStan;
+        private System.Windows.Forms.Button buttonSaveState;
         private System.Windows.Forms.SaveFileDialog saveSudokuDialog;
         private System.Windows.Forms.Panel panelSudoku;
-        private System.Windows.Forms.Button buttonWczytajStan;
+        private System.Windows.Forms.Button buttonLoadState;
         private System.Windows.Forms.OpenFileDialog openSudokuDialog;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPlansza;
@@ -413,12 +413,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Button button_DoMenu;
-        private System.Windows.Forms.Button buttonRozwiaz;
-        private System.Windows.Forms.Button buttonPomoz;
-        private System.Windows.Forms.Label labelPozostaloPomocy;
+        private System.Windows.Forms.Button buttonBackToMenu;
+        private System.Windows.Forms.Button buttonSolve;
+        private System.Windows.Forms.Button buttonSupportMe;
+        private System.Windows.Forms.Label labelRemainingSupports;
         private System.Windows.Forms.Label labelDostepne;
-        private System.Windows.Forms.Button buttonDrukuj;
+        private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.ToolTip toolTip1;
     }
 }

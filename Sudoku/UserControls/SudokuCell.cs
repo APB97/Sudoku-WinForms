@@ -106,7 +106,7 @@ namespace Sudoku
                 return;
 
             CellValue = int.Parse(key[1].ToString());
-            if (!Validator.IsValid(FormGame.oknoGry.Board, (X, Y)))
+            if (!Validator.IsValid(FormGame.gameWindow.Board, (X, Y)))
             {
                 CellValue = 0;
             }

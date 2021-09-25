@@ -170,11 +170,6 @@ namespace Sudoku
             }
         }
 
-        private static bool Validate(int[,] sudokuBoard)
-        {
-            return Validator.IsValidBoard(sudokuBoard);
-        }
-
         #endregion
     }
 }

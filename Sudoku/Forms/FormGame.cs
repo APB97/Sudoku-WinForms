@@ -2,6 +2,7 @@
 using SudokuLib.OptionOrder;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -263,6 +264,10 @@ namespace Sudoku
             var painter = new Painter() { CellSize = 100, FontSize = 46, LineWidth = 2 };
             var img = painter.CreateImage(board, isPredefinedCell);
             img.Save("last.png", System.Drawing.Imaging.ImageFormat.Png);
+            Process openFileProcess = new Process();
+            openFileProcess.StartInfo.FileName = "last.png";
+            openFileProcess.StartInfo.Verb = "Open";
+            openFileProcess.Start();
         }
     }
 }

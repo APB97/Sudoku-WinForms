@@ -10,7 +10,8 @@ namespace Sudoku
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMenu());
+            var printer = new PngPrinter();
+            Application.Run(new FormMenu(printer));
         }
     }
 }

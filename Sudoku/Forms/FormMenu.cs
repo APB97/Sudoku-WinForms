@@ -8,8 +8,9 @@ namespace Sudoku
     public partial class FormMenu : Form
     {
         public static FormMenu mainMenuWindow;
+        private readonly ISudokuPrinter printer;
 
-        public FormMenu()
+        public FormMenu(ISudokuPrinter printer)
         {
             InitializeComponent();
             var collection = new PrivateFontCollection();
@@ -17,11 +18,12 @@ namespace Sudoku
             FontFamily fontFamily = new FontFamily("Vladimir Script", collection);
             labelGameTitle.Font = new Font(fontFamily, 48, FontStyle.Regular);
             mainMenuWindow = this;
+            this.printer = printer;
         }
 
         private void ButtonPlay_Click(object sender, EventArgs e)
         {
-            FormGame game = new FormGame();
+            FormGame game = new FormGame(printer);
             game.Show();
             Hide();
         }
@@ -33,7 +35,7 @@ namespace Sudoku
 
         private void ButtonLoad_Click(object sender, EventArgs e)
         {
-            FormGame loadedGame = new FormGame(false);
+            FormGame loadedGame = new FormGame(printer, false);
             loadedGame.Show();
             Hide();
         }

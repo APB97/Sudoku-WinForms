@@ -3,9 +3,7 @@ using SudokuLib.Core;
 using SudokuLib.OptionOrder;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -20,10 +18,17 @@ namespace Sudoku
         private readonly int[] HorizontalDisplacement = new int[9] { 0, 1, 2, 0, 1, 2, 0, 1, 2 };
         private readonly int[] VerticalDisplacement = new int[9] { 0, 0, 0, 1, 1, 1, 2, 2, 2 };
 
+        private readonly ISudokuPrinter printer;
+
         private int[,] board = new int[9, 9];
         private bool[,] isPredefinedCell = new bool[9, 9];
 
         public int[,] Board => board;
+
+        public FormGame(ISudokuPrinter printer, bool createNewGame = true): this(createNewGame)
+        {
+            this.printer = printer ?? throw new ArgumentNullException(nameof(printer));
+        }
 
         public FormGame(bool createNewGame = true)
         {
@@ -75,12 +80,16 @@ namespace Sudoku
 
         private void CreateNewGame()
         {
+            CreateBoard();
+            UpdateAllVisualCells();
+        }
+
+        public void CreateBoard()
+        {
             int[,] emptyBoard = new int[9, 9];
             Solver solver = new Solver() { Orderer = new OptionRandomizedOrderer<int>() };
             int[,] solvedBoard = solver.Solve(emptyBoard);
             board = SudokuBlanker.MakeBlanks(solvedBoard, Settings.Default.DesiredBlanks);
-            UpdateAllVisualCells();
-            MessageBox.Show(Validator.IsValidBoard(board) ? "Board OK" : "Board NOT OK");
         }
 
         private void UpdateAllVisualCells()
@@ -263,29 +272,12 @@ namespace Sudoku
 
         private void ButtonSavePng_Click(object sender, EventArgs e)
         {
-            var painter = new Painter() 
-            {
-                CellSize = Settings.Default.PrintedCellSize, 
-                FontSize = Settings.Default.PrintedFontSize,
-                LineWidth = Settings.Default.PrintedLineWidth
-            };
-            var img = painter.CreateImage(board, isPredefinedCell);
-            img.Save("last.png", System.Drawing.Imaging.ImageFormat.Png);
-            Process openFileProcess = new Process();
-            openFileProcess.StartInfo.FileName = "last.png";
-            openFileProcess.StartInfo.Verb = "Open";
-            openFileProcess.Start();
+            printer.Save(board, isPredefinedCell);
         }
 
         private void ButtonPrint_Click(object sender, EventArgs e)
         {
-            if (File.Exists("last.png"))
-            {
-                Process printProcess = new Process();
-                printProcess.StartInfo.FileName = "last.png";
-                printProcess.StartInfo.Verb = "Print";
-                printProcess.Start();
-            }
+            printer.Print();
         }
     }
 }

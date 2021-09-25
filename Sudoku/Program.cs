@@ -12,7 +12,9 @@ namespace Sudoku
             Application.SetCompatibleTextRenderingDefault(false);
             var sudokuCreator = new SudokuCreator();
             var printer = new PngPrinter();
-            Application.Run(new FormMenu(printer, sudokuCreator));
+            var userSaveLoad = new WinFormsSaveLoad();
+            var layoutCreator = new WinFormsLayoutCreator();
+            Application.Run(new FormMenu(printer, sudokuCreator, userSaveLoad, layoutCreator));
         }
     }
 }

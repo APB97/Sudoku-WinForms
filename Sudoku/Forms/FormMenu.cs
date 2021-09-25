@@ -10,8 +10,10 @@ namespace Sudoku
         public static FormMenu mainMenuWindow;
         private readonly ISudokuPrinter printer;
         private readonly ISudokuCreator sudokuCreator;
+        private readonly IUserPickedSaveLoad userSaveLoad;
+        private readonly ISudokuLayoutCreator layoutCreator;
 
-        public FormMenu(ISudokuPrinter printer, ISudokuCreator sudokuCreator)
+        public FormMenu(ISudokuPrinter printer, ISudokuCreator sudokuCreator, IUserPickedSaveLoad userSaveLoad, ISudokuLayoutCreator layoutCreator)
         {
             InitializeComponent();
             var collection = new PrivateFontCollection();
@@ -21,11 +23,13 @@ namespace Sudoku
             mainMenuWindow = this;
             this.printer = printer;
             this.sudokuCreator = sudokuCreator;
+            this.userSaveLoad = userSaveLoad;
+            this.layoutCreator = layoutCreator;
         }
 
         private void ButtonPlay_Click(object sender, EventArgs e)
         {
-            FormGame game = new FormGame(printer, sudokuCreator);
+            FormGame game = new FormGame(printer, sudokuCreator, userSaveLoad, layoutCreator);
             game.Show();
             Hide();
         }
@@ -37,7 +41,7 @@ namespace Sudoku
 
         private void ButtonLoad_Click(object sender, EventArgs e)
         {
-            FormGame loadedGame = new FormGame(printer, sudokuCreator, false);
+            FormGame loadedGame = new FormGame(printer, sudokuCreator, userSaveLoad, layoutCreator, false);
             loadedGame.Show();
             Hide();
         }

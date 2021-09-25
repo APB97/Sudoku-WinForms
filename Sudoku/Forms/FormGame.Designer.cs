@@ -39,7 +39,7 @@
             this.buttonSolve = new System.Windows.Forms.Button();
             this.buttonBackToMenu = new System.Windows.Forms.Button();
             this.buttonLoadState = new System.Windows.Forms.Button();
-            this.tableLayoutPanelPlansza = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelBoard = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
@@ -51,7 +51,7 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.openSudokuDialog = new System.Windows.Forms.OpenFileDialog();
             this.panelSudoku.SuspendLayout();
-            this.tableLayoutPanelPlansza.SuspendLayout();
+            this.tableLayoutPanelBoard.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonSaveState
@@ -83,7 +83,7 @@
             this.panelSudoku.Controls.Add(this.buttonSolve);
             this.panelSudoku.Controls.Add(this.buttonBackToMenu);
             this.panelSudoku.Controls.Add(this.buttonLoadState);
-            this.panelSudoku.Controls.Add(this.tableLayoutPanelPlansza);
+            this.panelSudoku.Controls.Add(this.tableLayoutPanelBoard);
             this.panelSudoku.Controls.Add(this.buttonSaveState);
             this.panelSudoku.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSudoku.Location = new System.Drawing.Point(0, 0);
@@ -186,31 +186,31 @@
             this.buttonLoadState.UseVisualStyleBackColor = false;
             this.buttonLoadState.Click += new System.EventHandler(this.ButtonLoadState_Click);
             // 
-            // tableLayoutPanelPlansza
+            // tableLayoutPanelBoard
             // 
-            this.tableLayoutPanelPlansza.BackColor = System.Drawing.Color.Black;
-            this.tableLayoutPanelPlansza.ColumnCount = 3;
-            this.tableLayoutPanelPlansza.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanelPlansza.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanelPlansza.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanelPlansza.Controls.Add(this.tableLayoutPanel7, 1, 2);
-            this.tableLayoutPanelPlansza.Controls.Add(this.tableLayoutPanel6, 0, 2);
-            this.tableLayoutPanelPlansza.Controls.Add(this.tableLayoutPanel8, 2, 2);
-            this.tableLayoutPanelPlansza.Controls.Add(this.tableLayoutPanel1, 1, 0);
-            this.tableLayoutPanelPlansza.Controls.Add(this.tableLayoutPanel0, 0, 0);
-            this.tableLayoutPanelPlansza.Controls.Add(this.tableLayoutPanel2, 2, 0);
-            this.tableLayoutPanelPlansza.Controls.Add(this.tableLayoutPanel3, 0, 1);
-            this.tableLayoutPanelPlansza.Controls.Add(this.tableLayoutPanel4, 1, 1);
-            this.tableLayoutPanelPlansza.Controls.Add(this.tableLayoutPanel5, 2, 1);
-            this.tableLayoutPanelPlansza.Location = new System.Drawing.Point(12, 12);
-            this.tableLayoutPanelPlansza.Name = "tableLayoutPanelPlansza";
-            this.tableLayoutPanelPlansza.RowCount = 3;
-            this.tableLayoutPanelPlansza.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanelPlansza.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanelPlansza.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanelPlansza.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelPlansza.Size = new System.Drawing.Size(418, 420);
-            this.tableLayoutPanelPlansza.TabIndex = 0;
+            this.tableLayoutPanelBoard.BackColor = System.Drawing.Color.Black;
+            this.tableLayoutPanelBoard.ColumnCount = 3;
+            this.tableLayoutPanelBoard.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelBoard.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelBoard.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelBoard.Controls.Add(this.tableLayoutPanel7, 1, 2);
+            this.tableLayoutPanelBoard.Controls.Add(this.tableLayoutPanel6, 0, 2);
+            this.tableLayoutPanelBoard.Controls.Add(this.tableLayoutPanel8, 2, 2);
+            this.tableLayoutPanelBoard.Controls.Add(this.tableLayoutPanel1, 1, 0);
+            this.tableLayoutPanelBoard.Controls.Add(this.tableLayoutPanel0, 0, 0);
+            this.tableLayoutPanelBoard.Controls.Add(this.tableLayoutPanel2, 2, 0);
+            this.tableLayoutPanelBoard.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tableLayoutPanelBoard.Controls.Add(this.tableLayoutPanel4, 1, 1);
+            this.tableLayoutPanelBoard.Controls.Add(this.tableLayoutPanel5, 2, 1);
+            this.tableLayoutPanelBoard.Location = new System.Drawing.Point(12, 12);
+            this.tableLayoutPanelBoard.Name = "tableLayoutPanelBoard";
+            this.tableLayoutPanelBoard.RowCount = 3;
+            this.tableLayoutPanelBoard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelBoard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelBoard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelBoard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelBoard.Size = new System.Drawing.Size(418, 420);
+            this.tableLayoutPanelBoard.TabIndex = 0;
             // 
             // tableLayoutPanel7
             // 
@@ -393,7 +393,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormGame_FormClosed);
             this.panelSudoku.ResumeLayout(false);
             this.panelSudoku.PerformLayout();
-            this.tableLayoutPanelPlansza.ResumeLayout(false);
+            this.tableLayoutPanelBoard.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -405,7 +405,7 @@
         private System.Windows.Forms.Button buttonLoadState;
         private System.Windows.Forms.OpenFileDialog openSudokuDialog;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPlansza;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBoard;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;

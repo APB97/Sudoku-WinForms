@@ -2,7 +2,6 @@
 using SudokuLib.OptionOrder;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -14,119 +13,44 @@ namespace Sudoku
 
         internal SudokuCell[,] SudokuTable = new SudokuCell[9, 9];
         private readonly List<int> possibleValues = Enumerable.Range(1, 9).ToList();
-        private readonly int[] HorizontalDisplacement = new int[9] { 0, 1, 2, 0, 1, 2, 0, 1, 2 };
-        private readonly int[] VerticalDisplacement = new int[9] { 0, 0, 0, 1, 1, 1, 2, 2, 2 };
 
         private readonly ISudokuPrinter printer;
         private readonly ISudokuCreator sudokuCreator;
+        private readonly IUserPickedSaveLoad userPickedSaveLoad;
+        private readonly ISudokuLayoutCreator layoutCreator;
 
         private int[,] board = new int[9, 9];
         private bool[,] isPredefinedCell = new bool[9, 9];
 
         public int[,] Board => board;
 
-        public FormGame(ISudokuPrinter printer, ISudokuCreator sudokuCreator, bool createNewGame = true) : this(createNewGame)
+        public FormGame(ISudokuPrinter printer, ISudokuCreator sudokuCreator, IUserPickedSaveLoad userPickedSaveLoad, ISudokuLayoutCreator layoutCreator, bool createNewGame = true) : this()
         {
             this.printer = printer ?? throw new ArgumentNullException(nameof(printer));
             this.sudokuCreator = sudokuCreator ?? throw new ArgumentNullException(nameof(sudokuCreator));
-
-            if(createNewGame)
+            this.userPickedSaveLoad = userPickedSaveLoad ?? throw new ArgumentNullException(nameof(userPickedSaveLoad));
+            this.layoutCreator = layoutCreator ?? throw new ArgumentNullException(nameof(layoutCreator));
+            if (createNewGame)
                 (board, isPredefinedCell) = sudokuCreator.PopulateBoardWithNewSudoku(SudokuTable);
             else
-                LoadFromUserPickedFile();
+                (board, isPredefinedCell) = userPickedSaveLoad.LoadFromUserPickedFile(SudokuTable);
         }
 
-        public FormGame(bool createNewGame = true)
+        public FormGame()
         {
             gameWindow = this;
             InitializeComponent();
-            CreateSudokuTable();
-        }
-
-        private void CreateSudokuTable()
-        {
-            for (int squareId = 0; squareId < 9; ++squareId)
-            {
-                Control[] foundTableLayoutMatches = tableLayoutPanelPlansza.Controls.Find("tableLayoutPanel" + squareId, false);
-                PopulateSquareIfIsTableLayoutPanel(foundTableLayoutMatches, squareId);
-            }
-        }
-
-        private void PopulateSquareIfIsTableLayoutPanel(Control[] foundTableLayoutMatches, int squareId)
-        {
-            if (foundTableLayoutMatches.FirstOrDefault() is TableLayoutPanel currentSquare)
-            {
-                currentSquare.TabIndex = squareId;
-                InitAllCellsInSquare(currentSquare, squareId);
-            }
-        }
-
-        private void InitAllCellsInSquare(TableLayoutPanel currentSquare, int squareId)
-        {
-            for (int cellNumberInSquare = 0; cellNumberInSquare < 9; ++cellNumberInSquare)
-            {
-                InitSudokuCellInSquare(currentSquare, squareId, cellNumberInSquare);
-            }
-        }
-
-        private void InitSudokuCellInSquare(TableLayoutPanel currentSquare, int squareId, int cellNumberInSquare)
-        {
-            var pole = new SudokuCell(HorizontalDisplacement[cellNumberInSquare] + HorizontalDisplacement[squareId] * 3, VerticalDisplacement[cellNumberInSquare] + VerticalDisplacement[squareId] * 3);
-            currentSquare.Controls.Add(pole);
-            SudokuTable[VerticalDisplacement[cellNumberInSquare] + VerticalDisplacement[squareId] * 3,
-                HorizontalDisplacement[cellNumberInSquare] + HorizontalDisplacement[squareId] * 3] = pole;
-            pole.textBox.PreviewKeyDown += TextBoxSudoku_PreviewKeyDown;
-            pole.textBox.ForeColor = Color.DimGray;
+            layoutCreator.CreateSudokuTable(SudokuTable, tableLayoutPanelBoard);
         }
 
         private void ButtonSaveState_Click(object sender, EventArgs e)
         {
-            SaveToUserPickedFile();
-        }
-
-        private void SaveToUserPickedFile()
-        {
-            if (saveSudokuDialog.ShowDialog() == DialogResult.OK)
-            {
-                SudokuSaveLoad.Save(saveSudokuDialog.FileName, board, isPredefinedCell);
-            }
+            userPickedSaveLoad.SaveToUserPickedFile(board, isPredefinedCell);
         }
 
         private void ButtonLoadState_Click(object sender, EventArgs e)
         {
-            LoadFromUserPickedFile();
-        }
-
-        private void LoadFromUserPickedFile()
-        {
-            if (openSudokuDialog.ShowDialog() == DialogResult.OK)
-            {
-                (board, isPredefinedCell) = SudokuSaveLoad.Load(openSudokuDialog.FileName);
-                LoadAllCellStates();
-            }
-        }
-
-        private void LoadAllCellStates()
-        {
-            for (int y = 0; y < 9; y++)
-            {
-                for (int x = 0; x < 9; x++)
-                {
-                    InitializeCellStateToLoadedValue(x, y);
-                }
-            }
-        }
-
-        private void InitializeCellStateToLoadedValue(int x, int y)
-        {
-            if (isPredefinedCell[y, x])
-            {
-                SudokuTable[y, x].InitAsPredefined(board[y, x]);
-            }
-            else
-            {
-                SudokuTable[y, x].CellValue = board[y, x];
-            }
+            (board, isPredefinedCell) = userPickedSaveLoad.LoadFromUserPickedFile(SudokuTable);
         }
 
         private void TextBoxSudoku_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)

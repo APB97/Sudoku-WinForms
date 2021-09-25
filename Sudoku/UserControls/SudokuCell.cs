@@ -32,6 +32,7 @@ namespace Sudoku
                     textBox.Text = string.Empty;
                 else
                     textBox.Text = value.ToString();
+                FormGame.gameWindow.Board[Y, X] = value;
             }
         }
         public HashSet<Location> neighbors = new HashSet<Location>();

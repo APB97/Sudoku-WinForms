@@ -10,8 +10,9 @@ namespace Sudoku
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            var sudokuCreator = new SudokuCreator();
             var printer = new PngPrinter();
-            Application.Run(new FormMenu(printer));
+            Application.Run(new FormMenu(printer, sudokuCreator));
         }
     }
 }

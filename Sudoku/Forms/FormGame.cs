@@ -1,5 +1,4 @@
-﻿using Sudoku.Properties;
-using SudokuLib.Core;
+﻿using SudokuLib.Core;
 using SudokuLib.OptionOrder;
 using System;
 using System.Collections.Generic;
@@ -19,15 +18,22 @@ namespace Sudoku
         private readonly int[] VerticalDisplacement = new int[9] { 0, 0, 0, 1, 1, 1, 2, 2, 2 };
 
         private readonly ISudokuPrinter printer;
+        private readonly ISudokuCreator sudokuCreator;
 
         private int[,] board = new int[9, 9];
         private bool[,] isPredefinedCell = new bool[9, 9];
 
         public int[,] Board => board;
 
-        public FormGame(ISudokuPrinter printer, bool createNewGame = true): this(createNewGame)
+        public FormGame(ISudokuPrinter printer, ISudokuCreator sudokuCreator, bool createNewGame = true) : this(createNewGame)
         {
             this.printer = printer ?? throw new ArgumentNullException(nameof(printer));
+            this.sudokuCreator = sudokuCreator ?? throw new ArgumentNullException(nameof(sudokuCreator));
+
+            if(createNewGame)
+                (board, isPredefinedCell) = sudokuCreator.PopulateBoardWithNewSudoku(SudokuTable);
+            else
+                LoadFromUserPickedFile();
         }
 
         public FormGame(bool createNewGame = true)
@@ -35,11 +41,6 @@ namespace Sudoku
             gameWindow = this;
             InitializeComponent();
             CreateSudokuTable();
-
-            if (createNewGame)
-                CreateNewGame();
-            else
-                LoadFromUserPickedFile();
         }
 
         private void CreateSudokuTable()
@@ -76,40 +77,6 @@ namespace Sudoku
                 HorizontalDisplacement[cellNumberInSquare] + HorizontalDisplacement[squareId] * 3] = pole;
             pole.textBox.PreviewKeyDown += TextBoxSudoku_PreviewKeyDown;
             pole.textBox.ForeColor = Color.DimGray;
-        }
-
-        private void CreateNewGame()
-        {
-            CreateBoard();
-            UpdateAllVisualCells();
-        }
-
-        public void CreateBoard()
-        {
-            int[,] emptyBoard = new int[9, 9];
-            Solver solver = new Solver() { Orderer = new OptionRandomizedOrderer<int>() };
-            int[,] solvedBoard = solver.Solve(emptyBoard);
-            board = SudokuBlanker.MakeBlanks(solvedBoard, Settings.Default.DesiredBlanks);
-        }
-
-        private void UpdateAllVisualCells()
-        {
-            for (int y = 0; y < 9; y++)
-            {
-                for (int x = 0; x < 9; x++)
-                {
-                    InitializeCellStateIfPredifinedAtLocation(x, y);
-                }
-            }
-        }
-
-        private void InitializeCellStateIfPredifinedAtLocation(int x, int y)
-        {
-            isPredefinedCell[y, x] = board[y, x] != 0;
-            if (isPredefinedCell[y, x])
-            {
-                SudokuTable[y, x].InitAsPredefined(board[y, x]);
-            }
         }
 
         private void ButtonSaveState_Click(object sender, EventArgs e)

@@ -64,8 +64,10 @@
     <Compile Include="Forms\FormOptions.Designer.cs">
       <DependentUpon>FormOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ISudokuCreator.cs" />
     <Compile Include="Forms\ISudokuPrinter.cs" />
     <Compile Include="Forms\PngPrinter.cs" />
+    <Compile Include="Forms\SudokuCreator.cs" />
     <Compile Include="GameState\SudokuCellState.cs" />
     <Compile Include="GameState\SudokuGame.cs" />
     <Compile Include="GameState\SudokuGameRules.cs" />

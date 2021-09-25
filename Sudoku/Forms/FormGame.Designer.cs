@@ -100,7 +100,7 @@
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(48, 38);
             this.buttonPrint.TabIndex = 9;
-            this.buttonPrint.Text = "Print";
+            this.buttonPrint.Text = "Print PNG";
             this.buttonPrint.UseVisualStyleBackColor = false;
             this.buttonPrint.Click += new System.EventHandler(this.ButtonPrint_Click);
             // 

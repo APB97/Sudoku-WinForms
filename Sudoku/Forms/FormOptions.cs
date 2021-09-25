@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Sudoku.Properties;
 using System.Windows.Forms;
 
 namespace Sudoku
@@ -8,20 +8,33 @@ namespace Sudoku
         public FormOptions()
         {
             InitializeComponent();
+            numericCellSize.Value = Settings.Default.PrintedCellSize;
+            numericFontSize.Value = (decimal)Settings.Default.PrintedFontSize;
+            numericLineSize.Value = Settings.Default.PrintedLineWidth;
         }
 
-        private void FormOpcje_FormClosed(object sender, FormClosedEventArgs e)
+        private void FormOptions_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Settings.Default.Save();
             if (e.CloseReason == CloseReason.UserClosing)
                 FormMenu.mainMenuWindow.Show();
             else if (e.CloseReason != CloseReason.ApplicationExitCall)
                 Application.Exit();
         }
 
-        private void CheckBoxPictureInsteadOfPrint_CheckedChanged(object sender, EventArgs e)
+        private void NumericCellSize_ValueChanged(object sender, System.EventArgs e)
         {
-            Properties.Settings.Default.PictureInsteadOfPrint = checkBoxPictureInsteadOfPrint.Checked;
-            Properties.Settings.Default.Save();
+            Settings.Default.PrintedCellSize = (int)numericCellSize.Value;
+        }
+
+        private void NumericFontSize_ValueChanged(object sender, System.EventArgs e)
+        {
+            Settings.Default.PrintedFontSize = (float)numericFontSize.Value;
+        }
+
+        private void NumericLineSize_ValueChanged(object sender, System.EventArgs e)
+        {
+            Settings.Default.PrintedLineWidth = (int)numericLineSize.Value;
         }
     }
 }

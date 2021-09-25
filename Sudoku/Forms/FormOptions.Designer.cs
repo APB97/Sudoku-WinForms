@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.checkBoxPictureInsteadOfPrint = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +55,7 @@
             this.checkBoxPictureInsteadOfPrint.Size = new System.Drawing.Size(122, 17);
             this.checkBoxPictureInsteadOfPrint.TabIndex = 8;
             this.checkBoxPictureInsteadOfPrint.Text = "Obraz zamiast druku";
-            this.toolTip1.SetToolTip(this.checkBoxPictureInsteadOfPrint, "Pozwala na zapisanie obrazu w formacie PNG zamiast drukowania Sudoku bezpośrednio" +
+            this.toolTip.SetToolTip(this.checkBoxPictureInsteadOfPrint, "Pozwala na zapisanie obrazu w formacie PNG zamiast drukowania Sudoku bezpośrednio" +
         ".");
             this.checkBoxPictureInsteadOfPrint.UseVisualStyleBackColor = true;
             this.checkBoxPictureInsteadOfPrint.CheckedChanged += new System.EventHandler(this.CheckBoxPictureInsteadOfPrint_CheckedChanged);
@@ -80,9 +79,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.CheckBox checkBoxPictureInsteadOfPrint;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

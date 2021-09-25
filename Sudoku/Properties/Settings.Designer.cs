@@ -46,5 +46,41 @@ namespace Sudoku.Properties {
                 this["PictureInsteadOfPrint"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("96")]
+        public int PrintedCellSize {
+            get {
+                return ((int)(this["PrintedCellSize"]));
+            }
+            set {
+                this["PrintedCellSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("46")]
+        public float PrintedFontSize {
+            get {
+                return ((float)(this["PrintedFontSize"]));
+            }
+            set {
+                this["PrintedFontSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int PrintedLineWidth {
+            get {
+                return ((int)(this["PrintedLineWidth"]));
+            }
+            set {
+                this["PrintedLineWidth"] = value;
+            }
+        }
     }
 }

@@ -1,9 +1,11 @@
-﻿using SudokuLib.Core;
+﻿using Sudoku.Properties;
+using SudokuLib.Core;
 using SudokuLib.OptionOrder;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -259,15 +261,31 @@ namespace Sudoku
             return false;
         }
 
-        private void ButtonPrint_Click(object sender, EventArgs e)
+        private void ButtonSavePng_Click(object sender, EventArgs e)
         {
-            var painter = new Painter() { CellSize = 100, FontSize = 46, LineWidth = 2 };
+            var painter = new Painter() 
+            {
+                CellSize = Settings.Default.PrintedCellSize, 
+                FontSize = Settings.Default.PrintedFontSize,
+                LineWidth = Settings.Default.PrintedLineWidth
+            };
             var img = painter.CreateImage(board, isPredefinedCell);
             img.Save("last.png", System.Drawing.Imaging.ImageFormat.Png);
             Process openFileProcess = new Process();
             openFileProcess.StartInfo.FileName = "last.png";
             openFileProcess.StartInfo.Verb = "Open";
             openFileProcess.Start();
+        }
+
+        private void ButtonPrint_Click(object sender, EventArgs e)
+        {
+            if (File.Exists("last.png"))
+            {
+                Process printProcess = new Process();
+                printProcess.StartInfo.FileName = "last.png";
+                printProcess.StartInfo.Verb = "Print";
+                printProcess.Start();
+            }
         }
     }
 }

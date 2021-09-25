@@ -1,7 +1,7 @@
-﻿using SudokuLib.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Sudoku
@@ -32,10 +32,10 @@ namespace Sudoku
                     textBox.Text = string.Empty;
                 else
                     textBox.Text = value.ToString();
-                FormGame.gameWindow.Board[Y, X] = value;
             }
         }
-        public HashSet<Location> neighbors = new HashSet<Location>();
+
+        public HashSet<Location> Neighbors { get; private set; } = new HashSet<Location>();
 
         public SudokuCell()
         {
@@ -54,8 +54,8 @@ namespace Sudoku
         {
             for (int i = 0; i < 9; ++i)
             {
-                neighbors.Add(new Location(i, Y));
-                neighbors.Add(new Location(X, i));
+                Neighbors.Add(new Location(i, Y));
+                Neighbors.Add(new Location(X, i));
             }
 
             int startingXofSquare = (X / 3) * 3;
@@ -63,7 +63,7 @@ namespace Sudoku
 
             for (int i = startingXofSquare; i < startingXofSquare + 3; ++i)
                 for (int j = startingYofSquare; j < startingYofSquare + 3; ++j)
-                    neighbors.Add(new Location(i, j));
+                    Neighbors.Add(new Location(i, j));
         }
 
         public void InitAsPredefined(int? wartosc = null)
@@ -107,10 +107,11 @@ namespace Sudoku
                 return;
 
             CellValue = int.Parse(key[1].ToString());
-            if (!Validator.IsValid(FormGame.gameWindow.Board, (X, Y)))
+            if (Neighbors.Select(loc => FormGame.gameWindow.Board[loc.Y, loc.X]).Any(cell => cell == CellValue))
             {
                 CellValue = 0;
             }
+            FormGame.gameWindow.Board[Y, X] = CellValue;
             e.SuppressKeyPress = true;
         }
     }

@@ -15,9 +15,7 @@ namespace Sudoku
         private readonly List<int> possibleValues = Enumerable.Range(1, 9).ToList();
 
         private readonly ISudokuPrinter printer;
-        private readonly ISudokuCreator sudokuCreator;
         private readonly IUserPickedSaveLoad userPickedSaveLoad;
-        private readonly ISudokuLayoutCreator layoutCreator;
 
         private int[,] board = new int[9, 9];
         private bool[,] isPredefinedCell = new bool[9, 9];
@@ -27,9 +25,9 @@ namespace Sudoku
         public FormGame(ISudokuPrinter printer, ISudokuCreator sudokuCreator, IUserPickedSaveLoad userPickedSaveLoad, ISudokuLayoutCreator layoutCreator, bool createNewGame = true) : this()
         {
             this.printer = printer ?? throw new ArgumentNullException(nameof(printer));
-            this.sudokuCreator = sudokuCreator ?? throw new ArgumentNullException(nameof(sudokuCreator));
             this.userPickedSaveLoad = userPickedSaveLoad ?? throw new ArgumentNullException(nameof(userPickedSaveLoad));
-            this.layoutCreator = layoutCreator ?? throw new ArgumentNullException(nameof(layoutCreator));
+            layoutCreator?.CreateSudokuTable(SudokuTable, tableLayoutPanelBoard);
+            if (sudokuCreator == null) throw new ArgumentNullException(nameof(sudokuCreator));
             if (createNewGame)
                 (board, isPredefinedCell) = sudokuCreator.PopulateBoardWithNewSudoku(SudokuTable);
             else
@@ -40,7 +38,6 @@ namespace Sudoku
         {
             gameWindow = this;
             InitializeComponent();
-            layoutCreator.CreateSudokuTable(SudokuTable, tableLayoutPanelBoard);
         }
 
         private void ButtonSaveState_Click(object sender, EventArgs e)
@@ -144,7 +141,7 @@ namespace Sudoku
                     HashSet<int> neigborValues = new HashSet<int>();
                     List<int> options;
 
-                    foreach (var neighbor in cell.neighbors)
+                    foreach (var neighbor in cell.Neighbors)
                     {
                         var cellValue = SudokuTable[neighbor.Y, neighbor.X].CellValue;
                         if (cellValue != 0)

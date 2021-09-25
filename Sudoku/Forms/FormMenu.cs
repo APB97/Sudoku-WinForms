@@ -14,7 +14,7 @@ namespace Sudoku
 {
     public partial class FormMenu : Form
     {
-        public static FormMenu glowneOknoMenu;//pozwala odwołać się do okna głównego menu
+        public static FormMenu mainMenuWindow;
         public PrivateFontCollection collection;
 
         public FormMenu()
@@ -24,7 +24,7 @@ namespace Sudoku
             collection.AddFontFile(@"Czcionki\VLADIMIR.TTF");
             FontFamily fontFamily = new FontFamily("Vladimir Script", collection);
             labelGameTitle.Font = new Font(fontFamily, 48, FontStyle.Regular);
-            glowneOknoMenu = this;
+            mainMenuWindow = this;
         }
 
         private void buttonGraj_Click(object sender, EventArgs e)

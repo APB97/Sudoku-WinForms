@@ -20,7 +20,7 @@ namespace Sudoku
         private void FormOpcje_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
-                FormMenu.glowneOknoMenu.Show();
+                FormMenu.mainMenuWindow.Show();
             else if (e.CloseReason != CloseReason.ApplicationExitCall)
                 Application.Exit();
         }

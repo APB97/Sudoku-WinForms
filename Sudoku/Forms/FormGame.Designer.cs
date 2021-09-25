@@ -389,7 +389,7 @@
             this.Name = "FormGame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sudoku - gra";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form2_FormClosed);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormGame_FormClosed);
             this.panelSudoku.ResumeLayout(false);
             this.panelSudoku.PerformLayout();
             this.tableLayoutPanelPlansza.ResumeLayout(false);

@@ -73,7 +73,6 @@
     <Compile Include="GameState\IVisualCell.cs" />
     <Compile Include="Helpers\SudokuConstants.cs" />
     <Compile Include="Helpers\SudokuHelper.cs" />
-    <Compile Include="Helpers\SwapHelper.cs" />
     <Compile Include="Klasy\Location.cs" />
     <Compile Include="Klasy\WarningBox.cs" />
     <Compile Include="Core\Painter.cs" />

@@ -97,7 +97,7 @@
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(246, 26);
             this.buttonExit.TabIndex = 3;
-            this.buttonExit.Text = "Wyjście";
+            this.buttonExit.Text = "Exit";
             this.buttonExit.UseVisualStyleBackColor = false;
             this.buttonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
@@ -111,7 +111,7 @@
             this.buttonOptions.Name = "buttonOptions";
             this.buttonOptions.Size = new System.Drawing.Size(246, 26);
             this.buttonOptions.TabIndex = 2;
-            this.buttonOptions.Text = "Opcje";
+            this.buttonOptions.Text = "Options";
             this.buttonOptions.UseVisualStyleBackColor = false;
             this.buttonOptions.Click += new System.EventHandler(this.ButtonOptions_Click);
             // 
@@ -125,7 +125,7 @@
             this.buttonLoad.Name = "buttonLoad";
             this.buttonLoad.Size = new System.Drawing.Size(246, 26);
             this.buttonLoad.TabIndex = 1;
-            this.buttonLoad.Text = "Wczytaj";
+            this.buttonLoad.Text = "Load";
             this.buttonLoad.UseVisualStyleBackColor = false;
             this.buttonLoad.Click += new System.EventHandler(this.ButtonLoad_Click);
             // 
@@ -139,7 +139,7 @@
             this.buttonPlay.Name = "buttonPlay";
             this.buttonPlay.Size = new System.Drawing.Size(246, 26);
             this.buttonPlay.TabIndex = 0;
-            this.buttonPlay.Text = "Graj!";
+            this.buttonPlay.Text = "Play!";
             this.buttonPlay.UseVisualStyleBackColor = false;
             this.buttonPlay.Click += new System.EventHandler(this.ButtonPlay_Click);
             // 
@@ -165,7 +165,7 @@
             this.MaximizeBox = false;
             this.Name = "FormMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sudoku - menu główne";
+            this.Text = "Sudoku - menu";
             this.panelMainMenu.ResumeLayout(false);
             this.tableLayoutPanelMainMenu.ResumeLayout(false);
             this.tableLayoutPanelPrzyciskiMainMenu.ResumeLayout(false);

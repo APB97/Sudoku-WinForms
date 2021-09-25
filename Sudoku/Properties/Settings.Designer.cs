@@ -25,42 +25,6 @@ namespace Sudoku.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Window")]
-        public global::System.Drawing.Color WindowColor {
-            get {
-                return ((global::System.Drawing.Color)(this["WindowColor"]));
-            }
-            set {
-                this["WindowColor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Control")]
-        public global::System.Drawing.Color ButtonColor {
-            get {
-                return ((global::System.Drawing.Color)(this["ButtonColor"]));
-            }
-            set {
-                this["ButtonColor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ControlText")]
-        public global::System.Drawing.Color ButtonTextColor {
-            get {
-                return ((global::System.Drawing.Color)(this["ButtonTextColor"]));
-            }
-            set {
-                this["ButtonTextColor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Średnia")]
         public string Difficulty {
             get {

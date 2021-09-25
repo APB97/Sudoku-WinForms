@@ -35,7 +35,6 @@
             this.buttonPrint = new System.Windows.Forms.Button();
             this.labelRemainingSupports = new System.Windows.Forms.Label();
             this.labelDostepne = new System.Windows.Forms.Label();
-            this.buttonSupportMe = new System.Windows.Forms.Button();
             this.buttonSolve = new System.Windows.Forms.Button();
             this.buttonBackToMenu = new System.Windows.Forms.Button();
             this.buttonLoadState = new System.Windows.Forms.Button();
@@ -51,6 +50,7 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.openSudokuDialog = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.buttonSupportMe = new System.Windows.Forms.Button();
             this.panelSudoku.SuspendLayout();
             this.tableLayoutPanelPlansza.SuspendLayout();
             this.SuspendLayout();
@@ -121,20 +121,6 @@
             this.labelDostepne.Size = new System.Drawing.Size(56, 13);
             this.labelDostepne.TabIndex = 7;
             this.labelDostepne.Text = "Dostępne:";
-            // 
-            // buttonSupportMe
-            // 
-            this.buttonSupportMe.BackColor = global::Sudoku.Properties.Settings.Default.ButtonColor;
-            this.buttonSupportMe.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonSupportMe.ForeColor = global::Sudoku.Properties.Settings.Default.ButtonTextColor;
-            this.buttonSupportMe.Location = new System.Drawing.Point(294, 435);
-            this.buttonSupportMe.Name = "buttonSupportMe";
-            this.buttonSupportMe.Size = new System.Drawing.Size(65, 23);
-            this.buttonSupportMe.TabIndex = 5;
-            this.buttonSupportMe.Text = "Pomóż mi!";
-            this.toolTip1.SetToolTip(this.buttonSupportMe, "Uzupełnia jedno pole w Sudoku.");
-            this.buttonSupportMe.UseVisualStyleBackColor = false;
-            this.buttonSupportMe.Click += new System.EventHandler(this.ButtonSupportMe_Click);
             // 
             // buttonSolve
             // 
@@ -375,6 +361,20 @@
             this.toolTip1.AutoPopDelay = 10000;
             this.toolTip1.InitialDelay = 500;
             this.toolTip1.ReshowDelay = 100;
+            // 
+            // buttonSupportMe
+            // 
+            this.buttonSupportMe.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonSupportMe.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonSupportMe.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonSupportMe.Location = new System.Drawing.Point(294, 435);
+            this.buttonSupportMe.Name = "buttonSupportMe";
+            this.buttonSupportMe.Size = new System.Drawing.Size(65, 23);
+            this.buttonSupportMe.TabIndex = 5;
+            this.buttonSupportMe.Text = "Pomóż mi!";
+            this.toolTip1.SetToolTip(this.buttonSupportMe, "Uzupełnia jedno pole w Sudoku.");
+            this.buttonSupportMe.UseVisualStyleBackColor = false;
+            this.buttonSupportMe.Click += new System.EventHandler(this.ButtonSupportMe_Click);
             // 
             // FormGame
             // 

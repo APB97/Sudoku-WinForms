@@ -2,15 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Sudoku.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="WindowColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Window</Value>
-    </Setting>
-    <Setting Name="ButtonColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Control</Value>
-    </Setting>
-    <Setting Name="ButtonTextColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">ControlText</Value>
-    </Setting>
     <Setting Name="Difficulty" Type="System.String" Scope="User">
       <Value Profile="(Default)">Średnia</Value>
     </Setting>

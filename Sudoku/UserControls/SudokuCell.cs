@@ -12,11 +12,7 @@ namespace Sudoku
 
         public int Y { get; set; }
 
-        public string CellContent
-        {
-            get { return textBox.Text; }
-            set { textBox.Text = value; }
-        }
+        public string CellContent => textBox.Text;
 
         public int CellValue
         {
@@ -52,18 +48,36 @@ namespace Sudoku
 
         private void AddNeighbors()
         {
+            AddHorizontalNeighbors();
+            AddVerticalNeighbors();
+            AddNeighborsFromSquare(X / 3 * 3, Y / 3 * 3);
+        }
+
+        private void AddVerticalNeighbors()
+        {
+            for (int i = 0; i < 9; ++i)
+            {
+                Neighbors.Add(new Location(X, i));
+            }
+        }
+
+        private void AddHorizontalNeighbors()
+        {
             for (int i = 0; i < 9; ++i)
             {
                 Neighbors.Add(new Location(i, Y));
-                Neighbors.Add(new Location(X, i));
             }
+        }
 
-            int startingXofSquare = (X / 3) * 3;
-            int startingYofSquare = (Y / 3) * 3;
-
+        private void AddNeighborsFromSquare(int startingXofSquare, int startingYofSquare)
+        {
             for (int x = startingXofSquare; x < startingXofSquare + 3; ++x)
+            {
                 for (int y = startingYofSquare; y < startingYofSquare + 3; ++y)
+                {
                     Neighbors.Add(new Location(x, y));
+                }
+            }
         }
 
         public void InitAsPredefined(int wartosc)
@@ -72,14 +86,6 @@ namespace Sudoku
             textBox.Font = new Font(textBox.Font, FontStyle.Bold);
             CellValue = wartosc;
             textBox.ReadOnly = true;
-        }
-
-        public void CleanCell(string tekst = "0")
-        {
-            CellValue = int.Parse(tekst);
-            textBox.ReadOnly = false;
-            textBox.ForeColor = Color.DimGray;
-            textBox.Font = new Font(textBox.Font, FontStyle.Regular);
         }
 
         private void TextBox_TextChanged(object sender, EventArgs e)

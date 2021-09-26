@@ -5,10 +5,8 @@ using System.Windows.Forms;
 
 namespace Sudoku
 {
-    public partial class FormGame : Form
+    public partial class FormGame : Form, IBoard
     {
-        public static FormGame gameWindow;
-
         internal SudokuCell[,] SudokuTable = new SudokuCell[9, 9];
         private readonly List<int> possibleValues = Enumerable.Range(1, 9).ToList();
 
@@ -26,6 +24,7 @@ namespace Sudoku
             winFormsBoardSolver = new WinFormsSolveBoard();
             this.printer = printer ?? throw new ArgumentNullException(nameof(printer));
             this.userPickedSaveLoad = userPickedSaveLoad ?? throw new ArgumentNullException(nameof(userPickedSaveLoad));
+            layoutCreator.Board = this;
             layoutCreator?.CreateSudokuTable(SudokuTable, tableLayoutPanelBoard);
             if (sudokuCreator == null) throw new ArgumentNullException(nameof(sudokuCreator));
             if (createNewGame)
@@ -36,7 +35,6 @@ namespace Sudoku
 
         public FormGame()
         {
-            gameWindow = this;
             InitializeComponent();
         }
 

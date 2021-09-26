@@ -64,6 +64,7 @@
     <Compile Include="Forms\FormOptions.Designer.cs">
       <DependentUpon>FormOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\IBoard.cs" />
     <Compile Include="Forms\ISudokuCreator.cs" />
     <Compile Include="Forms\ISudokuLayoutCreator.cs" />
     <Compile Include="Forms\ISudokuPrinter.cs" />

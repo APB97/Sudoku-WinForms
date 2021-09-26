@@ -9,6 +9,8 @@ namespace Sudoku
         private readonly int[] HorizontalDisplacement = new int[9] { 0, 1, 2, 0, 1, 2, 0, 1, 2 };
         private readonly int[] VerticalDisplacement = new int[9] { 0, 0, 0, 1, 1, 1, 2, 2, 2 };
 
+        public IBoard Board { get; set; }
+
         public void CreateSudokuTable(SudokuCell[,] sudokuCells, TableLayoutPanel layoutPanel)
         {
             void CellTextBox_KeyPress(object sender, PreviewKeyDownEventArgs args) => TryNavigateToNextCell(sender, args.KeyCode, sudokuCells);
@@ -38,7 +40,7 @@ namespace Sudoku
 
         private void InitSudokuCellInSquare(SudokuCell[,] sudokuCells, TableLayoutPanel currentSquare, int squareId, int cellNumberInSquare, PreviewKeyDownEventHandler TextBoxSudoku_PreviewKeyDown)
         {
-            var pole = new SudokuCell(HorizontalDisplacement[cellNumberInSquare] + HorizontalDisplacement[squareId] * 3, VerticalDisplacement[cellNumberInSquare] + VerticalDisplacement[squareId] * 3);
+            var pole = new SudokuCell(Board, HorizontalDisplacement[cellNumberInSquare] + HorizontalDisplacement[squareId] * 3, VerticalDisplacement[cellNumberInSquare] + VerticalDisplacement[squareId] * 3);
             currentSquare.Controls.Add(pole);
             sudokuCells[VerticalDisplacement[cellNumberInSquare] + VerticalDisplacement[squareId] * 3,
                 HorizontalDisplacement[cellNumberInSquare] + HorizontalDisplacement[squareId] * 3] = pole;

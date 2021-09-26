@@ -8,6 +8,8 @@ namespace Sudoku
 {
     public partial class SudokuCell : UserControl
     {
+        private readonly IBoard board;
+
         public int X { get; set; }
 
         public int Y { get; set; }
@@ -38,9 +40,10 @@ namespace Sudoku
             InitializeComponent();
         }
 
-        public SudokuCell(int x, int y)
+        public SudokuCell(IBoard board, int x, int y)
         {
             InitializeComponent();
+            this.board = board ?? throw new ArgumentNullException(nameof(board));
             X = x;
             Y = y;
             AddNeighbors();
@@ -111,7 +114,7 @@ namespace Sudoku
             {
                 CellValue = 0;
             }
-            FormGame.gameWindow.Board[Y, X] = CellValue;
+            board.Board[Y, X] = CellValue;
             e.SuppressKeyPress = true;
         }
 
@@ -127,7 +130,7 @@ namespace Sudoku
 
         private bool HasInvalidValue()
         {
-            return Neighbors.Select(loc => FormGame.gameWindow.Board[loc.Y, loc.X]).Any(cell => cell == CellValue);
+            return Neighbors.Select(loc => board.Board[loc.Y, loc.X]).Any(cell => cell == CellValue);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SudokuLib.Core;
+using System;
 using System.Windows.Forms;
 
 namespace Sudoku
@@ -15,23 +16,53 @@ namespace Sudoku
 
         private int[,] board = new int[9, 9];
         private bool[,] isPredefinedCell = new bool[9, 9];
+        private int emptyCells;
 
         public int[,] Board => board;
+
+        public int EmptyCells
+        {
+            get => emptyCells;
+            set
+            {
+                emptyCells = value;
+                if (value == 0)
+                {
+                    if (NotUserSolved)
+                    {
+                        MessageBox.Show("Solved via Solver");
+                    }
+                    else if (Validator.IsValidBoard(board))
+                    {
+                        MessageBox.Show("Success");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Board is not in a valid state");
+                    }
+                }
+            }
+        }
+
+        public bool NotUserSolved { get; set; }
 
         public FormGame(Form mainForm, ISudokuPrinter printer, ISudokuCreator sudokuCreator, IUserPickedSaveLoad userPickedSaveLoad, ISudokuLayoutCreator layoutCreator, bool createNewGame = true) : this()
         {
             winFormsBoardSolver = new WinFormsSolveBoard();
             supporter = new SudokuSupporter();
+
             this.mainForm = mainForm ?? throw new ArgumentNullException(nameof(mainForm));
             this.printer = printer ?? throw new ArgumentNullException(nameof(printer));
             this.userPickedSaveLoad = userPickedSaveLoad ?? throw new ArgumentNullException(nameof(userPickedSaveLoad));
+
             layoutCreator.Board = this;
             layoutCreator?.CreateSudokuTable(SudokuTable, tableLayoutPanelBoard);
+
             if (sudokuCreator == null) throw new ArgumentNullException(nameof(sudokuCreator));
             if (createNewGame)
-                (board, isPredefinedCell) = sudokuCreator.PopulateBoardWithNewSudoku(SudokuTable);
+                (board, isPredefinedCell) = sudokuCreator.PopulateBoardWithNewSudoku(this, SudokuTable);
             else
-                (board, isPredefinedCell) = userPickedSaveLoad.LoadFromUserPickedFile(SudokuTable);
+                (board, isPredefinedCell) = userPickedSaveLoad.LoadFromUserPickedFile(this, SudokuTable);
         }
 
         public FormGame()
@@ -46,7 +77,7 @@ namespace Sudoku
 
         private void ButtonLoadState_Click(object sender, EventArgs e)
         {
-            (board, isPredefinedCell) = userPickedSaveLoad.LoadFromUserPickedFile(SudokuTable);
+            (board, isPredefinedCell) = userPickedSaveLoad.LoadFromUserPickedFile(this, SudokuTable);
         }
 
         private void ButtonBackToMenu_Click(object sender, EventArgs e)
@@ -57,7 +88,7 @@ namespace Sudoku
 
         private void ButtonSolve_Click(object sender, EventArgs e)
         {
-            winFormsBoardSolver.Solve(board, isPredefinedCell, SudokuTable);
+            winFormsBoardSolver.Solve(this, board, isPredefinedCell, SudokuTable);
         }
 
         private void FormGame_FormClosed(object sender, FormClosedEventArgs e)
@@ -70,7 +101,7 @@ namespace Sudoku
 
         private void ButtonSupportMe_Click(object sender, EventArgs e)
         {
-            supporter.RequestSupport(SudokuTable);
+            supporter.RequestSupport(this, SudokuTable);
             labelRemainingSupports.Text = supporter.SuppportsRemaining.ToString();
         }
 

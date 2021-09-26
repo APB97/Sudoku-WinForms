@@ -2,6 +2,6 @@
 {
     public interface ISudokuCreator
     {
-        (int[,] board, bool[,] isPredefined) PopulateBoardWithNewSudoku(SudokuCell[,] cells);
+        (int[,] board, bool[,] isPredefined) PopulateBoardWithNewSudoku(IBoard sudokuBoard, SudokuCell[,] cells);
     }
 }

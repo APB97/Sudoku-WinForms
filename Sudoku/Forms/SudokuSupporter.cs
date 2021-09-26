@@ -11,15 +11,15 @@ namespace Sudoku
 
         public int SuppportsRemaining => suppportsRemaining;
 
-        public void RequestSupport(SudokuCell[,] sudokuCells)
+        public void RequestSupport(IBoard board, SudokuCell[,] sudokuCells)
         {
             if (suppportsRemaining > 0)
             {
-                SupportMe(sudokuCells);
+                SupportMe(board, sudokuCells);
             }
         }
 
-        private void SupportMe(SudokuCell[,] sudokuCells)
+        private void SupportMe(IBoard board, SudokuCell[,] sudokuCells)
         {
             foreach (var cell in sudokuCells)
             {
@@ -29,6 +29,10 @@ namespace Sudoku
                     List<int> options = new List<int>(possibleValues.Except(neigborValues));
                     if (options.Count == 1)
                     {
+                        if (cell.CellValue == 0)
+                        {
+                            board.EmptyCells--;
+                        }
                         cell.CellValue = options[0];
                         suppportsRemaining--;
                         return;

@@ -2,7 +2,7 @@
 {
     public interface IUserPickedSaveLoad
     {
-        (int[,] board, bool[,] isPredefinedCell) LoadFromUserPickedFile(SudokuCell[,] cells);
+        (int[,] board, bool[,] isPredefinedCell) LoadFromUserPickedFile(IBoard sudokuBoard, SudokuCell[,] cells);
         void SaveToUserPickedFile(int[,] board, bool[,] isPredefinedCell);
     }
 }

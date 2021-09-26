@@ -5,11 +5,13 @@ namespace Sudoku
 {
     public class WinFormsSolveBoard
     {
-        public void Solve(int[,] board, bool[,] isPredefined, SudokuCell[,] cells)
+        public void Solve(IBoard sudokuBoard, int[,] board, bool[,] isPredefined, SudokuCell[,] cells)
         {
             Solver solver = new Solver { Orderer = new NoOptionOrderer<int>() };
             var solution = solver.Solve(board);
             ShowSolution(solution, isPredefined, cells);
+            sudokuBoard.NotUserSolved = true;
+            sudokuBoard.EmptyCells = 0;
         }
 
         private void ShowSolution(int[,] solution, bool[,] isPredefined, SudokuCell[,] cells)

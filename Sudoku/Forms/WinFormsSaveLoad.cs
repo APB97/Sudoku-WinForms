@@ -28,12 +28,13 @@ namespace Sudoku
             }
         }
 
-        public (int[,] board, bool[,] isPredefinedCell) LoadFromUserPickedFile(SudokuCell[,] cells)
+        public (int[,] board, bool[,] isPredefinedCell) LoadFromUserPickedFile(IBoard sudokuBoard, SudokuCell[,] cells)
         {
             if (openSudokuDialog.ShowDialog() == DialogResult.OK)
             {
                 var (board, isPredefinedCell) = SudokuSaveLoad.Load(openSudokuDialog.FileName);
                 LoadAllCellStates(cells, board, isPredefinedCell);
+                sudokuBoard.EmptyCells = SudokuCreator.CountEmptyCells(board);
                 return (board, isPredefinedCell);
             }
             return default;

@@ -7,11 +7,12 @@ namespace Sudoku
     public class SudokuCreator : ISudokuCreator
     {
 
-        public (int[,] board, bool[,] isPredefined) PopulateBoardWithNewSudoku(SudokuCell[,] cells)
+        public (int[,] board, bool[,] isPredefined) PopulateBoardWithNewSudoku(IBoard sudokuBoard, SudokuCell[,] cells)
         {
             int[,] board = CreateBoard();
             bool[,] isPredefined = CreatePredefinedTable(board);
             UpdateAllVisualCells(cells, board);
+            sudokuBoard.EmptyCells = CountEmptyCells(board);
             return (board, isPredefined);
         }
 
@@ -53,6 +54,22 @@ namespace Sudoku
             {
                 sudokuCell.InitAsPredefined(cellValue);
             }
+        }
+
+        public static int CountEmptyCells(int[,] board)
+        {
+            int count = 0;
+            for (int y = 0; y < 9; y++)
+            {
+                for (int x = 0; x < 9; x++)
+                {
+                    if (board[y,x] == 0)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
         }
     }
 }

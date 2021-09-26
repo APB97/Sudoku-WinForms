@@ -95,7 +95,11 @@ namespace Sudoku
         {
             if (textBox.Text.Length > 0 && IsCharNotANonZeroDigit(textBox.Text[0]))
             {
-                CellValue = 0;
+                if (CellValue != 0)
+                {
+                    CellValue = 0;
+                    board.EmptyCells++;
+                }
             }
         }
 
@@ -109,10 +113,15 @@ namespace Sudoku
             string key = e.KeyCode.ToString();
             if (IsNotADigitKey(key) || IsCharNotANonZeroDigit(key[1]))
                 return;
+            if (CellValue == 0)
+            {
+                board.EmptyCells--;
+            }
             CellValue = int.Parse(key[1].ToString());
             if (HasInvalidValue())
             {
                 CellValue = 0;
+                board.EmptyCells++;
             }
             board.Board[Y, X] = CellValue;
             e.SuppressKeyPress = true;

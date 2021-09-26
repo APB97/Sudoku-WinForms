@@ -14,6 +14,8 @@ Once launched, users will be welcomed with main menu form, which contains four b
 - Options (opens options for user to adjust)
 - Exit (Quits the application)
 
+![main menu](images/MainMenu.png)
+
 Once a game starts, users will see generated board with certain amount of empty cells, along with te following buttons:
 - Save (saves current state of the board)
 - Load (loads previously saved game)
@@ -23,8 +25,12 @@ Once a game starts, users will see generated board with certain amount of empty 
 - Save PNG (saves and opens picture of unsolved sudoku)
 - Print PNG (prints previusly saved picture)
 
+![game](images/Game.png)
+
 Application contains the following Options possible to change:
 - Printed cell size (this is size in pixels of a single sudoku cell)
 - Printed font size (size of the font used to draw digits inside of cells)
 - Printed line size (size of lines between cells)
 - Desired blanks (target blank cells application tries to achieve)
+
+![options](images/Options.png)

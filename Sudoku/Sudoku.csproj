@@ -72,6 +72,7 @@
     <Compile Include="Forms\SudokuCreator.cs" />
     <Compile Include="Forms\WinFormsLayoutCreator.cs" />
     <Compile Include="Forms\WinFormsSaveLoad.cs" />
+    <Compile Include="Forms\WinFormsSolveBoard.cs" />
     <Compile Include="GameState\SudokuCellState.cs" />
     <Compile Include="GameState\SudokuGame.cs" />
     <Compile Include="GameState\SudokuGameRules.cs" />

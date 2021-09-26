@@ -1,6 +1,4 @@
-﻿using SudokuLib.Core;
-using SudokuLib.OptionOrder;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -16,6 +14,7 @@ namespace Sudoku
 
         private readonly ISudokuPrinter printer;
         private readonly IUserPickedSaveLoad userPickedSaveLoad;
+        private readonly WinFormsSolveBoard winFormsBoardSolver;
 
         private int[,] board = new int[9, 9];
         private bool[,] isPredefinedCell = new bool[9, 9];
@@ -24,6 +23,7 @@ namespace Sudoku
 
         public FormGame(ISudokuPrinter printer, ISudokuCreator sudokuCreator, IUserPickedSaveLoad userPickedSaveLoad, ISudokuLayoutCreator layoutCreator, bool createNewGame = true) : this()
         {
+            winFormsBoardSolver = new WinFormsSolveBoard();
             this.printer = printer ?? throw new ArgumentNullException(nameof(printer));
             this.userPickedSaveLoad = userPickedSaveLoad ?? throw new ArgumentNullException(nameof(userPickedSaveLoad));
             layoutCreator?.CreateSudokuTable(SudokuTable, tableLayoutPanelBoard);
@@ -90,28 +90,7 @@ namespace Sudoku
 
         private void ButtonSolve_Click(object sender, EventArgs e)
         {
-            Solver solver = new Solver { Orderer = new NoOptionOrderer<int>() };
-            var solution = solver.Solve(board);
-            ShowSolution(solution);
-        }
-
-        private void ShowSolution(int[,] solution)
-        {
-            for (int y = 0; y < 9; y++)
-            {
-                for (int x = 0; x < 9; x++)
-                {
-                    ShowSolutionAtLocation(solution, x, y);
-                }
-            }
-        }
-
-        private void ShowSolutionAtLocation(int[,] solution, int x, int y)
-        {
-            if (!isPredefinedCell[y, x])
-            {
-                SudokuTable[y, x].CellValue = solution[y, x];
-            }
+            winFormsBoardSolver.Solve(board, isPredefinedCell, SudokuTable);
         }
 
         private void FormGame_FormClosed(object sender, FormClosedEventArgs e)

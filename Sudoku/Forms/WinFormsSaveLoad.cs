@@ -10,8 +10,8 @@ namespace Sudoku
 
         public WinFormsSaveLoad()
         {
-            saveSudokuDialog = new SaveFileDialog();
-            openSudokuDialog = new OpenFileDialog();
+            saveSudokuDialog = new SaveFileDialog() { Filter = "Text files|*.txt|All files|*.*", DefaultExt = "txt" };
+            openSudokuDialog = new OpenFileDialog() { Filter = "Text files|*.txt|All files|*.*", DefaultExt = "txt" };
         }
 
         ~WinFormsSaveLoad()

@@ -50,38 +50,6 @@ namespace Sudoku
             (board, isPredefinedCell) = userPickedSaveLoad.LoadFromUserPickedFile(SudokuTable);
         }
 
-        private void TextBoxSudoku_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            TryNavigateToNextCell(sender, e.KeyCode);
-        }
-
-        private void TryNavigateToNextCell(object sender, Keys keyCode)
-        {
-            var pole = (sender as Control).Parent as SudokuCell;
-            switch (keyCode)
-            {
-                case Keys.Left:
-                    if (pole.X > 0)
-                        pole = SudokuTable[pole.Y, pole.X - 1];
-                    break;
-                case Keys.Right:
-                    if (pole.X < 8)
-                        pole = SudokuTable[pole.Y, pole.X + 1];
-                    break;
-                case Keys.Up:
-                    if (pole.Y > 0)
-                        pole = SudokuTable[pole.Y - 1, pole.X];
-                    break;
-                case Keys.Down:
-                    if (pole.Y < 8)
-                        pole = SudokuTable[pole.Y + 1, pole.X];
-                    break;
-                default:
-                    return;
-            }
-            pole.textBox.Focus();
-        }
-
         private void ButtonBackToMenu_Click(object sender, EventArgs e)
         {
             mainForm.Show();

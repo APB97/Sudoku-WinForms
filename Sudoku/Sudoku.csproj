@@ -71,6 +71,7 @@
     <Compile Include="Forms\IUserPickedSaveLoad.cs" />
     <Compile Include="Forms\PngPrinter.cs" />
     <Compile Include="Forms\SudokuCreator.cs" />
+    <Compile Include="Forms\SudokuSupporter.cs" />
     <Compile Include="Forms\WinFormsLayoutCreator.cs" />
     <Compile Include="Forms\WinFormsSaveLoad.cs" />
     <Compile Include="Forms\WinFormsSolveBoard.cs" />

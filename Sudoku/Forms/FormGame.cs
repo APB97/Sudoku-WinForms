@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Sudoku
@@ -8,11 +6,11 @@ namespace Sudoku
     public partial class FormGame : Form, IBoard
     {
         internal SudokuCell[,] SudokuTable = new SudokuCell[9, 9];
-        private readonly List<int> possibleValues = Enumerable.Range(1, 9).ToList();
 
         private readonly ISudokuPrinter printer;
         private readonly IUserPickedSaveLoad userPickedSaveLoad;
         private readonly WinFormsSolveBoard winFormsBoardSolver;
+        private readonly SudokuSupporter supporter;
         private readonly Form mainForm;
 
         private int[,] board = new int[9, 9];
@@ -23,6 +21,7 @@ namespace Sudoku
         public FormGame(Form mainForm, ISudokuPrinter printer, ISudokuCreator sudokuCreator, IUserPickedSaveLoad userPickedSaveLoad, ISudokuLayoutCreator layoutCreator, bool createNewGame = true) : this()
         {
             winFormsBoardSolver = new WinFormsSolveBoard();
+            supporter = new SudokuSupporter();
             this.mainForm = mainForm ?? throw new ArgumentNullException(nameof(mainForm));
             this.printer = printer ?? throw new ArgumentNullException(nameof(printer));
             this.userPickedSaveLoad = userPickedSaveLoad ?? throw new ArgumentNullException(nameof(userPickedSaveLoad));
@@ -71,38 +70,8 @@ namespace Sudoku
 
         private void ButtonSupportMe_Click(object sender, EventArgs e)
         {
-            int suppportsRemaining = int.Parse(labelRemainingSupports.Text);
-            if (suppportsRemaining >= 1)
-                if (SupportMe())
-                {
-                    suppportsRemaining--;
-                    labelRemainingSupports.Text = suppportsRemaining.ToString();
-                }
-        }
-
-        private bool SupportMe()
-        {
-            foreach (var cell in SudokuTable)
-                if (!cell.textBox.Font.Bold)
-                {
-                    HashSet<int> neigborValues = new HashSet<int>();
-                    List<int> options;
-
-                    foreach (var neighbor in cell.Neighbors)
-                    {
-                        var cellValue = SudokuTable[neighbor.Y, neighbor.X].CellValue;
-                        if (cellValue != 0)
-                            neigborValues.Add(cellValue);
-                    }
-
-                    options = new List<int>(possibleValues.Except(neigborValues));
-                    if (options.Count == 1)
-                    {
-                        cell.CellValue = options[0];
-                        return true;
-                    }
-                }
-            return false;
+            supporter.RequestSupport(SudokuTable);
+            labelRemainingSupports.Text = supporter.SuppportsRemaining.ToString();
         }
 
         private void ButtonSavePng_Click(object sender, EventArgs e)

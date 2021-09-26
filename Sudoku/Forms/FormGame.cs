@@ -31,10 +31,13 @@ namespace Sudoku
                     if (NotUserSolved)
                     {
                         MessageBox.Show("Solved via Solver");
+                        BackToMainMenu();
+
                     }
                     else if (Validator.IsValidBoard(board))
                     {
                         MessageBox.Show("Success");
+                        BackToMainMenu();
                     }
                     else
                     {
@@ -81,6 +84,11 @@ namespace Sudoku
         }
 
         private void ButtonBackToMenu_Click(object sender, EventArgs e)
+        {
+            BackToMainMenu();
+        }
+
+        private void BackToMainMenu()
         {
             mainForm.Show();
             Close();

@@ -5,6 +5,13 @@ namespace Sudoku
 {
     public partial class FormOptions : Form
     {
+        private readonly Form mainForm;
+
+        public FormOptions(Form mainForm) : this()
+        {
+            this.mainForm = mainForm ?? throw new System.ArgumentNullException(nameof(mainForm));
+        }
+
         public FormOptions()
         {
             InitializeComponent();
@@ -18,7 +25,7 @@ namespace Sudoku
         {
             Settings.Default.Save();
             if (e.CloseReason == CloseReason.UserClosing)
-                FormMenu.mainMenuWindow.Show();
+                mainForm.Show();
             else if (e.CloseReason != CloseReason.ApplicationExitCall)
                 Application.Exit();
         }

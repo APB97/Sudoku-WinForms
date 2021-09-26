@@ -13,15 +13,17 @@ namespace Sudoku
         private readonly ISudokuPrinter printer;
         private readonly IUserPickedSaveLoad userPickedSaveLoad;
         private readonly WinFormsSolveBoard winFormsBoardSolver;
+        private readonly Form mainForm;
 
         private int[,] board = new int[9, 9];
         private bool[,] isPredefinedCell = new bool[9, 9];
 
         public int[,] Board => board;
 
-        public FormGame(ISudokuPrinter printer, ISudokuCreator sudokuCreator, IUserPickedSaveLoad userPickedSaveLoad, ISudokuLayoutCreator layoutCreator, bool createNewGame = true) : this()
+        public FormGame(Form mainForm, ISudokuPrinter printer, ISudokuCreator sudokuCreator, IUserPickedSaveLoad userPickedSaveLoad, ISudokuLayoutCreator layoutCreator, bool createNewGame = true) : this()
         {
             winFormsBoardSolver = new WinFormsSolveBoard();
+            this.mainForm = mainForm ?? throw new ArgumentNullException(nameof(mainForm));
             this.printer = printer ?? throw new ArgumentNullException(nameof(printer));
             this.userPickedSaveLoad = userPickedSaveLoad ?? throw new ArgumentNullException(nameof(userPickedSaveLoad));
             layoutCreator.Board = this;
@@ -82,7 +84,7 @@ namespace Sudoku
 
         private void ButtonBackToMenu_Click(object sender, EventArgs e)
         {
-            FormMenu.mainMenuWindow.Show();
+            mainForm.Show();
             Close();
         }
 
@@ -94,7 +96,7 @@ namespace Sudoku
         private void FormGame_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
-                FormMenu.mainMenuWindow.Show();
+                mainForm.Show();
             else if (e.CloseReason != CloseReason.ApplicationExitCall)
                 Application.Exit();
         }

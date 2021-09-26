@@ -7,7 +7,6 @@ namespace Sudoku
 {
     public partial class FormMenu : Form
     {
-        public static FormMenu mainMenuWindow;
         private readonly ISudokuPrinter printer;
         private readonly ISudokuCreator sudokuCreator;
         private readonly IUserPickedSaveLoad userSaveLoad;
@@ -20,7 +19,6 @@ namespace Sudoku
             collection.AddFontFile(@"Czcionki\VLADIMIR.TTF");
             FontFamily fontFamily = new FontFamily("Vladimir Script", collection);
             labelGameTitle.Font = new Font(fontFamily, 48, FontStyle.Regular);
-            mainMenuWindow = this;
             this.printer = printer;
             this.sudokuCreator = sudokuCreator;
             this.userSaveLoad = userSaveLoad;
@@ -29,7 +27,7 @@ namespace Sudoku
 
         private void ButtonPlay_Click(object sender, EventArgs e)
         {
-            FormGame game = new FormGame(printer, sudokuCreator, userSaveLoad, layoutCreator);
+            FormGame game = new FormGame(this, printer, sudokuCreator, userSaveLoad, layoutCreator);
             game.Show();
             Hide();
         }
@@ -41,14 +39,14 @@ namespace Sudoku
 
         private void ButtonLoad_Click(object sender, EventArgs e)
         {
-            FormGame loadedGame = new FormGame(printer, sudokuCreator, userSaveLoad, layoutCreator, false);
+            FormGame loadedGame = new FormGame(this, printer, sudokuCreator, userSaveLoad, layoutCreator, false);
             loadedGame.Show();
             Hide();
         }
 
         private void ButtonOptions_Click(object sender, EventArgs e)
         {
-            FormOptions options = new FormOptions();
+            FormOptions options = new FormOptions(this);
             options.Show();
             Hide();
         }

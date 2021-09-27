@@ -1,12 +1,12 @@
 ﻿using Sudoku.Properties;
 using SudokuLib.Core;
 using SudokuLib.OptionOrder;
+using static SudokuLib.Helpers.SudokuConstants;
 
 namespace Sudoku
 {
     public class SudokuCreator : ISudokuCreator
     {
-
         public (int[,] board, bool[,] isPredefined) PopulateBoardWithNewSudoku(IBoard sudokuBoard, SudokuCell[,] cells)
         {
             int[,] board = CreateBoard();
@@ -18,7 +18,7 @@ namespace Sudoku
 
         private int[,] CreateBoard()
         {
-            int[,] emptyBoard = new int[9, 9];
+            int[,] emptyBoard = new int[SudokuSize, SudokuSize];
             Solver solver = new Solver() { Orderer = new OptionRandomizedOrderer<int>() };
             int[,] solvedBoard = solver.Solve(emptyBoard);
             return SudokuBlanker.MakeBlanks(solvedBoard, Settings.Default.DesiredBlanks);
@@ -26,12 +26,12 @@ namespace Sudoku
 
         private bool[,] CreatePredefinedTable(int[,] board)
         {
-            bool[,] isPredefined = new bool[9, 9];
-            for (int y = 0; y < 9; y++)
+            bool[,] isPredefined = new bool[SudokuSize, SudokuSize];
+            for (int y = 0; y < SudokuSize; y++)
             {
-                for (int x = 0; x < 9; x++)
+                for (int x = 0; x < SudokuSize; x++)
                 {
-                    isPredefined[y, x] = board[y, x] != 0;
+                    isPredefined[y, x] = board[y, x] != EmptyCellValue;
                 }
             }
             return isPredefined;
@@ -39,18 +39,18 @@ namespace Sudoku
 
         private void UpdateAllVisualCells(SudokuCell[,] cells, int[,] board)
         {
-            for (int y = 0; y < 9; y++)
+            for (int y = 0; y < SudokuSize; y++)
             {
-                for (int x = 0; x < 9; x++)
+                for (int x = 0; x < SudokuSize; x++)
                 {
-                    InitializeCellStateIfPredifinedAtLocation(cells[y, x], board[y, x]);
+                    InitializeCellStateIfNotEmpty(cells[y, x], board[y, x]);
                 }
             }
         }
 
-        private void InitializeCellStateIfPredifinedAtLocation(SudokuCell sudokuCell, int cellValue)
+        private void InitializeCellStateIfNotEmpty(SudokuCell sudokuCell, int cellValue)
         {
-            if (cellValue != 0)
+            if (cellValue != EmptyCellValue)
             {
                 sudokuCell.InitAsPredefined(cellValue);
             }
@@ -59,11 +59,11 @@ namespace Sudoku
         public static int CountEmptyCells(int[,] board)
         {
             int count = 0;
-            for (int y = 0; y < 9; y++)
+            for (int y = 0; y < SudokuSize; y++)
             {
-                for (int x = 0; x < 9; x++)
+                for (int x = 0; x < SudokuSize; x++)
                 {
-                    if (board[y,x] == 0)
+                    if (board[y,x] == EmptyCellValue)
                     {
                         count++;
                     }

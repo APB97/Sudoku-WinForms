@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using static SudokuLib.Helpers.SudokuConstants;
 
 namespace Sudoku
 {
@@ -14,7 +15,7 @@ namespace Sudoku
         public void CreateSudokuTable(SudokuCell[,] sudokuCells, TableLayoutPanel layoutPanel)
         {
             void CellTextBox_KeyPress(object sender, PreviewKeyDownEventArgs args) => TryNavigateToNextCell(sender, args.KeyCode, sudokuCells);
-            for (int squareId = 0; squareId < 9; ++squareId)
+            for (int squareId = 0; squareId < SudokuSize; ++squareId)
             {
                 Control[] foundTableLayoutMatches = layoutPanel.Controls.Find("tableLayoutPanel" + squareId, false);
                 PopulateSquareIfIsTableLayoutPanel(sudokuCells, foundTableLayoutMatches, squareId, CellTextBox_KeyPress);
@@ -32,7 +33,7 @@ namespace Sudoku
 
         private void InitAllCellsInSquare(SudokuCell[,] sudokuCells, TableLayoutPanel currentSquare, int squareId, PreviewKeyDownEventHandler previewKeyDownHandler)
         {
-            for (int cellNumberInSquare = 0; cellNumberInSquare < 9; ++cellNumberInSquare)
+            for (int cellNumberInSquare = 0; cellNumberInSquare < SudokuSize; ++cellNumberInSquare)
             {
                 InitSudokuCellInSquare(sudokuCells, currentSquare, squareId, cellNumberInSquare, previewKeyDownHandler);
             }

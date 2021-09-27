@@ -1,5 +1,6 @@
 ﻿using SudokuLib.Core;
 using System.Windows.Forms;
+using static SudokuLib.Helpers.SudokuConstants;
 
 namespace Sudoku
 {
@@ -42,9 +43,9 @@ namespace Sudoku
 
         private void LoadAllCellStates(SudokuCell[,] cells, int[,] board, bool[,] isPredefinedCell)
         {
-            for (int y = 0; y < 9; y++)
+            for (int y = 0; y < SudokuSize; y++)
             {
-                for (int x = 0; x < 9; x++)
+                for (int x = 0; x < SudokuSize; x++)
                 {
                     InitializeCellStateToLoadedValue(cells[y, x], board[y, x], isPredefinedCell[y, x]);
                 }

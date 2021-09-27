@@ -1,5 +1,6 @@
 ﻿using SudokuLib.Core;
 using SudokuLib.OptionOrder;
+using static SudokuLib.Helpers.SudokuConstants;
 
 namespace Sudoku
 {
@@ -16,9 +17,9 @@ namespace Sudoku
 
         private void ShowSolution(int[,] solution, bool[,] isPredefined, SudokuCell[,] cells)
         {
-            for (int y = 0; y < 9; y++)
+            for (int y = 0; y < SudokuSize; y++)
             {
-                for (int x = 0; x < 9; x++)
+                for (int x = 0; x < SudokuSize; x++)
                 {
                     ShowSolutionAtLocation(cells[y, x], isPredefined[y, x], solution[y, x]);
                 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using static SudokuLib.Helpers.SudokuConstants;
 
 namespace Sudoku
 {
@@ -29,7 +30,7 @@ namespace Sudoku
                     List<int> options = new List<int>(possibleValues.Except(neigborValues));
                     if (options.Count == 1)
                     {
-                        if (cell.CellValue == 0)
+                        if (cell.CellValue == EmptyCellValue)
                         {
                             board.EmptyCells--;
                         }
@@ -59,7 +60,7 @@ namespace Sudoku
         private static void AddValueIfNonZero(SudokuCell[,] sudokuCells, HashSet<int> neigborValues, Location neighbor)
         {
             var cellValue = sudokuCells[neighbor.Y, neighbor.X].CellValue;
-            if (cellValue != 0)
+            if (cellValue != EmptyCellValue)
             {
                 neigborValues.Add(cellValue);
             }

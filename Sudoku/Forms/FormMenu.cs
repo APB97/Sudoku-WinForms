@@ -16,7 +16,7 @@ namespace Sudoku
         {
             InitializeComponent();
             var collection = new PrivateFontCollection();
-            collection.AddFontFile(@"Czcionki\VLADIMIR.TTF");
+            collection.AddFontFile(@"Fonts\VLADIMIR.TTF");
             FontFamily fontFamily = new FontFamily("Vladimir Script", collection);
             labelGameTitle.Font = new Font(fontFamily, 48, FontStyle.Regular);
             this.printer = printer;

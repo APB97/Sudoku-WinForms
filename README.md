@@ -16,7 +16,7 @@ Once launched, users will be welcomed with main menu form, which contains four b
 
 ![main menu](images/MainMenu.png)
 
-Once a game starts, users will see generated board with certain amount of empty cells, along with te following buttons:
+Once a game starts, users will see generated board with certain amount of empty cells, along with the following buttons:
 - Save (saves current state of the board)
 - Load (loads previously saved game)
 - Solve immediately (solves current board using a solver)

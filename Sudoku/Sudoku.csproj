@@ -103,13 +103,6 @@
     <Compile Include="Forms\WinFormsLayoutCreator.cs" />
     <Compile Include="Forms\WinFormsSaveLoad.cs" />
     <Compile Include="Forms\WinFormsSolveBoard.cs" />
-    <Compile Include="GameState\SudokuCellState.cs" />
-    <Compile Include="GameState\SudokuGame.cs" />
-    <Compile Include="GameState\SudokuGameRules.cs" />
-    <Compile Include="GameState\SudokuGameSaver.cs" />
-    <Compile Include="GameState\SudokuSaveState.cs" />
-    <Compile Include="GameState\SudokuValidator.cs" />
-    <Compile Include="GameState\IVisualCell.cs" />
     <Compile Include="Helpers\SudokuConstants.cs" />
     <Compile Include="Helpers\SudokuHelper.cs" />
     <Compile Include="Klasy\Location.cs" />

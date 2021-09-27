@@ -12,7 +12,7 @@ namespace Sudoku
 
         public IBoard Board { get; set; }
 
-        public void CreateSudokuTable(SudokuCell[,] sudokuCells, TableLayoutPanel layoutPanel)
+        public void CreateSudokuTable(ICell[,] sudokuCells, TableLayoutPanel layoutPanel)
         {
             void CellTextBox_KeyPress(object sender, PreviewKeyDownEventArgs args) => TryNavigateToNextCell(sender, args.KeyCode, sudokuCells);
             for (int squareId = 0; squareId < SudokuSize; ++squareId)
@@ -22,7 +22,7 @@ namespace Sudoku
             }
         }
 
-        private void PopulateSquareIfIsTableLayoutPanel(SudokuCell[,] sudokuCells, Control[] foundTableLayoutMatches, int squareId, PreviewKeyDownEventHandler previewKeyDownHandler)
+        private void PopulateSquareIfIsTableLayoutPanel(ICell[,] sudokuCells, Control[] foundTableLayoutMatches, int squareId, PreviewKeyDownEventHandler previewKeyDownHandler)
         {
             if (foundTableLayoutMatches.FirstOrDefault() is TableLayoutPanel currentSquare)
             {
@@ -31,7 +31,7 @@ namespace Sudoku
             }
         }
 
-        private void InitAllCellsInSquare(SudokuCell[,] sudokuCells, TableLayoutPanel currentSquare, int squareId, PreviewKeyDownEventHandler previewKeyDownHandler)
+        private void InitAllCellsInSquare(ICell[,] sudokuCells, TableLayoutPanel currentSquare, int squareId, PreviewKeyDownEventHandler previewKeyDownHandler)
         {
             for (int cellNumberInSquare = 0; cellNumberInSquare < SudokuSize; ++cellNumberInSquare)
             {
@@ -39,7 +39,7 @@ namespace Sudoku
             }
         }
 
-        private void InitSudokuCellInSquare(SudokuCell[,] sudokuCells, TableLayoutPanel currentSquare, int squareId, int cellNumberInSquare, PreviewKeyDownEventHandler TextBoxSudoku_PreviewKeyDown)
+        private void InitSudokuCellInSquare(ICell[,] sudokuCells, TableLayoutPanel currentSquare, int squareId, int cellNumberInSquare, PreviewKeyDownEventHandler TextBoxSudoku_PreviewKeyDown)
         {
             var pole = new SudokuCell(Board, HorizontalDisplacement[cellNumberInSquare] + HorizontalDisplacement[squareId] * 3, VerticalDisplacement[cellNumberInSquare] + VerticalDisplacement[squareId] * 3);
             currentSquare.Controls.Add(pole);
@@ -49,9 +49,9 @@ namespace Sudoku
             pole.textBox.ForeColor = Color.DimGray;
         }
 
-        private void TryNavigateToNextCell(object sender, Keys keyCode, SudokuCell[,] table)
+        private void TryNavigateToNextCell(object sender, Keys keyCode, ICell[,] table)
         {
-            var pole = (sender as Control).Parent as SudokuCell;
+            var pole = (sender as Control).Parent as ICell;
             switch (keyCode)
             {
                 case Keys.Left:
@@ -73,7 +73,7 @@ namespace Sudoku
                 default:
                     return;
             }
-            pole.textBox.Focus();
+            pole.FocusTextbox();
         }
     }
 }

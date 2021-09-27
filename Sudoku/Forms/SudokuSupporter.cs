@@ -12,7 +12,7 @@ namespace Sudoku
 
         public int SuppportsRemaining => suppportsRemaining;
 
-        public void RequestSupport(IBoard board, SudokuCell[,] sudokuCells)
+        public void RequestSupport(IBoard board, ICell[,] sudokuCells)
         {
             if (suppportsRemaining > 0)
             {
@@ -20,11 +20,11 @@ namespace Sudoku
             }
         }
 
-        private void SupportMe(IBoard board, SudokuCell[,] sudokuCells)
+        private void SupportMe(IBoard board, ICell[,] sudokuCells)
         {
             foreach (var cell in sudokuCells)
             {
-                if (!cell.textBox.ReadOnly)
+                if (!cell.ReadOnly)
                 {
                     HashSet<int> neigborValues = FindAllNeighborValues(sudokuCells, cell);
                     List<int> options = new List<int>(possibleValues.Except(neigborValues));
@@ -42,14 +42,14 @@ namespace Sudoku
             }
         }
 
-        private static HashSet<int> FindAllNeighborValues(SudokuCell[,] sudokuCells, SudokuCell cell)
+        private static HashSet<int> FindAllNeighborValues(ICell[,] sudokuCells, ICell cell)
         {
             HashSet<int> neigborValues = new HashSet<int>();
             AddNonZeroNeighborValues(sudokuCells, cell, neigborValues);
             return neigborValues;
         }
 
-        private static void AddNonZeroNeighborValues(SudokuCell[,] sudokuCells, SudokuCell cell, HashSet<int> neigborValues)
+        private static void AddNonZeroNeighborValues(ICell[,] sudokuCells, ICell cell, HashSet<int> neigborValues)
         {
             foreach (var neighbor in cell.Neighbors)
             {
@@ -57,7 +57,7 @@ namespace Sudoku
             }
         }
 
-        private static void AddValueIfNonZero(SudokuCell[,] sudokuCells, HashSet<int> neigborValues, Location neighbor)
+        private static void AddValueIfNonZero(ICell[,] sudokuCells, HashSet<int> neigborValues, Location neighbor)
         {
             var cellValue = sudokuCells[neighbor.Y, neighbor.X].CellValue;
             if (cellValue != EmptyCellValue)

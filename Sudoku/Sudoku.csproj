@@ -105,6 +105,7 @@
     <Compile Include="Forms\WinFormsSolveBoard.cs" />
     <Compile Include="Helpers\SudokuConstants.cs" />
     <Compile Include="Helpers\SudokuHelper.cs" />
+    <Compile Include="UserControls\ICell.cs" />
     <Compile Include="Utility\Location.cs" />
     <Compile Include="Utility\WarningBox.cs" />
     <Compile Include="Core\Painter.cs" />

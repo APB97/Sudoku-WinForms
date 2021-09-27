@@ -7,7 +7,7 @@ namespace Sudoku
 {
     public class SudokuCreator : ISudokuCreator
     {
-        public (int[,] board, bool[,] isPredefined) PopulateBoardWithNewSudoku(IBoard sudokuBoard, SudokuCell[,] cells)
+        public (int[,] board, bool[,] isPredefined) PopulateBoardWithNewSudoku(IBoard sudokuBoard, ICell[,] cells)
         {
             int[,] board = CreateBoard();
             bool[,] isPredefined = CreatePredefinedTable(board);
@@ -37,7 +37,7 @@ namespace Sudoku
             return isPredefined;
         }
 
-        private void UpdateAllVisualCells(SudokuCell[,] cells, int[,] board)
+        private void UpdateAllVisualCells(ICell[,] cells, int[,] board)
         {
             for (int y = 0; y < SudokuSize; y++)
             {
@@ -48,7 +48,7 @@ namespace Sudoku
             }
         }
 
-        private void InitializeCellStateIfNotEmpty(SudokuCell sudokuCell, int cellValue)
+        private void InitializeCellStateIfNotEmpty(ICell sudokuCell, int cellValue)
         {
             if (cellValue != EmptyCellValue)
             {

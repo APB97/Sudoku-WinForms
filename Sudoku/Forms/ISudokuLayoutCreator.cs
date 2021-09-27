@@ -6,6 +6,6 @@ namespace Sudoku
     {
         IBoard Board { get; set; }
 
-        void CreateSudokuTable(SudokuCell[,] sudokuCells, TableLayoutPanel layoutPanel);
+        void CreateSudokuTable(ICell[,] sudokuCells, TableLayoutPanel layoutPanel);
     }
 }

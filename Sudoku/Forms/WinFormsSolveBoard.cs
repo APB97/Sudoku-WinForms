@@ -6,7 +6,7 @@ namespace Sudoku
 {
     public class WinFormsSolveBoard
     {
-        public void Solve(IBoard sudokuBoard, int[,] board, bool[,] isPredefined, SudokuCell[,] cells)
+        public void Solve(IBoard sudokuBoard, int[,] board, bool[,] isPredefined, ICell[,] cells)
         {
             Solver solver = new Solver { Orderer = new NoOptionOrderer<int>() };
             var solution = solver.Solve(board);
@@ -15,7 +15,7 @@ namespace Sudoku
             sudokuBoard.EmptyCells = 0;
         }
 
-        private void ShowSolution(int[,] solution, bool[,] isPredefined, SudokuCell[,] cells)
+        private void ShowSolution(int[,] solution, bool[,] isPredefined, ICell[,] cells)
         {
             for (int y = 0; y < SudokuSize; y++)
             {
@@ -26,7 +26,7 @@ namespace Sudoku
             }
         }
 
-        private void ShowSolutionAtLocation(SudokuCell sudokuCell, bool predefined, int value)
+        private void ShowSolutionAtLocation(ICell sudokuCell, bool predefined, int value)
         {
             if (!predefined)
             {

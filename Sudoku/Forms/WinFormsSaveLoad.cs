@@ -29,7 +29,7 @@ namespace Sudoku
             }
         }
 
-        public (int[,] board, bool[,] isPredefinedCell) LoadFromUserPickedFile(IBoard sudokuBoard, SudokuCell[,] cells)
+        public (int[,] board, bool[,] isPredefinedCell) LoadFromUserPickedFile(IBoard sudokuBoard, ICell[,] cells)
         {
             if (openSudokuDialog.ShowDialog() == DialogResult.OK)
             {
@@ -41,7 +41,7 @@ namespace Sudoku
             return default;
         }
 
-        private void LoadAllCellStates(SudokuCell[,] cells, int[,] board, bool[,] isPredefinedCell)
+        private void LoadAllCellStates(ICell[,] cells, int[,] board, bool[,] isPredefinedCell)
         {
             for (int y = 0; y < SudokuSize; y++)
             {
@@ -52,7 +52,7 @@ namespace Sudoku
             }
         }
 
-        private void InitializeCellStateToLoadedValue(SudokuCell cell, int value, bool isPredefined)
+        private void InitializeCellStateToLoadedValue(ICell cell, int value, bool isPredefined)
         {
             if (isPredefined)
             {

@@ -6,15 +6,15 @@ using System.Windows.Forms;
 
 namespace Sudoku
 {
-    public partial class SudokuCell : UserControl
+    public partial class SudokuCell : UserControl, ICell
     {
         private readonly IBoard board;
 
-        public int X { get; set; }
+        public int X { get; private set; }
 
-        public int Y { get; set; }
+        public int Y { get; private set; }
 
-        public string CellContent => textBox.Text;
+        private string CellContent => textBox.Text;
 
         public int CellValue
         {
@@ -34,6 +34,8 @@ namespace Sudoku
         }
 
         public HashSet<Location> Neighbors { get; private set; } = new HashSet<Location>();
+
+        public bool ReadOnly => textBox.ReadOnly;
 
         public SudokuCell()
         {
@@ -83,11 +85,11 @@ namespace Sudoku
             }
         }
 
-        public void InitAsPredefined(int wartosc)
+        public void InitAsPredefined(int value)
         {
             textBox.ForeColor = Color.Black;
             textBox.Font = new Font(textBox.Font, FontStyle.Bold);
-            CellValue = wartosc;
+            CellValue = value;
             textBox.ReadOnly = true;
         }
 
@@ -140,6 +142,11 @@ namespace Sudoku
         private bool HasInvalidValue()
         {
             return Neighbors.Select(loc => board.Board[loc.Y, loc.X]).Any(cell => cell == CellValue);
+        }
+
+        public void FocusTextbox()
+        {
+            textBox.Focus();
         }
     }
 }

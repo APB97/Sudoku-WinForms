@@ -20,5 +20,8 @@
     <Setting Name="DesiredBlanks" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">35</Value>
     </Setting>
+    <Setting Name="ImageDestination" Type="System.String" Scope="User">
+      <Value Profile="(Default)">last.png</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

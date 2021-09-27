@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonPickImageDestination = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxImageDestination = new System.Windows.Forms.TextBox();
             this.numericLineSize = new System.Windows.Forms.NumericUpDown();
             this.numericFontSize = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.numericCellSize = new System.Windows.Forms.NumericUpDown();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.numericBlanks = new System.Windows.Forms.NumericUpDown();
@@ -50,6 +51,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonPickImageDestination);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.textBoxImageDestination);
             this.groupBox1.Controls.Add(this.numericLineSize);
             this.groupBox1.Controls.Add(this.numericFontSize);
             this.groupBox1.Controls.Add(this.label3);
@@ -58,10 +62,37 @@
             this.groupBox1.Controls.Add(this.numericCellSize);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(163, 101);
+            this.groupBox1.Size = new System.Drawing.Size(460, 101);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Printing";
+            // 
+            // buttonPickImageDestination
+            // 
+            this.buttonPickImageDestination.Location = new System.Drawing.Point(426, 17);
+            this.buttonPickImageDestination.Name = "buttonPickImageDestination";
+            this.buttonPickImageDestination.Size = new System.Drawing.Size(27, 23);
+            this.buttonPickImageDestination.TabIndex = 17;
+            this.buttonPickImageDestination.Text = "...";
+            this.buttonPickImageDestination.UseVisualStyleBackColor = true;
+            this.buttonPickImageDestination.Click += new System.EventHandler(this.ButtonPickImageDestination_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(159, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(90, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Image destination";
+            // 
+            // textBoxImageDestination
+            // 
+            this.textBoxImageDestination.Location = new System.Drawing.Point(255, 18);
+            this.textBoxImageDestination.Name = "textBoxImageDestination";
+            this.textBoxImageDestination.ReadOnly = true;
+            this.textBoxImageDestination.Size = new System.Drawing.Size(165, 20);
+            this.textBoxImageDestination.TabIndex = 15;
             // 
             // numericLineSize
             // 
@@ -229,7 +260,6 @@
 
         #endregion
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericCellSize;
         private System.Windows.Forms.Label label3;
@@ -239,5 +269,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericBlanks;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxImageDestination;
+        private System.Windows.Forms.Button buttonPickImageDestination;
     }
 }

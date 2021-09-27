@@ -19,6 +19,7 @@ namespace Sudoku
             numericFontSize.Value = (decimal)Settings.Default.PrintedFontSize;
             numericLineSize.Value = Settings.Default.PrintedLineWidth;
             numericBlanks.Value = Settings.Default.DesiredBlanks;
+            textBoxImageDestination.Text = Settings.Default.ImageDestination;
         }
 
         private void FormOptions_FormClosed(object sender, FormClosedEventArgs e)
@@ -48,6 +49,17 @@ namespace Sudoku
         private void NumericBlanks_ValueChanged(object sender, System.EventArgs e)
         {
             Settings.Default.DesiredBlanks = (int)numericBlanks.Value;
+        }
+
+        private void ButtonPickImageDestination_Click(object sender, System.EventArgs e)
+        {
+            using (SaveFileDialog dialog = new SaveFileDialog() { Filter = "PNG files|*.png" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    textBoxImageDestination.Text = Settings.Default.ImageDestination = dialog.FileName;
+                }
+            }
         }
     }
 }

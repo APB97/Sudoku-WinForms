@@ -94,5 +94,17 @@ namespace Sudoku.Properties {
                 this["DesiredBlanks"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("last.png")]
+        public string ImageDestination {
+            get {
+                return ((string)(this["ImageDestination"]));
+            }
+            set {
+                this["ImageDestination"] = value;
+            }
+        }
     }
 }

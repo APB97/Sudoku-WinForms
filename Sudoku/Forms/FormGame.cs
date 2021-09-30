@@ -65,7 +65,9 @@ namespace Sudoku
             if (createNewGame)
                 (board, isPredefinedCell) = sudokuCreator.PopulateBoardWithNewSudoku(this, SudokuTable);
             else
-                (board, isPredefinedCell) = userPickedSaveLoad.LoadFromUserPickedFile(this, SudokuTable);
+                (board, isPredefinedCell, supporter.SuppportsRemaining) = userPickedSaveLoad.LoadFromUserPickedFile(this, SudokuTable);
+            
+            labelRemainingSupports.Text = supporter.SuppportsRemaining.ToString();
         }
 
         public FormGame()
@@ -75,12 +77,13 @@ namespace Sudoku
 
         private void ButtonSaveState_Click(object sender, EventArgs e)
         {
-            userPickedSaveLoad.SaveToUserPickedFile(board, isPredefinedCell);
+            userPickedSaveLoad.SaveToUserPickedFile(board, isPredefinedCell, supporter);
         }
 
         private void ButtonLoadState_Click(object sender, EventArgs e)
         {
-            (board, isPredefinedCell) = userPickedSaveLoad.LoadFromUserPickedFile(this, SudokuTable);
+            (board, isPredefinedCell, supporter.SuppportsRemaining) = userPickedSaveLoad.LoadFromUserPickedFile(this, SudokuTable);
+            labelRemainingSupports.Text = supporter.SuppportsRemaining.ToString();
         }
 
         private void ButtonBackToMenu_Click(object sender, EventArgs e)

@@ -1,5 +1,7 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Text;
+using Sudoku.Properties;
 using SudokuLib.Helpers;
 using static SudokuLib.Helpers.SudokuConstants;
 
@@ -7,7 +9,7 @@ namespace SudokuLib.Core
 {
     public class SudokuSaveLoad
     {
-        public static void Save(string destination, int[,] boardValues, bool[,] boardCellStates)
+        public static void Save(string destination, int[,] boardValues, bool[,] boardCellStates, int supportsAvailable)
         {
             if (SudokuHelper.HasIncorrectDimensions(boardValues) || SudokuHelper.HasIncorrectDimensions(boardCellStates)) return;
 
@@ -27,11 +29,13 @@ namespace SudokuLib.Core
 
                 builder.AppendLine();
             }
+
+            builder.Append(supportsAvailable);
             
             File.WriteAllText(destination, builder.ToString());
         }
 
-        public static (int[,] values, bool[,] predefined) Load(string source)
+        public static (int[,] values, bool[,] predefined, int supportsAvailable) Load(string source)
         {
             int[,] boardValues = new int[SudokuSize, SudokuSize];
             bool[,] boardPredefined = new bool[SudokuSize, SudokuSize];
@@ -47,7 +51,12 @@ namespace SudokuLib.Core
                 }
             }
 
-            return (boardValues, boardPredefined);
+            if (fileLines.Length < SudokuSize + SudokuSize + 1 || !int.TryParse(fileLines[SudokuSize + SudokuSize].Split(' ').First(), out int supports))
+            {
+                supports = Settings.Default.SupportsAvailable;
+            }
+
+            return (boardValues, boardPredefined, supports);
         }
     }
 }

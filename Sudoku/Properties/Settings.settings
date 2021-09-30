@@ -23,5 +23,8 @@
     <Setting Name="ImageDestination" Type="System.String" Scope="User">
       <Value Profile="(Default)">last.png</Value>
     </Setting>
+    <Setting Name="SupportsAvailable" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

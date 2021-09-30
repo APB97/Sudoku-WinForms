@@ -106,5 +106,17 @@ namespace Sudoku.Properties {
                 this["ImageDestination"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int SupportsAvailable {
+            get {
+                return ((int)(this["SupportsAvailable"]));
+            }
+            set {
+                this["SupportsAvailable"] = value;
+            }
+        }
     }
 }

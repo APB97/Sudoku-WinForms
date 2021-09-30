@@ -41,12 +41,15 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.numericBlanks = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.numericHelpAvailable = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericLineSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericFontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericCellSize)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericBlanks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericHelpAvailable)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -192,11 +195,13 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.numericHelpAvailable);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.numericBlanks);
             this.groupBox2.Location = new System.Drawing.Point(12, 120);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(163, 49);
+            this.groupBox2.Size = new System.Drawing.Size(163, 72);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Difficulty";
@@ -233,6 +238,33 @@
             0});
             this.numericBlanks.ValueChanged += new System.EventHandler(this.NumericBlanks_ValueChanged);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 47);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(74, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Help available";
+            // 
+            // numericHelpAvailable
+            // 
+            this.numericHelpAvailable.Location = new System.Drawing.Point(92, 45);
+            this.numericHelpAvailable.Maximum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.numericHelpAvailable.Name = "numericHelpAvailable";
+            this.numericHelpAvailable.Size = new System.Drawing.Size(61, 20);
+            this.numericHelpAvailable.TabIndex = 13;
+            this.numericHelpAvailable.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericHelpAvailable.ValueChanged += new System.EventHandler(this.NumericHelpAvailable_ValueChanged);
+            // 
             // FormOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,6 +286,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericBlanks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericHelpAvailable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -272,5 +305,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxImageDestination;
         private System.Windows.Forms.Button buttonPickImageDestination;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown numericHelpAvailable;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Sudoku.Properties;
+using System.Collections.Generic;
 using System.Linq;
 using static SudokuLib.Helpers.SudokuConstants;
 
@@ -8,13 +9,11 @@ namespace Sudoku
     {
         private readonly List<int> possibleValues = Enumerable.Range(1, 9).ToList();
 
-        private int suppportsRemaining = 3;
-
-        public int SuppportsRemaining => suppportsRemaining;
+        public int SuppportsRemaining { get; set; } = Settings.Default.SupportsAvailable;
 
         public void RequestSupport(IBoard board, ICell[,] sudokuCells)
         {
-            if (suppportsRemaining > 0)
+            if (SuppportsRemaining > 0)
             {
                 SupportMe(board, sudokuCells);
             }
@@ -34,8 +33,8 @@ namespace Sudoku
                         {
                             board.EmptyCells--;
                         }
-                        cell.CellValue = options[0];
-                        suppportsRemaining--;
+                        board.Board[cell.Y, cell.X] = cell.CellValue = options[0];
+                        SuppportsRemaining--;
                         return;
                     }
                 }

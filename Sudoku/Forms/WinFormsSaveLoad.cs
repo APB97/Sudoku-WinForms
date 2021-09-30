@@ -1,4 +1,5 @@
-﻿using SudokuLib.Core;
+﻿using Sudoku.Properties;
+using SudokuLib.Core;
 using System.Windows.Forms;
 using static SudokuLib.Helpers.SudokuConstants;
 
@@ -21,24 +22,24 @@ namespace Sudoku
             openSudokuDialog.Dispose();
         }
 
-        public void SaveToUserPickedFile(int[,] board, bool[,] isPredefinedCell)
+        public void SaveToUserPickedFile(int[,] board, bool[,] isPredefinedCell, SudokuSupporter supporter)
         {
             if (saveSudokuDialog.ShowDialog() == DialogResult.OK)
             {
-                SudokuSaveLoad.Save(saveSudokuDialog.FileName, board, isPredefinedCell);
+                SudokuSaveLoad.Save(saveSudokuDialog.FileName, board, isPredefinedCell, supporter.SuppportsRemaining);
             }
         }
 
-        public (int[,] board, bool[,] isPredefinedCell) LoadFromUserPickedFile(IBoard sudokuBoard, ICell[,] cells)
+        public (int[,] board, bool[,] isPredefinedCell, int supportsAvailable) LoadFromUserPickedFile(IBoard sudokuBoard, ICell[,] cells)
         {
             if (openSudokuDialog.ShowDialog() == DialogResult.OK)
             {
-                var (board, isPredefinedCell) = SudokuSaveLoad.Load(openSudokuDialog.FileName);
+                var (board, isPredefinedCell, supports) = SudokuSaveLoad.Load(openSudokuDialog.FileName);
                 LoadAllCellStates(cells, board, isPredefinedCell);
                 sudokuBoard.EmptyCells = SudokuCreator.CountEmptyCells(board);
-                return (board, isPredefinedCell);
+                return (board, isPredefinedCell, supports);
             }
-            return default;
+            return (default, default, Settings.Default.SupportsAvailable);
         }
 
         private void LoadAllCellStates(ICell[,] cells, int[,] board, bool[,] isPredefinedCell)

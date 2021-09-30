@@ -29,7 +29,12 @@ namespace Sudoku
                 if (value == 0)
                     textBox.Text = string.Empty;
                 else
+                {
                     textBox.Text = value.ToString();
+                    textBox.ReadOnly = false;
+                    textBox.ForeColor = Color.DimGray;
+                    textBox.Font = new Font(textBox.Font, FontStyle.Bold);
+                }
             }
         }
 
@@ -87,9 +92,9 @@ namespace Sudoku
 
         public void InitAsPredefined(int value)
         {
+            CellValue = value;
             textBox.ForeColor = Color.Black;
             textBox.Font = new Font(textBox.Font, FontStyle.Bold);
-            CellValue = value;
             textBox.ReadOnly = true;
         }
 

@@ -19,6 +19,7 @@ namespace Sudoku
             numericFontSize.Value = (decimal)Settings.Default.PrintedFontSize;
             numericLineSize.Value = Settings.Default.PrintedLineWidth;
             numericBlanks.Value = Settings.Default.DesiredBlanks;
+            numericHelpAvailable.Value = Settings.Default.SupportsAvailable;
             textBoxImageDestination.Text = Settings.Default.ImageDestination;
         }
 
@@ -49,6 +50,11 @@ namespace Sudoku
         private void NumericBlanks_ValueChanged(object sender, System.EventArgs e)
         {
             Settings.Default.DesiredBlanks = (int)numericBlanks.Value;
+        }
+
+        private void NumericHelpAvailable_ValueChanged(object sender, System.EventArgs e)
+        {
+            Settings.Default.SupportsAvailable = (int)numericHelpAvailable.Value;
         }
 
         private void ButtonPickImageDestination_Click(object sender, System.EventArgs e)

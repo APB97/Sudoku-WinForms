@@ -117,6 +117,8 @@ namespace Sudoku
 
         private void TrySettingCellValue(KeyEventArgs e)
         {
+            if (textBox.ReadOnly == true) 
+                return;
             string key = e.KeyCode.ToString();
             if (IsNotADigitKey(key) || IsCharNotANonZeroDigit(key[1]))
                 return;

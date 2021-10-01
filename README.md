@@ -23,7 +23,7 @@ Once a game starts, users will see generated board with certain amount of empty 
 - Support me (this fills one cell at a time to assist users)
 - To menu (abandons the game and shows the main menu form)
 - Save PNG (saves and opens picture of unsolved sudoku)
-- Print PNG (prints previusly saved picture)
+- Print PNG (prints previously saved picture)
 
 ![game](images/Game.png)
 

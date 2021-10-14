@@ -31,6 +31,8 @@ Application contains the following Options possible to change:
 - Printed cell size (this is size in pixels of a single sudoku cell)
 - Printed font size (size of the font used to draw digits inside of cells)
 - Printed line size (size of lines between cells)
+- Image destination (where the sudoku is saved for printing)
 - Desired blanks (target blank cells application tries to achieve)
+- Help available (tells how many times you can receive help during puzzle)
 
 ![options](images/Options.png)
